@@ -1,0 +1,2133 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mobile Computing // Field Guide — Anytime, Anywhere, While Moving</title>
+  <meta name="description" content="A surreal, animated exam master guide to Mobile Computing: mobile systems, prototyping, localization, positioning techniques and location-based services — in English and Arabic, with photos, diagrams, live labs and a full revision kit.">
+  <meta name="author" content="Mobile Computing Field Guide">
+  <meta name="theme-color" content="#05060a">
+  <meta property="og:title" content="Mobile Computing // Field Guide">
+  <meta property="og:description" content="Five lectures + revision kit. Definitions, seven waves, four constraints, prototypes, ToA/TDoA/AoA/RSS, GPS, cellular, Wi-Fi, beacons and LBS — EN + AR.">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script>document.documentElement.classList.add('js');</script>
+  <noscript>
+    <style>
+      .loader { display: none !important; }
+      body.is-loading { overflow: auto; height: auto; }
+      html.js [data-reveal],
+      html.js .hero [data-hero] { opacity: 1 !important; }
+      html.js [data-line-reveal] .line-inner,
+      html.js .hero__title .line-inner { transform: none !important; }
+      html.js .section-rule { transform: none !important; }
+      .cursor { display: none !important; }
+    </style>
+  </noscript>
+</head>
+<body class="is-loading">
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ============ loader ============ -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader__curtain loader__curtain--2"></div>
+    <div class="loader__curtain loader__curtain--1"></div>
+    <div class="loader__scan"></div>
+    <div class="loader__inner">
+      <img class="loader__mark" src="assets/logo.svg" alt="">
+      <div class="loader__word">Mobile Computing · Field Archive</div>
+      <div class="loader__bar"><div class="loader__fill"></div></div>
+      <div class="loader__row">
+        <span>Acquiring satellites</span>
+        <span class="loader__pct">000%</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ atmosphere ============ -->
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-glow" aria-hidden="true"></div>
+  <div class="aurora aurora--1" aria-hidden="true"></div>
+  <div class="aurora aurora--2" aria-hidden="true"></div>
+  <div class="aurora aurora--3" aria-hidden="true"></div>
+  <div class="floor" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ============ custom cursor ============ -->
+  <div class="cursor" id="cursor" aria-hidden="true">
+    <div class="cursor__ring"></div>
+    <div class="cursor__dot"></div>
+    <div class="cursor__label">EXPLORE</div>
+  </div>
+
+  <!-- ============ progress ============ -->
+  <div class="progress" aria-hidden="true"><div class="progress__bar" id="progressBar"></div></div>
+
+  <!-- ============ HUD ============ -->
+  <div class="hud hud--bl" aria-hidden="true">
+    <span class="hud__rec"><i></i>REC</span>
+    <span>CAM_02 · TRACKING SHOT</span>
+    <span class="hud__bar"><i id="hudBar"></i></span>
+    <span id="hudFocus">000%</span>
+  </div>
+  <div class="hud hud--br" aria-hidden="true">
+    <span>24.7136° N · 46.6753° E</span>
+    <span><b>FIX</b> 3D · 4 SATS</span>
+    <span><b>BUILD</b> 2026.11</span>
+  </div>
+
+  <!-- ============ 3D mobile core stage ============ -->
+  <aside class="core-stage" id="coreStage" aria-hidden="true">
+    <canvas class="core-stage__canvas" id="coreCanvas"></canvas>
+    <div class="core-stage__hud core-stage__hud--top">
+      <span class="core-stage__tag"><i></i>MOBILE_CORE</span>
+      <span class="core-stage__mode" id="coreMode">CALIBRATE</span>
+    </div>
+    <div class="core-stage__hud core-stage__hud--bottom">
+      <span>YAW <b id="coreYaw">000</b></span>
+      <span>DEPTH <b id="coreDepth">1.00x</b></span>
+    </div>
+    <div class="core-stage__gauge"><i id="coreGauge"></i></div>
+  </aside>
+
+  <!-- ============ navigation ============ -->
+  <header class="nav" id="nav">
+    <a class="brand" href="#top" aria-label="Mobile Computing — back to top" data-cursor="TOP">
+      <img class="brand__mark" src="assets/logo.svg" alt="Mobile computing logo">
+      <span class="brand__text">
+        <span class="brand__name">MOBILE</span>
+        <span class="brand__sub">COMPUTING / CORE</span>
+      </span>
+    </a>
+
+    <nav class="nav__links" aria-label="Primary">
+      <a class="nav__link" href="#overview">Overview</a>
+      <div class="dropdown" id="lecturesDropdown">
+        <button class="nav__link dropdown__trigger" id="lecturesTrigger" aria-expanded="false" aria-controls="lecturesPanel">
+          Lectures
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M1 3l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="dropdown__panel" id="lecturesPanel">
+          <div class="dropdown__grid">
+            <a class="mega__item" href="#lec1">
+              <span class="mega__num">01</span>
+              <span><strong>Mobile Computing</strong><small>Definitions · waves · constraints · الحوسبة المتنقلة</small></span>
+              <span class="mega__arrow">↗</span>
+            </a>
+            <a class="mega__item" href="#lec2">
+              <span class="mega__num">02</span>
+              <span><strong>Prototyping</strong><small>PDS · fidelity · WoZ · النماذج الأولية</small></span>
+              <span class="mega__arrow">↗</span>
+            </a>
+            <a class="mega__item" href="#lec3">
+              <span class="mega__num">03</span>
+              <span><strong>Localization</strong><small>ToA · TDoA · GPS · التحديد المكاني</small></span>
+              <span class="mega__arrow">↗</span>
+            </a>
+            <a class="mega__item" href="#lec4">
+              <span class="mega__num">04</span>
+              <span><strong>Positioning</strong><small>Cellular · Wi-Fi · beacons · التموضع</small></span>
+              <span class="mega__arrow">↗</span>
+            </a>
+            <a class="mega__item" href="#lec5">
+              <span class="mega__num">05</span>
+              <span><strong>Location-Based Services</strong><small>Context · E911 · privacy · خدمات الموقع</small></span>
+              <span class="mega__arrow">↗</span>
+            </a>
+            <a class="mega__item" href="#rev">
+              <span class="mega__num">06</span>
+              <span><strong>Field Revision</strong><small>Rescue sheet · MCQs · essays · ورقة الإنقاذ</small></span>
+              <span class="mega__arrow">↗</span>
+            </a>
+          </div>
+          <div class="dropdown__foot">
+            <span>05 lectures + revision · EN + AR · 19 figures</span>
+            <span>no socials · no clout · just notes</span>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="nav__actions">
+      <button class="pill-btn" id="arToggle" aria-pressed="true" data-cursor="ARABIC">
+        <span class="dot"></span>
+        <span class="ar-label">AR ON</span>
+      </button>
+      <button class="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ============ section rail ============ -->
+  <nav class="rail" aria-label="Section index">
+    <a class="rail__item is-active" href="#overview"><span class="rail__label">Overview</span><span class="rail__dot"></span></a>
+    <a class="rail__item" href="#lec1"><span class="rail__label">01 · Mobile</span><span class="rail__dot"></span></a>
+    <a class="rail__item" href="#lec2"><span class="rail__label">02 · Prototyping</span><span class="rail__dot"></span></a>
+    <a class="rail__item" href="#lec3"><span class="rail__label">03 · Localization</span><span class="rail__dot"></span></a>
+    <a class="rail__item" href="#lec4"><span class="rail__label">04 · Positioning</span><span class="rail__dot"></span></a>
+    <a class="rail__item" href="#lec5"><span class="rail__label">05 · LBS</span><span class="rail__dot"></span></a>
+    <a class="rail__item" href="#rev"><span class="rail__label">06 · Revision</span><span class="rail__dot"></span></a>
+  </nav>
+
+  <main id="main">
+
+    <!-- ============================================================
+         HERO
+    ============================================================ -->
+    <section class="hero" id="top">
+      <div class="container hero__grid">
+        <div class="hero__copy">
+          <p class="hero__note" data-hero><span aria-hidden="true">✳</span> be cool — this isn’t made to gain credits. <b>just notes.</b></p>
+          <div class="eyebrow hero__eyebrow" data-hero><span class="live"></span> Computer Systems Engineering · Lectures 01–05</div>
+
+          <h1 class="hero__title">
+            <span class="line"><span class="line-inner grad">Mobile</span></span>
+            <span class="line line--compact"><span class="line-inner outline" data-text="Computing">Computing</span></span>
+            <span class="line line--compact"><span class="line-inner grad">Anytime. Anywhere.</span></span>
+          </h1>
+
+          <p class="hero__ar" lang="ar" dir="rtl" data-hero>
+            دليل بصري شامل لـ<b>الحوسبة المتنقلة</b> — من تعريف النظام وأمواجه السبع وقيوده الأربعة، إلى بناء النماذج الأولية، ثم تحديد الموقع بـ GPS والشبكات الخلوية والواي فاي والـ Beacon، وأخيراً خدمات الموقع والسياق والخصوصية.
+          </p>
+
+          <p class="hero__desc" data-hero>
+            Five lectures rebuilt as a surreal camera ride. A phone is not a small computer —
+            it is a computer that survives being carried, dropped, disconnected and hunted by
+            a battery. We start with what “mobile” means, prototype before we build, then spend
+            three lectures answering one deceptively simple question: <strong>where are you?</strong>
+            Every concept is explained twice, in English and Arabic, with photos, diagrams and live labs.
+          </p>
+
+          <div class="hero__meta" data-hero>
+            <span class="chip"><i></i>05 lectures</span>
+            <span class="chip chip--violet"><i></i>+ revision kit</span>
+            <span class="chip chip--pink"><i></i>19 figures</span>
+            <span class="chip chip--amber"><i></i>EN + AR</span>
+            <span class="chip"><i></i>anime.js v4</span>
+          </div>
+
+          <div class="hero__actions" data-hero>
+            <a class="btn btn--primary" href="#overview" data-magnetic data-cursor="BEGIN">
+              Begin the descent
+              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a class="btn" href="#rev" data-magnetic data-cursor="RESCUE">Jump to the rescue kit</a>
+          </div>
+
+          <div class="author-mini" data-hero data-cursor="COOL">
+            <span class="author-mini__avatar"><img src="assets/logo.svg" alt=""></span>
+            <span class="author-mini__text">
+              <strong>Made by a student</strong>
+              <span>no socials · no clout · just notes</span>
+            </span>
+            <span class="author-mini__in">✳</span>
+          </div>
+        </div>
+
+        <div class="hero__visual hero__visual--photo">
+          <div class="hero__orbit hero__orbit--photo">
+            <img class="hero__photo" src="images/mobile-phone-evolution.jpg" width="2048" height="3072" alt="A timeline of mobile phones from brick handsets to modern smartphones" fetchpriority="high">
+            <div class="hero__photo-shade"></div>
+            <div class="hero__photo-label">
+              <b>FIVE LECTURES</b>
+              <span>signal · prototype · locate · serve</span>
+            </div>
+          </div>
+          <span class="hero__ring"></span>
+          <span class="hero__ring hero__ring--2"></span>
+          <span class="hero__float hero__float--1"><i></i>HARDWARE + SOFTWARE + COMM</span>
+          <span class="hero__float hero__float--2"><i></i>7 WAVES · 4 CONSTRAINTS</span>
+          <span class="hero__float hero__float--3"><i></i>TOA · TDOA · AOA · RSSI</span>
+          <span class="hero__float hero__float--4"><i></i>E911 · CONTEXT · PRIVACY</span>
+          <span class="hero__sat"><img src="images/gps-satellite.jpg" width="240" height="240" alt="GPS satellite"></span>
+          <div class="hero__tech">
+            <span><b>SIGNAL</b> 4 SATS · 3D FIX</span>
+            <span><b>PROTO</b> HI-FI · WOZ</span>
+            <span><b>SERVICE</b> LOCATION + CONTEXT</span>
+          </div>
+          <div class="hero__cam">
+            <span class="rec">CAM_02 · REC</span>
+            <span>LENS 35MM · <b>TRACKING</b></span>
+            <span>FOCUS <b>047%</b> · STABLE</span>
+          </div>
+        </div>
+      </div>
+
+      <a class="scroll-cue" href="#overview" data-cursor="SCROLL">
+        <span>Scroll</span>
+        <span class="scroll-cue__line"></span>
+      </a>
+    </section>
+
+    <!-- ============ marquee ============ -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <div class="marquee__row">
+          <b>Mobile computing</b><i>◆</i><span class="ar">الحوسبة المتنقلة</span><i>◆</i>
+          <b>Seven waves</b><i>◆</i><span class="ar">أمواج الحوسبة السبع</span><i>◆</i>
+          <b>Prototyping</b><i>◆</i><span class="ar">النماذج الأولية</span><i>◆</i>
+          <b>Wizard of Oz</b><i>◆</i><span class="ar">ساحر أوز</span><i>◆</i>
+          <b>Localization</b><i>◆</i><span class="ar">التحديد المكاني</span><i>◆</i>
+          <b>Trilateration</b><i>◆</i><span class="ar">التثليث المسافي</span><i>◆</i>
+          <b>GPS</b><i>◆</i><span class="ar">النظام العالمي لتحديد المواقع</span><i>◆</i>
+          <b>Cellular positioning</b><i>◆</i><span class="ar">التموضع الخلوي</span><i>◆</i>
+          <b>Wi-Fi fingerprinting</b><i>◆</i><span class="ar">البصمة الراديوية</span><i>◆</i>
+          <b>iBeacon</b><i>◆</i><span class="ar">منارات البلوتوث</span><i>◆</i>
+          <b>Location-based services</b><i>◆</i><span class="ar">خدمات الموقع</span><i>◆</i>
+          <b>Context</b><i>◆</i><span class="ar">السياق</span><i>◆</i>
+        </div>
+        <div class="marquee__row">
+          <b>Mobile computing</b><i>◆</i><span class="ar">الحوسبة المتنقلة</span><i>◆</i>
+          <b>Seven waves</b><i>◆</i><span class="ar">أمواج الحوسبة السبع</span><i>◆</i>
+          <b>Prototyping</b><i>◆</i><span class="ar">النماذج الأولية</span><i>◆</i>
+          <b>Wizard of Oz</b><i>◆</i><span class="ar">ساحر أوز</span><i>◆</i>
+          <b>Localization</b><i>◆</i><span class="ar">التحديد المكاني</span><i>◆</i>
+          <b>Trilateration</b><i>◆</i><span class="ar">التثليث المسافي</span><i>◆</i>
+          <b>GPS</b><i>◆</i><span class="ar">النظام العالمي لتحديد المواقع</span><i>◆</i>
+          <b>Cellular positioning</b><i>◆</i><span class="ar">التموضع الخلوي</span><i>◆</i>
+          <b>Wi-Fi fingerprinting</b><i>◆</i><span class="ar">البصمة الراديوية</span><i>◆</i>
+          <b>iBeacon</b><i>◆</i><span class="ar">منارات البلوتوث</span><i>◆</i>
+          <b>Location-based services</b><i>◆</i><span class="ar">خدمات الموقع</span><i>◆</i>
+          <b>Context</b><i>◆</i><span class="ar">السياق</span><i>◆</i>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         OVERVIEW
+    ============================================================ -->
+    <section class="scene" id="overview">
+      <div class="container scene__inner">
+        <header class="section-head" data-line-reveal>
+          <div class="section-index" aria-hidden="true">00</div>
+          <div class="section-head__row">
+            <div>
+              <div class="section-kicker" data-reveal>Orientation · 00</div>
+              <h2 class="section-title">
+                <span class="line"><span class="line-inner">The signal</span></span>
+                <span class="line"><span class="line-inner grad">&amp; the noise</span></span>
+              </h2>
+              <p class="section-ar" lang="ar" dir="rtl" data-reveal>الإشارة والضجيج — خريطة المقرر في صفحة واحدة</p>
+            </div>
+            <div class="section-meta" data-reveal>
+              <span class="chip chip--violet"><i></i>foundations</span>
+              <span class="chip"><i></i>EN + AR</span>
+              <span class="chip chip--amber"><i></i>exam-first</span>
+            </div>
+          </div>
+          <div class="section-rule"></div>
+        </header>
+
+        <div class="cards">
+          <article class="card card--wide card--cyan" data-tilt data-reveal>
+            <div class="card__head">
+              <span class="card__icon" aria-hidden="true">◈</span>
+              <div>
+                <div class="card__title">The core definition<small>what “mobile computing” actually means</small></div>
+              </div>
+            </div>
+            <p><strong>Mobile computing</strong> is interacting with a computer through a <strong>mobile device</strong> to access networks and services <strong>anytime and anywhere while moving</strong>. A second, equally examinable phrasing: it is what happens when a work process moves from a normal fixed position to a more dynamic position.</p>
+            <p>It rests on three components — <strong>mobile hardware</strong>, <strong>mobile software</strong> and <strong>mobile communication</strong>. Remove one and the system stops being mobile computing: it becomes either a paperweight or a radio.</p>
+            <p>The subject travels one arc: <strong>survive the constraints</strong> (Lecture 1) → <strong>prototype the experience</strong> (Lecture 2) → <strong>locate the device</strong> (Lecture 3) → <strong>position it indoors and outdoors</strong> (Lecture 4) → <strong>turn location into a service</strong> (Lecture 5).</p>
+            <div class="arabic" lang="ar" dir="rtl">
+              <strong>ما هي الحوسبة المتنقلة؟</strong><br>
+              هي التفاعل مع الحاسوب عبر جهاز محمول للوصول إلى الشبكات والخدمات في أي وقت وأي مكان أثناء الحركة. ويمكن تعريفها أيضاً بأنها انتقال عملية العمل من موضع ثابت إلى موضع أكثر ديناميكية. تقوم على ثلاثة مكونات: العتاد المتنقل، والبرمجيات المتنقلة، والاتصالات المتنقلة — وإزالة أي مكون تُفقد النظام صفته المتنقلة.<br>
+              رحلة المقرر: النجاة من القيود، ثم بناء النموذج الأولي، ثم تحديد الموقع، ثم التموضع داخل المباني وخارجها، وأخيراً تحويل الموقع إلى خدمة.
+            </div>
+          </article>
+
+          <article class="card card--violet" data-tilt data-reveal>
+            <div class="card__head">
+              <span class="card__icon" aria-hidden="true">⌁</span>
+              <div>
+                <div class="card__title">The archive<small>five lectures · one kit</small></div>
+              </div>
+            </div>
+            <ul>
+              <li><a href="#lec1"><strong>01 · Mobile Computing</strong></a> — definitions, three components, overlapping paradigms, wired vs mobile, seven waves, four constraints, market trends.</li>
+              <li><a href="#lec2"><strong>02 · Prototyping</strong></a> — seven-step design process, PDS, fidelity levels, lo-fi vs hi-fi, horizontal vs vertical, Wizard of Oz.</li>
+              <li><a href="#lec3"><strong>03 · Localization</strong></a> — global/relative/symbolic position, accuracy vs precision, ToA/TDoA/AoA/RSS, triangulation vs trilateration, GPS, DGPS/WAAS/A-GPS, dead reckoning.</li>
+              <li><a href="#lec4"><strong>04 · Positioning</strong></a> — cellular parameters, Wi-Fi scanning and fingerprinting, LORAN, indoor positioning, iBeacon, magnetic positioning.</li>
+              <li><a href="#lec5"><strong>05 · Location-Based Services</strong></a> — five entities, E911 history, tracking vs aware, context, adaptation levels, privacy.</li>
+              <li><a href="#rev"><strong>06 · Field Revision</strong></a> — the rescue sheet, 20 MCQs, 10 essay answers and the one-page cheat sheet.</li>
+            </ul>
+            <div class="arabic" lang="ar" dir="rtl">
+              <strong>خريطة الأرشيف:</strong><br>
+              خمس محاضرات وطقم مراجعة: أساسيات الحوسبة المتنقلة وأمواجها وقيودها، ثم التصميم والنماذج الأولية، ثم التحديد المكاني وتقنيات المدى وGPS، ثم التموضع الخلوي والواي فاي والمنارات الداخلية، وأخيراً خدمات الموقع والسياق والخصوصية — وتُختم بورقة الإنقاذ وبنك الأسئلة.
+            </div>
+          </article>
+
+          <article class="card card--pink" data-tilt data-reveal>
+            <div class="card__head">
+              <span class="card__icon" aria-hidden="true">◐</span>
+              <div>
+                <div class="card__title">Two languages, one subject<small>every concept is explained twice</small></div>
+              </div>
+            </div>
+            <p>English explanations carry the exact terminology the exam expects. Arabic panels (RTL, Cairo typeface) restate the same idea in a more conversational voice — use the <strong>AR ON / AR OFF</strong> control in the navigation to hide or show them.</p>
+            <p>The toggle remembers your choice. The Arabic is not machine-translated filler: every panel explains the mechanism, the example, or the trap.</p>
+            <div class="arabic" lang="ar" dir="rtl">
+              <strong>لغتان، موضوع واحد:</strong><br>
+              الشرح الإنجليزي يحمل المصطلحات الدقيقة التي يطلبها الاختبار، واللوحات العربية (من اليمين إلى اليسار بخط Cairo) تعيد شرح الفكرة نفسها بأسلوب أبسط. يمكنك إخفاء أو إظهار الشروحات العربية من زر <strong>AR</strong> في الشريط العلوي، وسيتذكر الموقع اختيارك.
+            </div>
+          </article>
+
+          <article class="card card--amber" data-tilt data-reveal>
+            <div class="card__head">
+              <span class="card__icon" aria-hidden="true">✳</span>
+              <div>
+                <div class="card__title">How to use this site<small>the camera is yours</small></div>
+              </div>
+            </div>
+            <ul>
+              <li><strong>Scroll</strong> to move the camera: sections tilt, lift and settle into focus.</li>
+              <li><strong>Hover</strong> cards and diagrams for tilt, spotlight and parallax.</li>
+              <li><strong>Play</strong> with the live labs: toggle satellites and a receiver clock, then pick a positioning technology for a real environment.</li>
+              <li><strong>Jump</strong> with the Lectures dropdown or the dot rail on the right; the revision kit is one click away.</li>
+            </ul>
+            <div class="arabic" lang="ar" dir="rtl">
+              <strong>كيف تستخدم الموقع؟</strong><br>
+              مرّر لتحريك الكاميرا بين الأقسام، ومرّر المؤشر فوق البطاقات والرسوم للحصول على تأثيرات ثلاثية الأبعاد. جرّب المعامل التفاعلية: بدّل عدد الأقمار وساعة المستقبل لترى لماذا نحتاج القمر الرابع، واختر بيئة الاستخدام لترى التقنية المناسبة. وتنقّل من قائمة المحاضرات أو النقاط الجانبية، وورقة الإنقاذ على بعد نقرة.
+            </div>
+          </article>
+        </div>
+
+        <figure class="figure figure--fit" data-reveal>
+          <div class="figure__frame">
+            <span class="figure__corner figure__corner--tl"></span>
+            <span class="figure__corner figure__corner--tr"></span>
+            <span class="figure__corner figure__corner--bl"></span>
+            <span class="figure__corner figure__corner--br"></span>
+            <span class="figure__tag">FIG. 00 · THE MOBILE STACK</span>
+            <img src="images/mobile-stack.svg" alt="The mobile computing stack: hardware, software and communication, surrounded by location, security, energy and resource concerns" width="900" height="470" loading="lazy">
+          </div>
+          <figcaption>
+            <span>Mobile computing is a stack, not a phone. Remove one layer and the “mobile” part collapses into either a paperweight or a radio.</span>
+            <span class="ar" lang="ar" dir="rtl">الحوسبة المتنقلة طبقات لا هاتف فقط. أزل طبقة واحدة فتنهار “الحركة” إلى مجرد آلة أو راديو.</span>
+          </figcaption>
+        </figure>
+
+        <div class="stats" data-reveal>
+          <div class="stat"><b data-count="5">5</b><span>Lectures</span></div>
+          <div class="stat"><b data-count="19">19</b><span>Figures &amp; photos</span></div>
+          <div class="stat"><b data-count="20">20</b><span>MCQs decoded</span></div>
+          <div class="stat"><b data-count="10">10</b><span>Essay answers</span></div>
+          <div class="stat"><b data-count="2">2</b><span>Live labs</span></div>
+        </div>
+      </div>
+    </section>
+    <!-- ============================================================
+         LECTURE 1 — MOBILE COMPUTING
+    ============================================================ -->
+    <section class="scene" id="lec1">
+      <div class="container scene__inner">
+        <header class="section-head" data-line-reveal>
+          <div class="section-index" aria-hidden="true">01</div>
+          <div class="section-head__row">
+            <div>
+              <div class="section-kicker" data-reveal>Lecture 01 · Foundations</div>
+              <h2 class="section-title">
+                <span class="line"><span class="line-inner">Mobile</span></span>
+                <span class="line"><span class="line-inner grad">Computing</span></span>
+              </h2>
+              <p class="section-ar" lang="ar" dir="rtl" data-reveal>الحوسبة المتنقلة — نظام يتكوّن من عتاد وبرمجيات واتصالات، وتحاصره أربعة قيود</p>
+            </div>
+            <div class="section-meta" data-reveal>
+              <span class="chip"><i></i>lecture 01</span>
+              <span class="chip chip--violet"><i></i>7 waves · 4 constraints</span>
+              <span class="chip chip--amber"><i></i>definitions</span>
+            </div>
+          </div>
+          <div class="section-rule"></div>
+        </header>
+
+        <div class="cards">
+          <article class="card card--wide card--cyan" data-tilt data-reveal>
+            <div class="card__head">
+              <span class="card__icon" aria-hidden="true">◈</span>
+              <div>
+                <div class="card__title">The three definitions<small>computing · mobile · mobile computing</small></div>
+              </div>
+            </div>
+            <p><strong>Computing</strong> is the operation of computers. <strong>Mobile</strong> describes someone or something that can move, or be moved, easily and quickly from place to place.</p>
+            <p><strong>Mobile computing</strong> is interacting with a computer through a mobile device to access networks and services <strong>anytime and anywhere while moving</strong>. The lecture also gives the process view: it is when a work process is moved from a normal fixed position to a more dynamic position.</p>
+            <p>Its <strong>three main components</strong> are <strong>mobile hardware</strong> (the device), <strong>mobile software</strong> (the OS and apps) and <strong>mobile communication</strong> (the wireless link and network services).</p>
+            <div class="rick-quote">
+              <span class="rick-quote__portal" aria-hidden="true"></span>
+              <div>
+                <blockquote>“<em>Sometimes science is more art than science.</em>”</blockquote>
+                <p class="rick-quote__note">and sometimes “mobile” is more about surviving the trip than about the phone.</p>
+                <cite>— RICK SANCHEZ</cite>
+              </div>
+            </div>
+            <div class="arabic" lang="ar" dir="rtl">
+              <strong>التعريفات الثلاثة:</strong><br>
+              الحوسبة (Computing) هي عملية تشغيل واستخدام الحواسيب. ومتنقل (Mobile) تعني القدرة على الحركة أو النقل بسهولة وسرعة من مكان لآخر.<br>
+              الحوسبة المتنقلة هي التفاعل مع الكمبيوتر باستخدام جهاز محمول للوصول إلى الشبكات والخدمات في أي وقت وأي مكان أثناء الحركة. وتتكون من ثلاثة أجزاء رئيسية: العتاد المتنقل (الأجهزة)، والبرمجيات المتنقلة، والاتصالات المتنقلة.
+            </div>
+          </article>
+
+          <article class="card card--violet" data-tilt data-reveal>
+            <div class="card__head">
+              <span class="card__icon" aria-hidden="true">⌁</span>
+              <div>
+                <div class="card__title">Overlapping paradigms<small>the umbrella has many names</small></div>
+              </div>
+            </div>
+            <p>Mobile computing is an umbrella term. These ideas overlap with it, but they are not synonyms — the exam likes the umbrella definition, not the network technology.</p>
+            <div class="mini-grid">
+              <div class="mini-fact"><b>Pervasive</b>Computing woven into everyday life, usually invisible.</div>
+              <div class="mini-fact"><b>Ubiquitous</b>The same idea, with the emphasis on “everywhere at once”.</div>
+              <div class="mini-fact"><b>Wireless</b>Communication without cables — one component, not the whole subject.</div>
+              <div class="mini-fact"><b>Embedded</b>A computer hidden inside a device not called a computer.</div>
+              <div class="mini-fact"><b>Nomadic</b>The user roams between places and reconnects.</div>
+              <div class="mini-fact"><b>WSN</b>Many small sensor nodes sensing and reporting.</div>
+              <div class="mini-fact"><b>MANET</b>Devices form a network with no fixed infrastructure.</div>
+              <div class="mini-fact"><b>VANET</b>Cars talking to cars and to roadside units.</div>
+            </div>
+            <p style="margin-top:12px"><strong>Mesh networks</strong> are the related case where nodes relay for each other so coverage spreads.</p>
+            <div class="arabic" lang="ar" dir="rtl">
+              <strong>المفاهيم المتداخلة:</strong><br>
+              الحوسبة المنتشرة (Pervasive) هي دمج الحوسبة في الحياة اليومية بشكل غير مرئي تقريباً، والحوسبة الشاملة (Ubiquitous) تؤكد على “في كل مكان في آن واحد”، والحوسبة اللاسلكية تعني الاتصال بلا كابلات — وهي مكوّن واحد فقط وليست مرادفاً للحوسبة المتنقلة. والحوسبة المدمجة حاسوب مخفي داخل جهاز لا يُسمى حاسوباً، والحوسبة الرحّالة (Nomadic) يتنقل فيها المستخدم بين الأماكن ويعيد الاتصال. أما شبكات الحساسات اللاسلكية (WSN) فتعني عقداً صغيرة كثيرة تستشعر وترسل، وشبكات MANET تتشكل بلا بنية تحتية ثابتة، وشبكات VANET هي تواصل السيارات مع بعضها ومع وحدات الطريق. وشبكات Mesh تسمح للعقد بتمرير البيانات لبعضها فتتوسع التغطية.
+            </div>
+          </article>
+
+          <article class="card card--pink" data-tilt data-reveal>
+            <div class="card__head">
+              <span class="card__icon" aria-hidden="true">◐</span>
+              <div>
+                <div class="card__title">Wired vs mobile networks<small>eight differences that decide design</small></div>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr><th>Property</th><th>Wired network</th><th>Mobile network</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td><strong>Bandwidth</strong></td><td>High</td><td>Low</td></tr>
+                  <tr><td><strong>Bandwidth variability</strong></td><td>Low</td><td>High</td></tr>
+                  <tr><td><strong>Listening</strong></td><td>Can listen on the wire</td><td>Hidden terminal problem</td></tr>
+                  <tr><td><strong>Power</strong></td><td>High-power machines</td><td>Low-power machines</td></tr>
+                  <tr><td><strong>Resources</strong></td><td>High-resource machines</td><td>Low-resource machines</td></tr>
+                  <tr><td><strong>Security</strong></td><td>Needs physical access</td><td>Needs proximity — public wireless channel</td></tr>
+                  <tr><td><strong>Delay</strong></td><td>Low delay</td><td>Higher delay</td></tr>
+                  <tr><td><strong>Operation</strong></td><td>Connected operation</td><td>Disconnected operation</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>The two columns are not “good vs bad” — they are the reason a mobile app must buffer, compress, retry and degrade gracefully.</p>
+            <div class="arabic" lang="ar" dir="rtl">
+              <strong>السلكي مقابل المتنقل:</strong><br>
+              الشبكة السلكية: نطاق ترددي عالٍ، تباين منخفض في النطاق، إمكانية الاستماع على السلك، أجهزة عالية الطاقة والموارد، تحتاج وصولاً مادياً (أمان)، تأخير منخفض، وتشغيل متصل. والشبكة المتنقلة: نطاق منخفض، تباين عالٍ، مشكلة المحطة المخفية، أجهزة منخفضة الطاقة والموارد، تحتاج قرباً مكانياً، تأخير أعلى، وتشغيل منقطع. هذه الفروق هي سبب حاجة تطبيقات الموبايل للتخزين المؤقت والضغط وإعادة المحاولة والتدرج اللطيف في الأداء.
+            </div>
+          </article>
+
+          <article class="card card--amber" data-tilt data-reveal>
+            <div class="card__head">
+              <span class="card__icon" aria-hidden="true">✳</span>
+              <div>
+                <div class="card__title">The seven waves<small>how mobility evolved, in order</small></div>
+              </div>
+            </div>
+            <ul>
+              <li><strong>1 · Portability</strong> — reduce hardware size so computers can be physically moved around relatively easily.</li>
+              <li><strong>2 · Miniaturization</strong> — create new, significantly smaller mobile form factors for personal use on the move.</li>
+              <li><strong>3 · Connectivity</strong> — build devices and applications that keep users online and communicating over wireless data networks while moving.</li>
+              <li><strong>4 · Convergence</strong> — integrate emerging digital mobile devices such as PDAs, phones, music players, cameras and games into hybrid devices.</li>
+              <li><strong>5 · Divergence</strong> — the opposite interaction-design approach: promote information appliances with specialized functionality instead of generalized ones.</li>
+              <li><strong>6 · Applications (Apps)</strong> — develop content for use and consumption on mobile devices, making access to fun or functional interactive content easy and enjoyable.</li>
+              <li><strong>7 · Digital ecosystems</strong> — the larger wholes of pervasive, interrelated technologies that interactive mobile systems increasingly belong to.</li>
+            </ul>
+            <div class="arabic" lang="ar" dir="rtl">
+              <strong>الأمواج السبع بالترتيب:</strong><br>
+              1) القابلية للحمل: تقليل حجم العتاد ليسهل نقله. 2) التصغير: ابتكار أحجام صغيرة جداً تناسب الاستخدام الشخصي أثناء الحركة. 3) الاتصال: تطوير أجهزة وتطبيقات تبقى المستخدم متصلاً أثناء حركته. 4) التقارب: دمج الهواتف والكاميرات والموسيقى والألعاب في جهاز هجين واحد. 5) التباعد: العكس — أجهزة معلوماتية متخصصة في وظيفة محددة بدلاً من جهاز عام. 6) التطبيقات: تطوير محتوى تفاعلي ترفيهي أو وظيفي يُستهلك بسهولة ومتعة. 7) النظم البيئية الرقمية: المنظومة الكبيرة من التقنيات المترابطة التي يعمل الهاتف كجزء منها.
+            </div>
+          </article>
+
+          <article class="card card--wide card--cyan" data-tilt data-reveal>
+            <div class="card__head">
+              <span class="card__icon" aria-hidden="true">⟁</span>
+              <div>
+                <div class="card__title">The four constraints<small>every mobile system fights the same four enemies</small></div>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr><th>Constraint</th><th>Why it hurts</th><th>How it is mitigated</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td><strong>1 · Resource poor</strong></td><td>Limited CPU, RAM and storage on the device.</td><td>Alternate input (speech / handwriting), cloud storage, cloud computing offload.</td></tr>
+                  <tr><td><strong>2 · Less secure / reliable</strong></td><td>Devices are in transit and use public wireless channels: SMS/MMS, Wi-Fi/GSM, OS vulnerabilities, malware.</td><td>Authentication, encryption (WEP, WPA/WPA2), VPN/HTTPS, MAC filtering.</td></tr>
+                  <tr><td><strong>3 · Intermittent connectivity</strong></td><td>Devices move away from infrastructure and lose the link.</td><td>Data buffering and specialized data-transfer mechanisms that prevent data loss.</td></tr>
+                  <tr><td><strong>4 · Energy constrained</strong></td><td>No fixed power source, compact battery, power-hungry sensors, strict thermal limits (no fans).</td><td>Platform power management, low-power hardware states, energy-aware OS and applications.</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="flow">
+              <span class="flow__step">Limited resources</span><span class="flow__arrow">→</span>
+              <span class="flow__step">Security risk</span><span class="flow__arrow">→</span>
+              <span class="flow__step">Disconnection</span><span class="flow__arrow">→</span>
+              <span class="flow__step">Battery budget</span>
+            </div>
+            <div class="arabic" lang="ar" dir="rtl">
+              <strong>القيود الأربعة:</strong><br>
+              1) موارد ضعيفة: معالج وذاكرة وتخزين محدودة، ويُخفف ذلك بالإدخال البديل (الصوت/الكتابة اليدوية) والتخزين والحوسبة السحابية. 2) أمن وموثوقية أقل: الجهاز في الحركة وعلى قناة لاسلكية عامة، والمخاطر من الرسائل والواي فاي والثغرات والبرمجيات الخبيثة، ويُخفف بالمصادقة والتشفير (WEP/WPA2) وVPN/HTTPS وفلترة MAC. 3) اتصال متقطع: الابتعاد عن البنية التحتية، ويُعالج بالتخزين المؤقت وآليات نقل بيانات متخصصة تمنع الفقدان. 4) طاقة محدودة: لا مصدر طاقة ثابت، بطارية صغيرة، حساسات مستهلكة، وحدود حرارية صارمة بلا مراوح؛ ويُخفف بإدارة طاقة المنصة وحالات العتاد منخفضة الطاقة ونظام تشغيل وتطبيقات واعية بالطاقة.
+            </div>
+          </article>
+
+          <article class="card card--violet" data-tilt data-reveal>
+            <div class="card__head">
+              <span class="card__icon" aria-hidden="true">⌘</span>
+              <div>
+                <div class="card__title">History &amp; market trends<small>why the phone won</small></div>
+              </div>
+            </div>
+            <p><strong>Key factors influencing mobile computing:</strong> enhanced user experience, improved technology (batteries, CPUs, flexible displays, sensors), new form factors, and increased connectivity.</p>
+            <ul>
+              <li><strong>Smartphone OS market share</strong> — Android is dominant.</li>
+              <li><strong>App downloads</strong> — TikTok, Instagram, WhatsApp and CapCut led in 2022.</li>
+              <li><strong>Wearables</strong> — smartwatches are a mainstream category.</li>
+              <li><strong>Healthcare</strong> — mobile monitoring and delivery are growing application areas.</li>
+              <li><strong>Shopping</strong> — <strong>82%</strong> of smartphone users use their devices in stores.</li>
+            </ul>
+            <div class="arabic" lang="ar" dir="rtl">
+              <strong>التاريخ واتجاهات السوق:</strong><br>
+              العوامل المؤثرة: تجربة مستخدم أفضل، تقنية محسّنة (بطاريات ومعالجات وشاشات مرنة وحساسات)، أشكال جديدة، واتصال متزايد. والاتجاهات: أندرويد يهيمن على حصة أنظمة الهواتف، وتطبيقات TikTok وInstagram وWhatsApp وCapCut في مقدمة التنزيلات عام 2022، والساعات الذكية فئة رئيسية، والرعاية الصحية مجال تطبيق متنامٍ، و82% من مستخدمي الهواتف يستخدمونها داخل المتاجر.
+            </div>
+          </article>
+
+          <article class="card card--wide card--pink" data-tilt data-reveal>
+            <div class="card__head">
+              <span class="card__icon" aria-hidden="true">✶</span>
+              <div>
+                <div class="card__title">Exam trap<small>the one sentence to remember</small></div>
+              </div>
+            </div>
+            <p><strong>“Mobile computing” is not a synonym for “Wi-Fi”.</strong> Wireless is one component — the communication layer. You can have mobile computing with intermittent connectivity, and you can have wireless devices that never move (a fixed sensor). The exam wants the umbrella definition: <span class="mono">mobile device + anytime/anywhere access + hardware + software + communication</span>.</p>
+            <div class="rick-quote">
+              <span class="rick-quote__portal" aria-hidden="true"></span>
+              <div>
+                <blockquote>“<em>Wubba lubba dub dub!</em>”</blockquote>
+                <p class="rick-quote__note">roughly: “I understand the constraints, therefore I design for them.” Use the definition, then the three components, then the four constraints; that is a full-mark answer.</p>
+                <cite>— RICK SANCHEZ</cite>
+              </div>
+            </div>
+            <div class="arabic" lang="ar" dir="rtl">
+              <strong>مصيدة الاختبار:</strong><br>
+              “الحوسبة المتنقلة” ليست مرادفاً لـ“الواي فاي”. اللاسلكي مكوّن واحد فقط — طبقة الاتصال. قد تكون لديك حوسبة متنقلة باتصال متقطع، وقد تكون لديك أجهزة لاسلكية لا تتحرك أبداً (حساس ثابت). المطلوب هو التعريف الشامل: جهاز محمول + وصول في أي وقت وأي مكان + عتاد + برمجيات + اتصالات.
+            </div>
+          </article>
+        </div>
+
+        <figure class="figure figure--photo figure--tall" data-reveal>
+          <div class="figure__frame">
+            <span class="figure__corner figure__corner--tl"></span>
+            <span class="figure__corner figure__corner--tr"></span>
+            <span class="figure__corner figure__corner--bl"></span>
+            <span class="figure__corner figure__corner--br"></span>
+            <span class="figure__tag">FIG. 01 · FROM BRICK TO POCKET</span>
+            <img src="images/mobile-phone-evolution.jpg" alt="A timeline of mobile phones showing the shift from large brick handsets to thin smartphones" width="2048" height="3072" loading="lazy">
+          </div>
+          <figcaption>
+            <span>Seven waves in one photograph: portability, miniaturization, connectivity, convergence, divergence, apps and ecosystems. Each wave changed what “mobile” could mean.</span>
+            <span class="ar" lang="ar" dir="rtl">سبعة أمواج في صورة واحدة: القابلية للحمل، التصغير، الاتصال، التقارب، التباعد، التطبيقات، والنظم البيئية. كل موجة غيّرت معنى “متنقل”.</span>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         LECTURE 2 — PROTOTYPING
+    ============================================================ -->
+    <section class="scene" id="lec2">
+      <div class="container scene__inner">
+        <header class="section-head" data-line-reveal>
+          <div class="section-index" aria-hidden="true">02</div>
+          <div class="section-head__row">
+            <div>
+              <div class="section-kicker" data-reveal>Lecture 02 · Design Before Code</div>
+              <h2 class="section-title">
+                <span class="line"><span class="line-inner">Proto</span></span>
+                <span class="line"><span class="line-inner grad">typing</span></span>
+              </h2>
+              <p class="section-ar" lang="ar" dir="rtl" data-reveal>النماذج الأولية — من الفكرة المجردة إلى شيء يمكن للمستخدم تجربته</p>
+            </div>
+            <div class="section-meta" data-reveal>
+              <span class="chip"><i></i>lecture 02</span>
+              <span class="chip chip--violet"><i></i>PDS · fidelity</span>
+              <span class="chip chip--pink"><i></i>Wizard of Oz</span>
+            </div>
+          </div>
+          <div class="section-rule"></div>
+        </header>
+
+        <div class="cards">
+          <article class="card card--wide card--cyan" data-tilt data-reveal>
+            <div class="card__head">
+              <span class="card__icon" aria-hidden="true">◈</span>
+              <div>
+                <div class="card__title">The seven-step design process<small>the order is examinable</small></div>
+              </div>
+            </div>
+            <p>The design process is the set of procedures and decisions that turn an abstract idea into a real product. Learn the sequence, not just the names:</p>
+            <div class="flow">
+              <span class="flow__step">1 · Problem definition (PDS)</span><span class="flow__arrow">→</span>
+              <span class="flow__step">2 · External search</span><span class="flow__arrow">→</span>
+              <span class="flow__step">3 · Internal search</span><span class="flow__arrow">→</span>
+              <span class="flow__step">4 · Evaluation &amp; selection</span><span class="flow__arrow">→</span>
+              <span class="flow__step">5 · Detail design</span><span class="flow__arrow">→</span>
+              <span class="flow__step">6 · Prototyping</span><span class="flow__arrow">→</span>
+              <span class="flow__step">7 · Documentation</span>
+            </div>
+            <ul>
+              <li><strong>Problem definition / PDS</strong> — state the problem and the verifiable requirements.</li>
+              <li><strong>External search</strong> — research what already exists outside the team.</li>
+              <li><strong>Internal search</strong> — brainstorming inside the team.</li>
+              <li><strong>Evaluation and selection</strong> — compare candidate ideas and choose.</li>
+              <li><strong>Detail design</strong> — engineering the chosen solution.</li>
+              <li><strong>Prototyping</strong> — build a representation you can test.</li>
+              <li><strong>Documentation</strong> — record decisions, specifications and results.</li>
+            </ul>
+            <div class="arabic" lang="ar" dir="rtl">
+              <strong>خطوات التصميم السبع بالترتيب:</strong><br>
+              عملية التصميم هي مجموعة إجراءات وقرارات تحول الفكرة المجردة إلى منتج حقيقي: 1) تعريف المشكلة (PDS)، 2) البحث الخارجي، 3) البحث الداخلي (العصف الذهني)، 4) التقييم والاختيار، 5) التصميم التفصيلي (الهندسي)، 6) بناء النموذج الأولي، 7) التوثيق. ترتيب الخطوات نفسه مطلوب في الاختبار.
+            </div>
+          </article>
+
+          <article class="card card--violet" data-tilt data-reveal>
+            <div class="card__head">
+              <span class="card__icon" aria-hidden="true">⌁</span>
+              <div>
+                <div class="card__title">Specifications vs needs<small>say what, never how</small></div>
+              </div>
+            </div>
+            <p><strong>Product design specifications (PDS)</strong> are a written document stating the <strong>verifiable requirements and purpose</strong> a product must meet — <em>without stating how to build it or specifying its components</em>. Academic writing uses the passive voice: “the product must…” rather than “we will build it with…”.</p>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr><th></th><th>Customer need</th><th>Engineering specification</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td><strong>Form</strong></td><td>General desire</td><td>Measurable target number</td></tr>
+                  <tr><td><strong>Example</strong></td><td>“Climbs fast”, “affordable”</td><td>“Climbs at 1 ft/s”, “cost &lt; $30”</td></tr>
+                  <tr><td><strong>Test</strong></td><td>Subjective</td><td>Verifiable</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>The proposal and the PDS are the same species: both say <strong>what</strong> must be true, not <strong>how</strong> the team will make it true.</p>
+            <div class="arabic" lang="ar" dir="rtl">
+              <strong>المواصفات مقابل الاحتياجات:</strong><br>
+              المواصفات (PDS) وثيقة مكتوبة تحدد المتطلبات القابلة للتحقق والغرض الذي يجب أن يحققه المنتج، ولا تشرح كيفية بنائه أو مكوناته الداخلية (وتُكتب بصيغة الغائب). احتياجات العميل عبارات عامة مثل “يتسلق بسرعة” و“سعر معقول”، بينما المواصفات الهندسية تحولها إلى أرقام قابلة للقياس مثل “يتسلق بقدم/ثانية” و“التكلفة أقل من 30 دولاراً”. المقترح والـ PDS من النوع نفسه: كلاهما يقول “ماذا” لا “كيف”.
+            </div>
+          </article>
+
+          <article class="card card--pink" data-tilt data-reveal>
+            <div class="card__head">
+              <span class="card__icon" aria-hidden="true">◐</span>
+              <div>
+                <div class="card__title">Fidelity levels<small>sketch → wireframe → mockup → prototype</small></div>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr><th>Artifact</th><th>Fidelity</th><th>Purpose</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td><strong>Sketch</strong></td><td>Low</td><td>Explore, suggest and brainstorm ideas tentatively.</td></tr>
+                  <tr><td><strong>Wireframe</strong></td><td>Low</td><td>Skeletal framework of gray lines, boxes and placeholders: outline structure, layout and main content; document and refine structure.</td></tr>
+                  <tr><td><strong>Mockup</strong></td><td>Medium–high</td><td>Static visualization with rich colors, typography, actual buttons and text: gather feedback and get stakeholder buy-in.</td></tr>
+                  <tr><td><strong>Prototype</strong></td><td>Medium–high</td><td>Interactive representation: user testing, simulating functionality, choosing between design alternatives.</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>The classic analogy: the wireframe is the architect’s <span class="term">blueprint</span>, the mockup is the <span class="term">scale model</span>, and the prototype is the <span class="term">walk-through</span> where you can open doors.</p>
+            <div class="arabic" lang="ar" dir="rtl">
+              <strong>مستويات الدقة:</strong><br>
+              الـ Sketch منخفض الدقة لاستكشاف الأفكار. والـ Wireframe تخطيط هيكلي منخفض الدقة (خطوط رمادية ومربعات وعناصر نائبة) يوضح هيكل الصفحة والتخطيط والمحتوى الأساسي، مثل مخطط المبنى (Blueprint). والـ Mockup تصميم ثابت متوسط إلى عالي الدقة فيه ألوان وخطوط وأزرار ونصوص حقيقية، لجمع آراء أصحاب المصلحة وكسب موافقتهم، مثل المجسم. والـ Prototype نموذج تفاعلي عالي الدقة يشبه المنتج النهائي ويُستخدم لاختبار المستخدم ومحاكاة الوظائف والاختيار بين البدائل.
+            </div>
+          </article>
+
+          <article class="card card--amber" data-tilt data-reveal>
+            <div class="card__head">
+              <span class="card__icon" aria-hidden="true">✳</span>
+              <div>
+                <div class="card__title">Lo-Fi vs Hi-Fi<small>cheap and fast, or real and risky</small></div>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr><th></th><th>Low-fidelity</th><th>High-fidelity</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td><strong>Materials</strong></td><td>Paper, cardboard, storyboards</td><td>Flash, Visual Basic, interactive software</td></tr>
+                  <tr><td><strong>Pros</strong></td><td>Fast, cheap, easy; great for the “big picture”</td><td>Looks like the final product; realistic experience</td></tr>
+                  <tr><td><strong>Cons</strong></td><td>Slow response; cannot get aesthetic feedback</td><td>Time-consuming; users may focus on unnecessary details</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>The trade is deliberate: spend little to discover that the idea is wrong, or spend more to discover that the execution is wrong.</p>
+            <div class="arabic" lang="ar" dir="rtl">
+              <strong>منخفض الدقة مقابل عالي الدقة:</strong><br>
+              Lo-Fi يُصنع من الورق والكرتون ولوحات القصة: سريع ورخيص وسهل وممتاز للصورة الكبيرة، لكن استجابته بطيئة ولا يعطي تغذية راجعة جمالية. Hi-Fi يُصنع بأدوات مثل Flash وVisual Basic والبرمجيات التفاعلية: يشبه المنتج النهائي ويعطي تجربة واقعية، لكنه يستهلك وقتاً وقد يشتت المستخدم بالتفاصيل غير الضرورية.
+            </div>
+          </article>
+
+          <article class="card card--cyan" data-tilt data-reveal>
+            <div class="card__head">
+              <span class="card__icon" aria-hidden="true">⟁</span>
+              <div>
+                <div class="card__title">Horizontal vs vertical<small>broad or deep</small></div>
+              </div>
+            </div>
+            <ul>
+              <li><strong>Horizontal (“broad”)</strong> — a wide range of functions with little detail: all app screens/views and the flow between them.</li>
+              <li><strong>Vertical (“deep”)</strong> — a lot of detail for only a few functions: the detailed functionality of a single app view.</li>
+            </ul>
+            <div class="flow">
+              <span class="flow__step">Horizontal</span><span class="flow__arrow">→</span>
+              <span class="flow__step">many screens · shallow</span><span class="flow__arrow">→</span>
+              <span class="flow__step">navigation &amp; flow</span>
+            </div>
+            <div class="flow">
+              <span class="flow__step">Vertical</span><span class="flow__arrow">→</span>
+              <span class="flow__step">few screens · deep</span><span class="flow__arrow">→</span>
+              <span class="flow__step">one feature in detail</span>
+            </div>
+            <div class="arabic" lang="ar" dir="rtl">
+              <strong>الأفقي مقابل العمودي:</strong><br>
+              الأفقي (Horizontal/Broad) يوفر مجموعة واسعة من الوظائف بتفاصيل قليلة — كل شاشات التطبيق والتنقل بينها. والعمودي (Vertical/Deep) يوفر تفاصيل كثيرة لوظائف قليلة فقط — مثل وظيفة شاشة واحدة بعمق. الأول يختبر التدفق والتنقل، والثاني يختبر عمق التفاعل.
+            </div>
+          </article>
+
+          <article class="card card--violet" data-tilt data-reveal>
+            <div class="card__head">
+              <span class="card__icon" aria-hidden="true">⌘</span>
+              <div>
+                <div class="card__title">Experience prototyping &amp; Wizard of Oz<small>test a system that does not exist yet</small></div>
+              </div>
+            </div>
+            <p><strong>Experience prototyping</strong> aims to make the interaction feel as real as possible, so users react to the experience rather than to a description of it.</p>
+            <p><strong>Wizard of Oz</strong> tests a system that does not exist yet: a hidden human “wizard” interprets user input and controls computer output, simulating the system’s responses. It is good for adding simulated or complex <em>vertical</em> functionality and for testing futuristic ideas before the technology is ready.</p>
+            <div class="flow">
+              <span class="flow__step">User acts</span><span class="flow__arrow">→</span>
+              <span class="flow__step">Hidden wizard interprets</span><span class="flow__arrow">→</span>
+              <span class="flow__step">Fake system responds</span><span class="flow__arrow">→</span>
+              <span class="flow__step">Observe &amp; learn</span>
+            </div>
+            <div class="arabic" lang="ar" dir="rtl">
+              <strong>تجربة النماذج وساحر أوز:</strong><br>
+              تجربة النماذج (Experience Prototyping) تهدف لجعل التفاعل حقيقياً قدر الإمكان. وطريقة Wizard of Oz هي اختبار لنظام غير موجود بعد، حيث يقوم شخص خفي (الساحر) بتفسير مدخلات المستخدم والتحكم في مخرجات الحاسوب يدوياً لمحاكاة استجابات النظام — وهي مفيدة لإضافة وظائف عمودية معقدة أو تجريب أفكار مستقبلية قبل جاهزية التقنية.
+            </div>
+          </article>
+
+          <article class="card card--wide card--pink" data-tilt data-reveal>
+            <div class="card__head">
+              <span class="card__icon" aria-hidden="true">✶</span>
+              <div>
+                <div class="card__title">Exam trap<small>do not confuse the artifacts</small></div>
+              </div>
+            </div>
+            <p><strong>Wireframe ≠ mockup ≠ prototype.</strong> A wireframe is structure (low fidelity, gray boxes). A mockup is static visual design (colors, type, real buttons) for stakeholder feedback. A prototype is interactive and is used for user testing and choosing between alternatives. A <strong>sketch</strong> is earlier and more tentative than all three.</p>
+            <p>Also: a prototype’s polish should match its maturity. A first draft that looks finished is a trap for everyone, including you.</p>
+            <div class="rick-quote">
+              <span class="rick-quote__portal" aria-hidden="true"></span>
+              <div>
+                <blockquote>“<em>Nobody exists on purpose. Nobody belongs anywhere. Everybody’s gonna die. Come prototype.</em>”</blockquote>
+                <p class="rick-quote__note">cheap, fast feedback is how you avoid building the wrong thing beautifully.</p>
+                <cite>— MORTY SMITH · ADAPTED</cite>
+              </div>
+            </div>
+            <div class="arabic" lang="ar" dir="rtl">
+              <strong>مصيدة الاختبار:</strong><br>
+              الـ Wireframe ليس Mockup وليس Prototype. الأول هيكل منخفض الدقة (مربعات رمادية)، والثاني تصميم بصري ثابت (ألوان وخطوط وأزرار حقيقية) لجمع رأي أصحاب المصلحة، والثالث تفاعلي لاختبار المستخدم والاختيار بين البدائل. والـ Sketch أسبق من الثلاثة وأكثر استكشافاً. وتذكّر: مستوى صقل النموذج يجب أن يعكس نضجه — النموذج الأولي الذي يبدو نهائياً يخدع الجميع.
+            </div>
+          </article>
+        </div>
+
+        <figure class="figure figure--fit" data-reveal>
+          <div class="figure__frame">
+            <span class="figure__corner figure__corner--tl"></span>
+            <span class="figure__corner figure__corner--tr"></span>
+            <span class="figure__corner figure__corner--bl"></span>
+            <span class="figure__corner figure__corner--br"></span>
+            <span class="figure__tag">FIG. 02 · FIDELITY LADDER</span>
+            <img src="images/prototype-fidelity.svg" alt="A ladder from sketch to wireframe to mockup to prototype showing increasing fidelity and interactivity" width="900" height="470" loading="lazy">
+          </div>
+          <figcaption>
+            <span>Fidelity rises from left to right: sketch (explore), wireframe (structure), mockup (visual buy-in), prototype (interaction testing).</span>
+            <span class="ar" lang="ar" dir="rtl">ترتفع الدقة من اليسار إلى اليمين: رسم لاستكشاف الفكرة، ثم إطار هيكلي، ثم نموذج بصري ثابت، ثم نموذج تفاعلي للاختبار.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="figure figure--photo" data-reveal>
+          <div class="figure__frame">
+            <span class="figure__corner figure__corner--tl"></span>
+            <span class="figure__corner figure__corner--tr"></span>
+            <span class="figure__corner figure__corner--bl"></span>
+            <span class="figure__corner figure__corner--br"></span>
+            <span class="figure__tag">FIG. 03 · PAPER PROTOTYPE</span>
+            <img src="images/paper-prototype.jpg" alt="A paper prototype of a mobile interface with hand-drawn screens laid out on a table" width="1200" height="800" loading="lazy">
+          </div>
+          <figcaption>
+            <span>Low-fidelity does not mean low-value: paper is fast, cheap and honest. Users criticize the idea, not your pixel-perfect gradients.</span>
+            <span class="ar" lang="ar" dir="rtl">الدقة المنخفضة لا تعني القيمة المنخفضة: الورق سريع ورخيص وصادق. المستخدم ينتقد الفكرة لا تدرجاتك اللونية.</span>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+    <!-- ============================================================
+         LECTURE 3 — LOCALIZATION
+    ============================================================ -->
+    <section class="scene" id="lec3">
+      <div class="container scene__inner">
+        <header class="section-head" data-line-reveal>
+          <div class="section-index" aria-hidden="true">03</div>
+          <div class="section-head__row">
+            <div>
+              <div class="section-kicker" data-reveal>Lecture 03 · Finding Yourself</div>
+              <h2 class="section-title">
+                <span class="line"><span class="line-inner">Local</span></span>
+                <span class="line"><span class="line-inner grad">ization</span></span>
+              </h2>
+              <p class="section-ar" lang="ar" dir="rtl" data-reveal>التحديد المكاني — أنواع الموقع، قياس المدى، GPS، وحساب الموضع الاستنتاجي</p>
+            </div>
+            <div class="section-meta" data-reveal>
+              <span class="chip"><i></i>lecture 03</span>
+              <span class="chip chip--violet"><i></i>ranging · GPS</span>
+              <span class="chip chip--pink"><i></i>live lab</span>
+            </div>
+          </div>
+          <div class="section-rule"></div>
+        </header>
+
+        <div class="cards">
+          <article class="card card--wide card--cyan" data-tilt data-reveal>
+            <div class="card__head">
+              <span class="card__icon" aria-hidden="true">◈</span>
+              <div>
+                <div class="card__title">Location, three ways<small>global · relative · symbolic</small></div>
+              </div>
+            </div>
+            <p><strong>Localization</strong> is determining the position (coordinates) of a device, or the spatial relationships among objects. There are three ways to express that position:</p>
+            <ul>
+              <li><strong>Global position</strong> — inside a global reference frame: GPS latitude/longitude, or UTM.</li>
+              <li><strong>Relative position</strong> — distances between nodes in an arbitrary coordinate system, with no relation to global coordinates.</li>
+              <li><strong>Symbolic position</strong> — a descriptive name: “Office 354”, “Mile marker 17”.</li>
+            </ul>
+            <p><strong>Accuracy</strong> is how close the reading is to the ground truth (e.g. within 10 m). <strong>Precision</strong> is how consistent the readings are (e.g. 90% of measurements). A system can be precise and wrong: tight clusters around the wrong point.</p>
+            <div class="arabic" lang="ar" dir="rtl">
+              <strong>الموقع بثلاث طرق:</strong><br>
+              التحديد المكاني (Localization) هو معرفة إحداثيات جهاز أو العلاقات المكانية بين الأشياء. الموقع العالمي (Global) يعتمد على إطار عالمي مثل خطوط الطول والعرض في GPS أو UTM. والموقع النسبي (Relative) يقيس المسافات بين العقد في نظام إحداثيات اعتباطي بلا علاقة بالإحداثيات العالمية. والموقع الرمزي (Symbolic) يصف المكان نصياً مثل “مكتب 354” أو “علامة الميل 17”.<br>
+              الدقة (Accuracy) تعني مدى قرب القراءة من الموقع الحقيقي، والضبط/التطابق (Precision) يعني مدى تقارب القراءات المتكررة وثباتها — وقد يكون النظام دقيقاً في التكرار وخاطئاً في الموقع.
+            </div>
+          </article>
+
+          <article class="card card--violet" data-tilt data-reveal>
+            <div class="card__head">
+              <span class="card__icon" aria-hidden="true">⌁</span>
+              <div>
+                <div class="card__title">Ranging techniques<small>time, angle or strength</small></div>
+              </div>
+            </div>
+            <ul>
+              <li><strong>Time of Arrival (ToA)</strong> — <span class="mono">distance = propagation time × velocity</span>. <strong>One-way ToA</strong> needs highly accurate clock synchronisation between sender and receiver. <strong>Two-way ToA</strong> measures round-trip time, so no clock synchronisation is needed.</li>
+              <li><strong>Time Difference of Arrival (TDoA)</strong> — uses two signals, typically RF and ultrasound. RF arrives first (negligible time); the receiver notes the time difference and calculates distance using the speed of ultrasound. No clock synchronisation is needed in that arrangement. Problems: calibration and expensive hardware.</li>
+              <li><strong>Angle of Arrival (AoA)</strong> — measures the direction of the signal using an antenna array. High accuracy, significant hardware cost.</li>
+              <li><strong>Received Signal Strength (RSS / RSSI)</strong> — signal decays with distance. Cheap, but affected by multipath, reflections and noise.</li>
+            </ul>
+            <div class="arabic" lang="ar" dir="rtl">
+              <strong>تقنيات قياس المدى:</strong><br>
+              زمن الوصول (ToA) يحسب المسافة بضرب وقت الانتشار في السرعة. أحادي الاتجاه يتطلب مزامنة دقيقة للساعات، وثنائي الاتجاه يقيس زمن الذهاب والعودة فلا يحتاج مزامنة. وفرق زمن الوصول (TDoA) يستخدم إشارتين راديو وفوق صوتية: الراديو يصل أولاً بزمن مهمل، ويحسب المستقبل المسافة من فرق الوقت باستخدام سرعة الصوت — ولا يحتاج مزامنة ساعات في هذا الترتيب، لكنه يتطلب معايرة وأجهزة مكلفة. وزاوية الوصول (AoA) تقيس اتجاه الإشارة بهوائي مصفوفي: دقة عالية وتكلفة عتاد عالية. وقوة الإشارة (RSS/RSSI) تضعف مع المسافة: رخيصة لكنها تتأثر بالانعكاسات والضوضاء.
+            </div>
+          </article>
+
+          <article class="card card--pink" data-tilt data-reveal>
+            <div class="card__head">
+              <span class="card__icon" aria-hidden="true">◐</span>
+              <div>
+                <div class="card__title">Triangulation vs trilateration<small>angles vs distances</small></div>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr><th></th><th>Triangulation</th><th>Trilateration</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td><strong>Uses</strong></td><td>Angle / bearing measurements and triangle geometry</td><td>Measured distances to known anchors; intersecting circles</td></tr>
+                  <tr><td><strong>2-D minimum</strong></td><td><strong>2 anchors</strong></td><td><strong>3 non-collinear anchors</strong></td></tr>
+                  <tr><td><strong>3-D minimum</strong></td><td>—</td><td><strong>4 non-coplanar anchors</strong></td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p><strong>TDoA needs at least 3 receivers in 2-D.</strong> Two receivers give only one hyperbolic curve — one equation with two unknowns — so the intersection is ambiguous.</p>
+            <div class="arabic" lang="ar" dir="rtl">
+              <strong>التثليث الزاوي مقابل المسافي:</strong><br>
+              التثليث الزاوي (Triangulation) يستخدم قياسات الزوايا/الاتجاه وهندسة المثلث، ويحتاج نقطتي ارتكاز على الأقل في البعد الثنائي. والتثليث المسافي (Trilateration) يستخدم المسافات المقاسة إلى نقاط معروفة عبر تقاطع الدوائر، ويحتاج 3 نقاط ليست على استقامة واحدة في 2D، و4 نقاط ليست في مستوى واحد في 3D.<br>
+              أما TDoA فيحتاج 3 مستقبلات على الأقل في 2D، لأن مستقبلين يعطيان منحنى زائدياً واحداً فقط — معادلة واحدة بمجهولين — فيبقى التقاطع غامضاً.
+            </div>
+          </article>
+
+          <article class="card card--amber" data-tilt data-reveal>
+            <div class="card__head">
+              <span class="card__icon" aria-hidden="true">✳</span>
+              <div>
+                <div class="card__title">GPS architecture<small>24 satellites · control · two service levels</small></div>
+              </div>
+            </div>
+            <p><strong>Architecture:</strong> at least <strong>24 satellites in 6 orbits</strong>, monitor stations, and a <strong>Master Control Station (MCS)</strong>.</p>
+            <ul>
+              <li><strong>SPS</strong> — Standard Positioning Service for civilians.</li>
+              <li><strong>PPS</strong> — Precise Positioning Service for the military.</li>
+            </ul>
+            <p><strong>Why four satellites?</strong> Three satellites narrow the location to two possible points (one is discarded by geometry). The <strong>4th satellite corrects the receiver clock error</strong> — and the numbers are brutal: a <strong>1 ms error ≈ 300 km</strong> of range error.</p>
+            <p>GPS limits: it needs a direct line of sight, signals are weak indoors, and reflections cause multipath errors.</p>
+            <div class="arabic" lang="ar" dir="rtl">
+              <strong>معمارية GPS:</strong><br>
+              24 قمراً صناعياً على الأقل في 6 مدارات، ومحطات مراقبة، ومحطة تحكم رئيسية (MCS). ويقدم خدمتين: SPS للمدنيين وPPS للعسكريين.<br>
+              لماذا أربعة أقمار؟ ثلاثة أقمار تحصر الموقع في نقطتين محتملتين (تُستبعد إحداهما هندسياً)، والقمر الرابع يصحح خطأ ساعة المستقبل — والرقم صادم: خطأ 1 ملي ثانية يعادل نحو 300 كم من خطأ المدى. وعيوب GPS: يحتاج خط رؤية مباشر، وإشاراته ضعيفة داخل المباني، والانعكاسات تسبب أخطاء المسار المتعدد.
+            </div>
+          </article>
+
+          <article class="card card--cyan" data-tilt data-reveal>
+            <div class="card__head">
+              <span class="card__icon" aria-hidden="true">⟁</span>
+              <div>
+                <div class="card__title">DGPS · WAAS · A-GPS · NMEA<small>four ways to make GPS usable</small></div>
+              </div>
+            </div>
+            <ul>
+              <li><strong>DGPS (Differential GPS)</strong> — a stationary receiver at a known location computes corrections and broadcasts them to roving receivers. Improves accuracy to <strong>10 cm</strong>.</li>
+              <li><strong>WAAS (Wide Area Augmentation System)</strong> — <strong>25 ground stations + 2 geostationary satellites</strong>. Accuracy about <strong>3 m</strong>. Only North America.</li>
+              <li><strong>A-GPS (Assisted GPS)</strong> — uses the cellular network to provide assistance data (almanac, clock). Cuts <strong>Time-to-First-Fix from about 1 minute to seconds</strong>.</li>
+              <li><strong>NMEA</strong> — the standard ASCII output of GPS receivers. Example: <span class="mono">$GPGGA</span> provides UTC time, latitude/longitude, fix quality, number of satellites and altitude.</li>
+            </ul>
+            <div class="arabic" lang="ar" dir="rtl">
+              <strong>تحسينات GPS:</strong><br>
+              DGPS يستخدم محطة أرضية ثابتة في موقع معروف لحساب الأخطاء وبث تصحيحاتها للمستقبلات المتحركة، فترفع الدقة إلى 10 سم. وWAAS يستخدم 25 محطة أرضية وقمرين ثابتين جغرافياً بدقة نحو 3 أمتار، لكنه لأمريكا الشمالية فقط. وA-GPS يستخدم شبكة الموبايل لتقديم بيانات مساعدة (التقويم الفلكي والساعة) فيقلل زمن أول تحديد من نحو دقيقة إلى ثوانٍ. ورسالة NMEA هي صيغة نصية قياسية يخرجها مستقبل GPS، ومثالها $GPGGA التي تحوي الوقت العالمي وخطوط الطول والعرض وجودة التحديد وعدد الأقمار والارتفاع.
+            </div>
+          </article>
+
+          <article class="card card--violet" data-tilt data-reveal>
+            <div class="card__head">
+              <span class="card__icon" aria-hidden="true">⌘</span>
+              <div>
+                <div class="card__title">Dead reckoning &amp; technology comparison<small>when the signal disappears</small></div>
+              </div>
+            </div>
+            <p><strong>Dead reckoning</strong> calculates the current position by advancing a previous position using speed and course. It uses accelerometers, gyroscopes and pressure sensors. Its limitation is <strong>cumulative error</strong>: every small error is carried forward.</p>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr><th>Technology</th><th>Range</th><th>Accuracy</th><th>Notes</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td><strong>GSM / LTE</strong></td><td>35 km</td><td>Very low</td><td>Wide coverage, coarse position.</td></tr>
+                  <tr><td><strong>Wi-Fi</strong></td><td>50–100 m</td><td>1–5 m</td><td>Readily available, high power.</td></tr>
+                  <tr><td><strong>UWB</strong></td><td>70 m</td><td>High</td><td>High cost.</td></tr>
+                  <tr><td><strong>Bluetooth</strong></td><td>10 m</td><td>10–20 m</td><td>Readily available.</td></tr>
+                  <tr><td><strong>Ultrasound</strong></td><td>6–9 m</td><td>High</td><td>High cost.</td></tr>
+                  <tr><td><strong>RFID &amp; IR</strong></td><td>1 m</td><td>Moderate–high</td><td>Line-of-sight for IR.</td></tr>
+                  <tr><td><strong>NFC</strong></td><td>&lt; 4 cm</td><td>High</td><td>Very short range.</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="arabic" lang="ar" dir="rtl">
+              <strong>حساب الموضع الاستنتاجي ومقارنة التقنيات:</strong><br>
+              Dead Reckoning يحسب الموقع الحالي بتقدّم الموقع السابق باستخدام السرعة والاتجاه، ويعتمد على مقاييس التسارع والجيروسكوب وحساسات الضغط. عيبه الأساسي تراكم الأخطاء: كل خطأ صغير يُرحَّل إلى الأمام.<br>
+              المقارنة: GSM/LTE مداه 35 كم ودقته ضعيفة جداً، والواي فاي 50–100 م بدقة 1–5 م ومتوفر لكنه عالي الطاقة، وUWB مداه 70 م ودقته عالية وتكلفته عالية، والبلوتوث 10 م بدقة 10–20 م، والموجات فوق الصوتية 6–9 م بدقة عالية وتكلفة عالية، وRFID/IR نحو 1 م بدقة متوسطة إلى عالية ويحتاج الأخير خط رؤية، وNFC أقل من 4 سم بدقة عالية ومدى قصير جداً.
+            </div>
+          </article>
+
+          <article class="card card--wide card--pink" data-reveal>
+            <div class="card__head">
+              <span class="card__icon" aria-hidden="true">✶</span>
+              <div>
+                <div class="card__title">Live lab · GPS fix console<small>toggle satellites and the receiver clock</small></div>
+              </div>
+            </div>
+            <div class="lab" data-gps-out>
+              <div class="lab__head">
+                <div class="lab__title">GPS fix console</div>
+                <span class="lab__hint">ranges → geometry · clock → 4th unknown</span>
+              </div>
+              <div class="bool-terms">
+                <button class="bool-term is-on" type="button" data-gps-sats="3" aria-pressed="true"><i></i>3 SATELLITES</button>
+                <button class="bool-term" type="button" data-gps-sats="4" aria-pressed="false"><i></i>4 SATELLITES</button>
+              </div>
+              <div class="bool-terms">
+                <button class="bool-term is-on" type="button" data-gps-clock="off" aria-pressed="true"><i></i>CLOCK IDEAL</button>
+                <button class="bool-term" type="button" data-gps-clock="on" aria-pressed="false"><i></i>CLOCK BIAS</button>
+              </div>
+              <div class="wild-out" aria-live="polite">
+                <dl>
+                  <div class="wild-row"><dt>fix</dt><dd data-gps-fix>2 candidate points · altitude assumed known</dd></div>
+                  <div class="wild-row"><dt>error</dt><dd data-gps-error>ideal clock · no bias modelled</dd></div>
+                  <div class="wild-row"><dt>verdict</dt><dd data-gps-verdict>2-D FIX · one point is discarded by geometry</dd></div>
+                </dl>
+                <p class="wild-note" data-gps-note>Three satellites work only when altitude is already supplied and the clock is perfect. The fourth satellite is the fourth equation for the receiver clock bias.</p>
+              </div>
+            </div>
+            <p>Watch the exam trap in real time: with <strong>3 satellites and a biased clock</strong> the two candidate points stop agreeing, and a <strong>1 ms</strong> clock error becomes roughly <strong>300 km</strong> of range error. The fourth satellite does not add “backup” — it adds the unknown that makes the system solvable.</p>
+            <div class="arabic" lang="ar" dir="rtl">
+              <strong>معمل GPS:</strong><br>
+              جرّب 3 أقمار مع ساعة مثالية: تحصل على نقطتين محتملتين وتُستبعد إحداهما هندسياً (مع افتراض معرفة الارتفاع). أضف انحراف الساعة مع 3 أقمار فتصبح النتيجة غير قابلة للاستخدام لأن النقطتين لا تتفقان. وأضف القمر الرابع فتحصل على حل كامل ثلاثي الأبعاد مع تقدير انحراف ساعة المستقبل — لأن خطأ 1 ملي ثانية يعادل نحو 300 كم. القمر الرابع ليس احتياطاً، بل المعادلة الرابعة للمجهول الرابع.
+            </div>
+            <div class="rick-quote rick-quote--violet">
+              <span class="rick-quote__portal" aria-hidden="true"></span>
+              <div>
+                <blockquote>“<em>I turned myself into a coordinate, Morty!</em>”</blockquote>
+                <p class="rick-quote__note">Four satellites and a corrected clock are the whole trick. The universe does not hand out free position — you solve for it, one range at a time.</p>
+                <cite>— RICK SANCHEZ · ADAPTED</cite>
+              </div>
+            </div>
+          </article>
+
+          <article class="card card--wide card--amber" data-tilt data-reveal>
+            <div class="card__head">
+              <span class="card__icon" aria-hidden="true">⌬</span>
+              <div>
+                <div class="card__title">Exam trap<small>the four-satellite question</small></div>
+              </div>
+            </div>
+            <p>If the question asks <strong>“why are four satellites needed?”</strong>, do not answer “for better accuracy”. The required answer is: <strong>three give position (with two candidate points), the fourth corrects the receiver clock error</strong>. A receiver clock error of 1 ms causes about 300 km of range error, so the clock bias must be solved as the fourth unknown.</p>
+            <p>Similarly, <strong>triangulation uses angles</strong> (2 anchors in 2-D) while <strong>trilateration uses distances</strong> (3 non-collinear anchors in 2-D, 4 non-coplanar in 3-D). Do not swap the names.</p>
+            <div class="arabic" lang="ar" dir="rtl">
+              <strong>مصيدة الاختبار:</strong><br>
+              إذا سُئلت “لماذا نحتاج أربعة أقمار؟” فلا تجب “لدقة أفضل” فقط. الإجابة المطلوبة: ثلاثة أقمار تحدد الموقع (بنقطتين محتملتين)، والقمر الرابع يصحح خطأ ساعة المستقبل. وخطأ 1 ملي ثانية يسبب نحو 300 كم خطأ في المدى، لذلك يُحل انحراف الساعة كمجهول رابع.<br>
+              وبالمثل: التثليث الزاوي يستخدم الزوايا (نقطتان في 2D)، والتثليث المسافي يستخدم المسافات (3 نقاط غير مستقيمة في 2D و4 غير مستوية في 3D) — لا تخلط الاسمين.
+            </div>
+          </article>
+        </div>
+
+        <figure class="figure figure--fit" data-reveal>
+          <div class="figure__frame">
+            <span class="figure__corner figure__corner--tl"></span>
+            <span class="figure__corner figure__corner--tr"></span>
+            <span class="figure__corner figure__corner--bl"></span>
+            <span class="figure__corner figure__corner--br"></span>
+            <span class="figure__tag">FIG. 04 · ACCURACY VS PRECISION</span>
+            <img src="images/accuracy-precision.svg" alt="Four target diagrams showing accurate and precise, accurate but imprecise, precise but inaccurate, and neither" width="900" height="470" loading="lazy">
+          </div>
+          <figcaption>
+            <span>Accuracy is closeness to ground truth; precision is consistency. Tight clusters far from the centre are precise but wrong.</span>
+            <span class="ar" lang="ar" dir="rtl">الدقة قرب من الحقيقة، والضبط ثبات في التكرار. مجموعة متقاربة بعيدة عن المركز تكون مضبوطة لكنها خاطئة.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="figure figure--fit" data-reveal>
+          <div class="figure__frame">
+            <span class="figure__corner figure__corner--tl"></span>
+            <span class="figure__corner figure__corner--tr"></span>
+            <span class="figure__corner figure__corner--bl"></span>
+            <span class="figure__corner figure__corner--br"></span>
+            <span class="figure__tag">FIG. 05 · TDOA · RF + ULTRASOUND</span>
+            <img src="images/tdoa-rf-ultrasound.svg" alt="Time difference of arrival using a radio signal and an ultrasound signal, with the receiver measuring the gap between arrivals" width="900" height="470" loading="lazy">
+          </div>
+          <figcaption>
+            <span>RF arrives first and starts the stopwatch; ultrasound arrives later. The gap gives distance without synchronising clocks — but calibration is the price.</span>
+            <span class="ar" lang="ar" dir="rtl">يصل الراديو أولاً فيبدأ المؤقت، ويصل الصوت لاحقاً. الفرق يعطي المسافة بلا مزامنة ساعات — لكن ثمن ذلك المعايرة.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="figure figure--fit" data-reveal>
+          <div class="figure__frame">
+            <span class="figure__corner figure__corner--tl"></span>
+            <span class="figure__corner figure__corner--tr"></span>
+            <span class="figure__corner figure__corner--bl"></span>
+            <span class="figure__corner figure__corner--br"></span>
+            <span class="figure__tag">FIG. 06 · GPS TRILATERATION</span>
+            <img src="images/gps-trilateration.svg" alt="Three satellite ranges intersecting at a position on Earth, with a fourth satellite correcting the receiver clock" width="900" height="470" loading="lazy">
+          </div>
+          <figcaption>
+            <span>Each satellite gives a sphere of possible positions. Three spheres intersect at two points; the fourth satellite resolves the clock bias and the ambiguity.</span>
+            <span class="ar" lang="ar" dir="rtl">كل قمر يعطي كرة مواقع محتملة. ثلاث كرات تتقاطع في نقطتين، والقمر الرابع يحل انحراف الساعة والغموض.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="figure figure--fit" data-reveal>
+          <div class="figure__frame">
+            <span class="figure__corner figure__corner--tl"></span>
+            <span class="figure__corner figure__corner--tr"></span>
+            <span class="figure__corner figure__corner--bl"></span>
+            <span class="figure__corner figure__corner--br"></span>
+            <span class="figure__tag">FIG. 07 · TRILATERATION · CIRCLES</span>
+            <img src="images/trilateration.png" alt="Three distance circles around known anchors intersecting at a single position" width="960" height="868" loading="lazy">
+          </div>
+          <figcaption>
+            <span>Distance circles: three non-collinear anchors are the 2-D minimum. Two circles intersect at two points; the third chooses the true one.</span>
+            <span class="ar" lang="ar" dir="rtl">دوائر المسافة: ثلاث نقاط ارتكاز غير مستقيمة هي الحد الأدنى في 2D. دائرتان تتقاطعان في نقطتين، والثالثة تحدد النقطة الصحيحة.</span>
+          </figcaption>
+        </figure>
+
+        <div class="photo-duo">
+          <figure class="figure figure--photo" data-reveal>
+            <div class="figure__frame">
+              <span class="figure__tag">FIG. 08 · GPS SATELLITE</span>
+              <img src="images/gps-satellite.jpg" alt="A GPS satellite in orbit above Earth" width="240" height="240" loading="lazy">
+            </div>
+            <figcaption>
+              <span>Each satellite broadcasts its position and a timestamp. The receiver compares the arrival time with its own clock.</span>
+              <span class="ar" lang="ar" dir="rtl">كل قمر يبث موقعه وطابعاً زمنياً، ويقارن المستقبل زمن الوصول بساعته.</span>
+            </figcaption>
+          </figure>
+          <figure class="figure figure--fit" data-reveal>
+            <div class="figure__frame">
+              <span class="figure__tag">FIG. 09 · GNSS CONSTELLATION</span>
+              <img src="images/gnss-orbits.png" alt="A constellation of navigation satellites in six orbital planes around Earth" width="960" height="960" loading="lazy">
+            </div>
+            <figcaption>
+              <span>At least 24 satellites in 6 orbits ensure that several are above the horizon at any time — geometry is the service.</span>
+              <span class="ar" lang="ar" dir="rtl">24 قمراً على الأقل في 6 مدارات تضمن وجود عدة أقمار فوق الأفق في أي وقت — الهندسة هي الخدمة.</span>
+            </figcaption>
+          </figure>
+        </div>
+
+        <figure class="figure figure--photo" data-reveal>
+          <div class="figure__frame">
+            <span class="figure__corner figure__corner--tl"></span>
+            <span class="figure__corner figure__corner--tr"></span>
+            <span class="figure__corner figure__corner--bl"></span>
+            <span class="figure__corner figure__corner--br"></span>
+            <span class="figure__tag">FIG. 10 · DGPS REFERENCE STATION</span>
+            <img src="images/dgps-station.jpg" alt="A stationary GPS reference station used by differential GPS" width="800" height="950" loading="lazy">
+          </div>
+          <figcaption>
+            <span>DGPS: a stationary receiver at a survey-known point measures the current error and broadcasts corrections. Accuracy rises to about 10 cm.</span>
+            <span class="ar" lang="ar" dir="rtl">DGPS: مستقبل ثابت في نقطة معروفة يقيس الخطأ الحالي ويبث تصحيحات، فترتفع الدقة إلى نحو 10 سم.</span>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         LECTURE 4 — POSITIONING TECHNIQUES
+    ============================================================ -->
+    <section class="scene" id="lec4">
+      <div class="container scene__inner">
+        <header class="section-head" data-line-reveal>
+          <div class="section-index" aria-hidden="true">04</div>
+          <div class="section-head__row">
+            <div>
+              <div class="section-kicker" data-reveal>Lecture 04 · Indoors and Outdoors</div>
+              <h2 class="section-title">
+                <span class="line"><span class="line-inner">Positioning</span></span>
+                <span class="line"><span class="line-inner grad">Techniques</span></span>
+              </h2>
+              <p class="section-ar" lang="ar" dir="rtl" data-reveal>تقنيات التموضع — الخلايا، الواي فاي، المنارات، والمغناطيسية</p>
+            </div>
+            <div class="section-meta" data-reveal>
+              <span class="chip"><i></i>lecture 04</span>
+              <span class="chip chip--violet"><i></i>cellular · Wi-Fi</span>
+              <span class="chip chip--pink"><i></i>live lab</span>
+            </div>
+          </div>
+          <div class="section-rule"></div>
+        </header>
+
+        <div class="cards">
+          <article class="card card--wide card--cyan" data-tilt data-reveal>
+            <div class="card__head">
+              <span class="card__icon" aria-hidden="true">◈</span>
+              <div>
+                <div class="card__title">Cellular positioning<small>the network always knows roughly where you are</small></div>
+              </div>
+            </div>
+            <p><strong>Cellular positioning</strong> is determining the geographic location of a <strong>Mobile Station (MS)</strong> using location-sensitive parameters. It was driven by the <strong>US FCC mandate for E-911 emergency services</strong>.</p>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr><th>Parameter</th><th>What it measures</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td><strong>Cell ID</strong></td><td>Identity of the serving tower — a rough location.</td></tr>
+                  <tr><td><strong>TOA / TDOA / AOA</strong></td><td>Time and angle measurements.</td></tr>
+                  <tr><td><strong>RSSI</strong></td><td>Signal strength.</td></tr>
+                  <tr><td><strong>RTT / TA</strong></td><td>Round-trip time / timing advance — approximate distance.</td></tr>
+                  <tr><td><strong>E-OTD</strong></td><td>Enhanced Observed Time Difference — advanced TOA combining times from multiple base stations.</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p><strong>Time-based triangulation</strong> (TOA/TDOA) needs at least <strong>3 base stations</strong>; <strong>angle-based triangulation</strong> (AOA) needs at least <strong>2 base stations</strong>. Performance is inconsistent because cell sizes vary from <strong>100 m to 30 km</strong>, barriers attenuate signals, and call volume changes.</p>
+            <div class="arabic" lang="ar" dir="rtl">
+              <strong>التموضع الخلوي:</strong><br>
+              هو تحديد الموقع الجغرافي للمحطة المتنقلة (MS) باستخدام معاملات حساسة للموقع، وقد بدأ بسبب تفويض FCC الأمريكي لخدمات الطوارئ E-911. المعاملات: Cell ID هوية البرج الخادم (موقع تقريبي)، وTOA/TDOA/AOA قياسات زمنية وزاوية، وRSSI قوة الإشارة، وRTT/TA زمن الذهاب والعودة/التقدم الزمني لتقدير المسافة، وE-OTD فرق زمني محسّن يدمج توقيتات عدة أبراج.<br>
+              التثليث الزمني (TOA/TDOA) يحتاج 3 أبراج على الأقل، والتثليث الزاوي (AOA) يحتاج برجين على الأقل. والأداء غير مستقر لأن حجم الخلية يتفاوت من 100 م إلى 30 كم، والعوائق تخفف الإشارة، وحجم المكالمات يتغير.
+            </div>
+          </article>
+
+          <article class="card card--violet" data-tilt data-reveal>
+            <div class="card__head">
+              <span class="card__icon" aria-hidden="true">⌁</span>
+              <div>
+                <div class="card__title">Cell vs GPS<small>different failure modes</small></div>
+              </div>
+            </div>
+            <p>GPS is better in rural areas with open sky; the cellular network is better in cities and indoors, where satellite signals are weak or blocked. Real systems fuse them rather than choosing one.</p>
+            <div class="rick-quote">
+              <span class="rick-quote__portal" aria-hidden="true"></span>
+              <div>
+                <blockquote>“<em>Sometimes science is more art than science.</em>”</blockquote>
+                <p class="rick-quote__note">and sometimes engineering is choosing the sensor that fails in the least expensive way.</p>
+                <cite>— RICK SANCHEZ</cite>
+              </div>
+            </div>
+            <div class="arabic" lang="ar" dir="rtl">
+              <strong>الخلوي مقابل GPS:</strong><br>
+              GPS أفضل في الريف حيث السماء مفتوحة، والشبكة الخلوية أفضل في المدن وداخل المباني حيث تضعف إشارات الأقمار أو تُحجب. الأنظمة الحقيقية تدمج الاثنين بدلاً من اختيار واحد.
+            </div>
+          </article>
+
+          <article class="card card--pink" data-tilt data-reveal>
+            <div class="card__head">
+              <span class="card__icon" aria-hidden="true">◐</span>
+              <div>
+                <div class="card__title">Wi-Fi scanning<small>active asks · passive listens</small></div>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr><th></th><th>Active scanning</th><th>Passive scanning</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td><strong>Behaviour</strong></td><td>Client sends discovery requests; APs reply.</td><td>Client listens for periodic beacon frames.</td></tr>
+                  <tr><td><strong>Speed</strong></td><td>Faster discovery.</td><td>Slower — depends on beacon timing.</td></tr>
+                  <tr><td><strong>Energy</strong></td><td>More energy.</td><td>Less energy.</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>This is the classic mobile trade-off in miniature: <strong>latency versus battery</strong>.</p>
+            <div class="arabic" lang="ar" dir="rtl">
+              <strong>مسح الواي فاي:</strong><br>
+              المسح النشط (Active) يرسل العميل طلبات اكتشاف وترد نقاط الوصول، فيكتشف الشبكة أسرع لكنه يستهلك طاقة أكبر. والمسح السلبي (Passive) يستمع لإطارات Beacon الدورية، فيوفر البطارية لكنه أبطأ لأنه يعتمد على توقيت البث. وهذا هو المقايضة المتنقلة الكلاسيكية: زمن الاستجابة مقابل البطارية.
+            </div>
+          </article>
+
+          <article class="card card--amber" data-tilt data-reveal>
+            <div class="card__head">
+              <span class="card__icon" aria-hidden="true">✳</span>
+              <div>
+                <div class="card__title">Wi-Fi positioning methods<small>four ways to turn radio into coordinates</small></div>
+              </div>
+            </div>
+            <ul>
+              <li><strong>RSSI</strong> — triangulation based on signal strength (dBm). Affected by obstacles.</li>
+              <li><strong>TDOA</strong> — requires synchronised APs and calibration.</li>
+              <li><strong>AoA</strong> — requires phased-array antennas.</li>
+              <li><strong>Fingerprinting</strong> — compares the current signal profile to a pre-recorded radio map. Accuracy <strong>2–3 m</strong>, but labour-intensive (often <strong>10+ hours per building</strong>).</li>
+            </ul>
+            <p><strong>Skyhook XPS</strong> is a hybrid positioning system (Wi-Fi + GPS + cell towers). <strong>Ekahau</strong> is a commercial indoor Wi-Fi fingerprinting system.</p>
+            <div class="arabic" lang="ar" dir="rtl">
+              <strong>طرق تموضع الواي فاي:</strong><br>
+              RSSI يعتمد على قوة الإشارة (dBm) ويتأثر بالعوائق، وTDOA يحتاج نقاط وصول متزامنة ومعايرة، وAoA يحتاج هوائيات مصفوفية، وFingerprinting يقارن بصمة الإشارة الحالية بخريطة راديوية مسجلة مسبقاً: دقة 2–3 م لكنها شاقة (أكثر من 10 ساعات لكل مبنى). وSkyhook XPS نظام هجين يدمج الواي فاي وGPS والأبراج الخلوية، وEkahau نظام تجاري للبصمة الراديوية داخل المباني.
+            </div>
+          </article>
+
+          <article class="card card--cyan" data-tilt data-reveal>
+            <div class="card__head">
+              <span class="card__icon" aria-hidden="true">⟁</span>
+              <div>
+                <div class="card__title">LORAN &amp; indoor positioning<small>from coastal radio to room-level context</small></div>
+              </div>
+            </div>
+            <p><strong>LORAN</strong> was radio-navigation using synchronised coastal stations and hyperbolic curves. It was <strong>terminated in 2010</strong> due to GPS advances, high cost, limited use, and anti-jamming technology.</p>
+            <p><strong>Indoor positioning systems (IPS)</strong> options: Wi-Fi / Bluetooth beacons, RFID, UWB (industrial), TMSI, IP positioning and magnetic positioning.</p>
+            <div class="arabic" lang="ar" dir="rtl">
+              <strong>LORAN والتموضع الداخلي:</strong><br>
+              LORAN كان نظام ملاحة راديوي يعتمد على محطات ساحلية متزامنة ومنحنيات زائدية، وأُوقف عام 2010 بسبب تطور GPS والتكلفة العالية وقلة الاستخدام وتقنيات مقاومة التشويش. أما أنظمة التموضع الداخلي (IPS) فتشمل منارات الواي فاي والبلوتوث، وRFID، وUWB للاستخدام الصناعي، وTMSI، وتموضع IP، والتموضع المغناطيسي.
+            </div>
+          </article>
+
+          <article class="card card--violet" data-tilt data-reveal>
+            <div class="card__head">
+              <span class="card__icon" aria-hidden="true">⌘</span>
+              <div>
+                <div class="card__title">iBeacon &amp; magnetic positioning<small>cheap transmitters and the building’s own fingerprint</small></div>
+              </div>
+            </div>
+            <p><strong>iBeacon</strong> is Apple’s <strong>Bluetooth Low Energy (BLE)</strong> indoor system. It uses low-cost transmitters. Its stated advantages are <strong>accuracy, privacy, integration, affordability and usability</strong>.</p>
+            <p><strong>Magnetic positioning</strong> uses a magnetometer to measure how a building distorts Earth’s magnetic field. Three steps: <strong>floor plans → mapping → apps</strong>. The resulting “magnetic fingerprint” is matched against reference data collected during the survey.</p>
+            <div class="arabic" lang="ar" dir="rtl">
+              <strong>iBeacon والتموضع المغناطيسي:</strong><br>
+              iBeacon هو نظام Apple للتموضع الداخلي يعتمد على Bluetooth منخفض الطاقة (BLE) ومرسلات رخيصة. مزاياه المذكورة: الدقة، الخصوصية، التكامل، التكلفة المنخفضة، وسهولة الاستخدام. والتموضع المغناطيسي يستخدم حساس المغناطيسية (Magnetometer) لقياس تشوه المجال المغناطيسي للأرض داخل المبنى، وخطواته ثلاث: إضافة مخططات الطوابق، ثم مسح المبنى ورسم الخريطة، ثم بناء التطبيق. وتُطابق “البصمة المغناطيسية” مع بيانات مرجعية جُمعت أثناء المسح.
+            </div>
+          </article>
+
+          <article class="card card--wide card--pink" data-reveal>
+            <div class="card__head">
+              <span class="card__icon" aria-hidden="true">✶</span>
+              <div>
+                <div class="card__title">Live lab · technology picker<small>pick the environment, get the least-wrong technology</small></div>
+              </div>
+            </div>
+            <div class="lab" data-env-out>
+              <div class="lab__head">
+                <div class="lab__title">Positioning technology picker</div>
+                <span class="lab__hint">environment → technology → trade-off</span>
+              </div>
+              <div class="bool-terms">
+                <button class="bool-term is-on" type="button" data-env="outdoor" aria-pressed="true"><i></i>OUTDOOR</button>
+                <button class="bool-term" type="button" data-env="urban" aria-pressed="false"><i></i>URBAN</button>
+                <button class="bool-term" type="button" data-env="indoor" aria-pressed="false"><i></i>INDOOR</button>
+                <button class="bool-term" type="button" data-env="industrial" aria-pressed="false"><i></i>INDUSTRIAL</button>
+                <button class="bool-term" type="button" data-env="emergency" aria-pressed="false"><i></i>EMERGENCY</button>
+              </div>
+              <div class="wild-out" aria-live="polite">
+                <dl>
+                  <div class="wild-row"><dt>technology</dt><dd data-env-tech>GPS / A-GPS</dd></div>
+                  <div class="wild-row"><dt>why</dt><dd data-env-why>Satellite timing gives metre-level global coordinates with no local infrastructure.</dd></div>
+                  <div class="wild-row"><dt>trade-off</dt><dd data-env-trade>Weak indoors, slow cold start, battery-hungry. A-GPS cuts time-to-first-fix from about a minute to seconds.</dd></div>
+                  <div class="wild-row"><dt>accuracy</dt><dd data-env-badge>5–10 m</dd></div>
+                </dl>
+                <p class="wild-note" data-env-note>OUTDOOR · open sky — the exam answer is not one technology; it is the one that fits the environment, budget and accuracy target.</p>
+              </div>
+            </div>
+            <p>The exam rarely asks “which technology is best?” in the abstract. It asks which technology fits an environment, a budget and an accuracy target — and every answer has a cost: survey labour, hardware, battery or privacy.</p>
+            <div class="arabic" lang="ar" dir="rtl">
+              <strong>معمل اختيار التقنية:</strong><br>
+              اختر البيئة لترى التقنية الأنسب والمقايضة: في الخارج GPS/A-GPS بدقة أمتار لكنه ضعيف داخلياً ويستهلك بطارية؛ وفي المدينة مزيج الواي فاي وGPS والخلوي؛ وفي الداخل البصمة الراديوية أو iBeacon؛ وفي الصناعة UWB لدقة السنتيمتر؛ وفي الطوارئ التموضع الخلوي مع A-GPS. السؤال عادةً ليس “ما أفضل تقنية؟” بل “أي تقنية تناسب هذه البيئة والميزانية والدقة؟” وكل إجابة لها ثمن: وقت المسح، أو العتاد، أو البطارية، أو الخصوصية.
+            </div>
+          </article>
+
+          <article class="card card--wide card--amber" data-tilt data-reveal>
+            <div class="card__head">
+              <span class="card__icon" aria-hidden="true">⌬</span>
+              <div>
+                <div class="card__title">Exam trap<small>the privacy claim and the scanning trade-off</small></div>
+              </div>
+            </div>
+            <p>iBeacon’s advantages include <strong>privacy</strong> because the beacon itself does not track users — but the app receiving the signal can still collect location data. The privacy claim belongs to the beacon technology, not to every deployment.</p>
+            <p>Active scanning is <strong>faster and more energy-hungry</strong>; passive scanning is <strong>slower and saves battery</strong>. If an option says “passive is faster”, it is wrong.</p>
+            <div class="arabic" lang="ar" dir="rtl">
+              <strong>مصيدة الاختبار:</strong><br>
+              من مزايا iBeacon “الخصوصية” لأن المنارة نفسها لا تتعقب المستخدم — لكن التطبيق الذي يستقبل الإشارة قد يجمع بيانات الموقع. فالخصوصية صفة لتقنية المنارة لا لكل نشر لها.<br>
+              والمسح النشط أسرع وأكثر استهلاكاً للطاقة، والسلبي أبطأ ويوفر البطارية. فإن قال خيار إن “السلبي أسرع” فهو خطأ.
+            </div>
+          </article>
+        </div>
+
+        <figure class="figure figure--fit" data-reveal>
+          <div class="figure__frame">
+            <span class="figure__corner figure__corner--tl"></span>
+            <span class="figure__corner figure__corner--tr"></span>
+            <span class="figure__corner figure__corner--bl"></span>
+            <span class="figure__corner figure__corner--br"></span>
+            <span class="figure__tag">FIG. 11 · CELLULAR POSITIONING</span>
+            <img src="images/cellular-positioning.svg" alt="A mobile station located by cell identity, timing and angle measurements from several base stations" width="900" height="470" loading="lazy">
+          </div>
+          <figcaption>
+            <span>Cell ID gives a coarse cell; timing and angle measurements refine it. The cell can be 100 m wide or 30 km wide — that is why performance is inconsistent.</span>
+            <span class="ar" lang="ar" dir="rtl">Cell ID يعطي خلية تقريبية، والقياسات الزمنية والزاوية تدققها. قد تكون الخلية بعرض 100 م أو 30 كم — لذلك الأداء غير مستقر.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="figure figure--photo" data-reveal>
+          <div class="figure__frame">
+            <span class="figure__corner figure__corner--tl"></span>
+            <span class="figure__corner figure__corner--tr"></span>
+            <span class="figure__corner figure__corner--bl"></span>
+            <span class="figure__corner figure__corner--br"></span>
+            <span class="figure__tag">FIG. 12 · THE CELL TOWER</span>
+            <img src="images/cell-tower.jpg" alt="A cellular base station tower against the sky" width="960" height="1280" loading="lazy">
+          </div>
+          <figcaption>
+            <span>The serving tower knows your cell, not your room. Cell ID is the cheapest and coarsest positioning parameter.</span>
+            <span class="ar" lang="ar" dir="rtl">البرج الخادم يعرف خليتك لا غرفتك. Cell ID أرخص معاملات التموضع وأكثرها خشونة.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="figure figure--fit" data-reveal>
+          <div class="figure__frame">
+            <span class="figure__corner figure__corner--tl"></span>
+            <span class="figure__corner figure__corner--tr"></span>
+            <span class="figure__corner figure__corner--bl"></span>
+            <span class="figure__corner figure__corner--br"></span>
+            <span class="figure__tag">FIG. 13 · WI-FI FINGERPRINTING</span>
+            <img src="images/wifi-fingerprint.svg" alt="A radio map of access-point signal strengths used to match a device’s current fingerprint to a location" width="900" height="470" loading="lazy">
+          </div>
+          <figcaption>
+            <span>Fingerprinting does not need perfect geometry: it matches a pattern. The cost is the survey — often 10+ hours per building — and refreshing the map when APs move.</span>
+            <span class="ar" lang="ar" dir="rtl">البصمة لا تحتاج هندسة مثالية بل تطابق نمطاً. الثمن هو المسح — غالباً أكثر من 10 ساعات لكل مبنى — وتحديث الخريطة عند تغير نقاط الوصول.</span>
+          </figcaption>
+        </figure>
+
+        <div class="photo-duo">
+          <figure class="figure figure--photo" data-reveal>
+            <div class="figure__frame">
+              <span class="figure__tag">FIG. 14 · WI-FI ACCESS POINT</span>
+              <img src="images/wifi-ap.jpg" alt="A Wi-Fi access point mounted on a ceiling" width="1632" height="1224" loading="lazy">
+            </div>
+            <figcaption>
+              <span>Existing APs are free infrastructure — but their signal is affected by walls, people and multipath.</span>
+              <span class="ar" lang="ar" dir="rtl">نقاط الوصول الموجودة بنية تحتية مجانية — لكن إشارتها تتأثر بالجدران والأشخاص والانعكاسات.</span>
+            </figcaption>
+          </figure>
+          <figure class="figure figure--photo" data-reveal>
+            <div class="figure__frame">
+              <span class="figure__tag">FIG. 15 · iBEACON / BLE</span>
+              <img src="images/ibeacons.jpg" alt="Small Bluetooth Low Energy beacons used for indoor positioning" width="800" height="600" loading="lazy">
+            </div>
+            <figcaption>
+              <span>iBeacon: cheap BLE transmitters for room-level context. Advantages: accuracy, privacy, integration, affordability, usability.</span>
+              <span class="ar" lang="ar" dir="rtl">iBeacon: مرسلات BLE رخيصة لسياق على مستوى الغرفة. المزايا: الدقة والخصوصية والتكامل والتكلفة وسهولة الاستخدام.</span>
+            </figcaption>
+          </figure>
+        </div>
+
+        <figure class="figure figure--fit" data-reveal>
+          <div class="figure__frame">
+            <span class="figure__corner figure__corner--tl"></span>
+            <span class="figure__corner figure__corner--tr"></span>
+            <span class="figure__corner figure__corner--bl"></span>
+            <span class="figure__corner figure__corner--br"></span>
+            <span class="figure__tag">FIG. 16 · MAGNETIC FINGERPRINT</span>
+            <img src="images/magnetic-fingerprint.svg" alt="A building’s magnetic-field distortion mapped as a fingerprint for indoor positioning" width="900" height="470" loading="lazy">
+          </div>
+          <figcaption>
+            <span>Buildings distort Earth’s magnetic field in stable, location-specific ways. Survey the distortion once, then match the magnetometer reading.</span>
+            <span class="ar" lang="ar" dir="rtl">المباني تشوه المجال المغناطيسي الأرضي بطرق ثابتة ومميزة للمكان. امسح التشوه مرة، ثم طابق قراءة المغناطيسية.</span>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+    <!-- ============================================================
+         LECTURE 5 — LOCATION-BASED SERVICES
+    ============================================================ -->
+    <section class="scene" id="lec5">
+      <div class="container scene__inner">
+        <header class="section-head" data-line-reveal>
+          <div class="section-index" aria-hidden="true">05</div>
+          <div class="section-head__row">
+            <div>
+              <div class="section-kicker" data-reveal>Lecture 05 · Location Becomes a Product</div>
+              <h2 class="section-title">
+                <span class="line"><span class="line-inner">Location-Based</span></span>
+                <span class="line"><span class="line-inner grad">Services</span></span>
+              </h2>
+              <p class="section-ar" lang="ar" dir="rtl" data-reveal>خدمات الموقع — عندما يتحول الإحداثي إلى معلومات وسياق وخدمة</p>
+            </div>
+            <div class="section-meta" data-reveal>
+              <span class="chip"><i></i>lecture 05</span>
+              <span class="chip chip--violet"><i></i>E911 · context</span>
+              <span class="chip chip--amber"><i></i>privacy</span>
+            </div>
+          </div>
+          <div class="section-rule"></div>
+        </header>
+
+        <div class="cards">
+          <article class="card card--wide card--cyan" data-tilt data-reveal>
+            <div class="card__head">
+              <span class="card__icon" aria-hidden="true">◈</span>
+              <div>
+                <div class="card__title">What an LBS is<small>information filtered by where you are</small></div>
+              </div>
+            </div>
+            <p><strong>Location-based services (LBS)</strong> are IT services for providing information that has been created, compiled, selected or filtered by taking into consideration the <strong>current locations of the users</strong>. The lecture compresses the business model into three things: your <strong>location</strong>, your <strong>interests</strong> and your <strong>wallet</strong>.</p>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr><th>Type</th><th>Who knows the position?</th><th>Example</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td><strong>Location-tracking service</strong></td><td>Other parties track a person’s location.</td><td>Find My Friends, social-media check-ins.</td></tr>
+                  <tr><td><strong>Location-aware service</strong></td><td>The device’s own knowledge of position.</td><td>“Where am I?”, “What is nearby?”, “How can I go to…?”</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="arabic" lang="ar" dir="rtl">
+              <strong>ما هي خدمات الموقع؟</strong><br>
+              هي خدمات تكنولوجيا معلومات تقدم معلومات جُمعت أو اختيرت أو فُلتِرت بناءً على الموقع الحالي للمستخدم. وتراعي ثلاثة أشياء: موقعك، اهتماماتك، ومحفظتك.<br>
+              خدمات التتبع (Location-tracking) تعتمد على تتبع شخص آخر لموقعك مثل Find My Friends وتسجيل الوصول على الشبكات الاجتماعية. والخدمات الواعية (Location-aware) تعتمد على معرفة الجهاز نفسه بموقعه للإجابة عن: أين أنا؟ ماذا يوجد بالقرب مني؟ كيف أصل إلى هناك؟
+            </div>
+          </article>
+
+          <article class="card card--violet" data-tilt data-reveal>
+            <div class="card__head">
+              <span class="card__icon" aria-hidden="true">⌁</span>
+              <div>
+                <div class="card__title">Five entities, three providers<small>who makes an LBS happen</small></div>
+              </div>
+            </div>
+            <ul>
+              <li><strong>Mobile devices</strong> — the phone and its sensors.</li>
+              <li><strong>OS software</strong> — location services and permissions.</li>
+              <li><strong>Network infrastructure / positioning component</strong> — GPS, GIS, carriers, APs.</li>
+              <li><strong>Service providers</strong> — maps, weather, ads, ride-hailing, emergency services.</li>
+              <li><strong>Application developers</strong> — combine location with context into a product.</li>
+            </ul>
+            <p><strong>Provider types:</strong> network/infrastructure (GPS, GIS, AT&amp;T, Vodafone), device providers (Samsung, Apple) and third-party providers.</p>
+            <p><strong>Device technologies / IDs:</strong> GPS, IMEI, IMSI, UDID, IFA.</p>
+            <p><strong>Applications:</strong> social networking (check-in, tagging), context advertising (Foursquare, Yelp), push and pull services (Uber, Hailo), and geo-fencing.</p>
+            <div class="arabic" lang="ar" dir="rtl">
+              <strong>الكيانات الخمسة والمزودون الثلاثة:</strong><br>
+              الكيانات: الأجهزة المتنقلة، ونظام التشغيل، والبنية التحتية للشبكة/مكوّن التموضع، ومزودو الخدمة، ومطورو التطبيقات.<br>
+              المزودون ثلاثة أنواع: الشبكات والبنية التحتية (GPS وGIS وAT&T وفودافون)، ومزودو الأجهزة (سامسونج وآبل)، ومزودو الطرف الثالث. ومعرفات الأجهزة تشمل GPS وIMEI وIMSI وUDID وIFA. والتطبيقات: الشبكات الاجتماعية (تسجيل الوصول والوسم)، والإعلانات السياقية (Foursquare وYelp)، وخدمات الدفع والطلب (Uber وHailo)، والسياج الجغرافي (Geo-fencing).
+            </div>
+          </article>
+
+          <article class="card card--pink" data-tilt data-reveal>
+            <div class="card__head">
+              <span class="card__icon" aria-hidden="true">◐</span>
+              <div>
+                <div class="card__title">History &amp; evolution<small>from emergency mandate to proactive context</small></div>
+              </div>
+            </div>
+            <ul>
+              <li><strong>Origin:</strong> the <strong>1996 U.S. E911 mandate</strong> — locate emergency callers.</li>
+              <li><strong>Phase 1:</strong> identify the phone number and the cell tower within <strong>6 minutes</strong>.</li>
+              <li><strong>Phase 2:</strong> provide latitude/longitude within <strong>300 m</strong> within <strong>6 minutes</strong>.</li>
+            </ul>
+            <p><strong>Evolution:</strong> early LBS were <em>reactive</em> (user-initiated), <em>self-referencing</em> (single target) and <em>operator-centred</em>. Evolved LBS are <em>proactive</em> (fleet management, child tracking), <em>cross-referencing</em>, and enabled by GPS phones, Web 2.0 and 3G.</p>
+            <p><strong>Maps:</strong> <strong>NAVTEQ</strong> was the dominant pioneer. Modern indoor maps are seamlessly embedded over outdoor maps — only zooming is required, no app switching.</p>
+            <p><strong>Frameworks:</strong> iOS uses <strong>Core Location + MapKit</strong>; Android uses <strong>LocationManager Service + Google Map View API</strong>.</p>
+            <div class="arabic" lang="ar" dir="rtl">
+              <strong>التاريخ والتطور:</strong><br>
+              نشأت خدمات الموقع بسبب تفويض الطوارئ الأمريكي E911 عام 1996 لتحديد موقع المتصلين بالطوارئ. المرحلة الأولى: تحديد رقم الهاتف والبرج خلال 6 دقائق. المرحلة الثانية: توفير خطوط الطول والعرض بدقة 300 متر خلال 6 دقائق.<br>
+              خدمات الموقع القديمة كانت تفاعلية (بانتظار طلب المستخدم)، وذاتية المرجع (هدف واحد)، ومتمركزة حول المشغل. الحديثة أصبحت استباقية (إدارة الأساطيل وتتبع الأطفال)، ومتقاطعة المراجع، وممكنة بهواتف GPS والويب 2.0 و3G. وكانت NAVTEQ رائدة الخرائط الرقمية، وخرائط المباني الحديثة تُدمج بسلاسة فوق خرائط الخارج بتكبير فقط بلا تبديل تطبيق. وiOS يستخدم Core Location وMapKit، وأندرويد يستخدم LocationManager Service وGoogle Map View API.
+            </div>
+          </article>
+
+          <article class="card card--amber" data-tilt data-reveal>
+            <div class="card__head">
+              <span class="card__icon" aria-hidden="true">✳</span>
+              <div>
+                <div class="card__title">Context &amp; adaptation<small>location is only one slice of the situation</small></div>
+              </div>
+            </div>
+            <p><strong>Elements of context:</strong> user identity/preferences, location, time, orientation, navigation history, purpose of use, social/cultural situation, physical surroundings (light/noise) and system properties (device, connectivity, GPS quality).</p>
+            <p><strong>Context adaptation levels:</strong> information level, technology level, user-interface level and presentation level (visualisation).</p>
+            <p><strong>Privacy</strong> must protect user data and prevent misuse — location is sensitive because it can reconstruct habits, relationships and intentions.</p>
+            <div class="arabic" lang="ar" dir="rtl">
+              <strong>السياق والتكيف:</strong><br>
+              عناصر السياق: هوية المستخدم وتفضيلاته، والموقع، والوقت، والاتجاه، وسجل التنقل، والغرض من الاستخدام، والحالة الاجتماعية/الثقافية، والمحيط المادي (الإضاءة والضوضاء)، وخصائص النظام (الجهاز والاتصال وجودة GPS).<br>
+              مستويات التكيف السياقي: مستوى المعلومات، ومستوى التقنية، ومستوى واجهة المستخدم، ومستوى العرض البصري. والخصوصية تتطلب حماية بيانات المستخدم ومنع إساءة الاستخدام — فالموقع حساس لأنه يكشف العادات والعلاقات والنوايا.
+            </div>
+          </article>
+
+          <article class="card card--wide card--violet" data-tilt data-reveal>
+            <div class="card__head">
+              <span class="card__icon" aria-hidden="true">⌘</span>
+              <div>
+                <div class="card__title">Exam trap<small>tracking is not awareness</small></div>
+              </div>
+            </div>
+            <p>The exam distinguishes <strong>location-tracking</strong> (someone else tracks you) from <strong>location-aware</strong> (your device knows where it is). “Find My Friends” is tracking; “Where is the nearest pharmacy?” is awareness. Both are LBS, but the privacy relationship is different.</p>
+            <p>For history questions, the anchor is <strong>E911 in 1996</strong>: Phase 1 = phone number + cell tower within 6 minutes; Phase 2 = latitude/longitude within 300 m within 6 minutes.</p>
+            <div class="rick-quote">
+              <span class="rick-quote__portal" aria-hidden="true"></span>
+              <div>
+                <blockquote>“<em>To live is to risk it all. Otherwise you’re just an inert chunk of randomly assembled molecules drifting wherever the universe blows you.</em>”</blockquote>
+                <p class="rick-quote__note">every LBS answer should mention location, context and privacy, not just the map.</p>
+                <cite>— RICK SANCHEZ</cite>
+              </div>
+            </div>
+            <div class="arabic" lang="ar" dir="rtl">
+              <strong>مصيدة الاختبار:</strong><br>
+              التتبع (Tracking) يعني أن طرفاً آخر يتتبعك، والوعي (Aware) يعني أن جهازك يعرف موقعه. تطبيق Find My Friends تتبع، وسؤال “أين أقرب صيدلية؟” وعي. كلاهما خدمة موقع، لكن علاقة الخصوصية مختلفة.<br>
+              وفي أسئلة التاريخ، المرساة هي E911 عام 1996: المرحلة الأولى رقم الهاتف والبرج خلال 6 دقائق، والثانية خطوط الطول والعرض بدقة 300 م خلال 6 دقائق.
+            </div>
+          </article>
+        </div>
+
+        <figure class="figure figure--fit" data-reveal>
+          <div class="figure__frame">
+            <span class="figure__corner figure__corner--tl"></span>
+            <span class="figure__corner figure__corner--tr"></span>
+            <span class="figure__corner figure__corner--bl"></span>
+            <span class="figure__corner figure__corner--br"></span>
+            <span class="figure__tag">FIG. 17 · THE LBS ECOSYSTEM</span>
+            <img src="assets/img/lbs-flow.svg" alt="The location-based service ecosystem: mobile device, OS, network positioning, service providers and app developers feeding a context layer" width="960" height="560" loading="lazy">
+          </div>
+          <figcaption>
+            <span>Five entities turn a coordinate into something useful — and profitable. The context layer is what separates a map from a service.</span>
+            <span class="ar" lang="ar" dir="rtl">خمسة كيانات تحول الإحداثي إلى شيء مفيد ومربح. طبقة السياق هي ما يفرق الخريطة عن الخدمة.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="figure figure--photo" data-reveal>
+          <div class="figure__frame">
+            <span class="figure__corner figure__corner--tl"></span>
+            <span class="figure__corner figure__corner--tr"></span>
+            <span class="figure__corner figure__corner--bl"></span>
+            <span class="figure__corner figure__corner--br"></span>
+            <span class="figure__tag">FIG. 18 · THE GLOBAL REFERENCE FRAME</span>
+            <img src="images/gps-constellation.jpg" alt="A constellation of GPS satellites orbiting Earth, providing the global coordinates behind location services" width="650" height="650" loading="lazy">
+          </div>
+          <figcaption>
+            <span>Every LBS starts with a coordinate. GPS supplies the global frame; indoor systems supply the local one; context supplies the meaning.</span>
+            <span class="ar" lang="ar" dir="rtl">كل خدمة موقع تبدأ بإحداثي. GPS يوفر الإطار العالمي، وأنظمة الداخل توفر الإطار المحلي، والسياق يوفر المعنى.</span>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         REVISION — THE FIELD KIT
+    ============================================================ -->
+    <section class="scene" id="rev">
+      <div class="container scene__inner">
+        <header class="section-head" data-line-reveal>
+          <div class="section-index" aria-hidden="true">06</div>
+          <div class="section-head__row">
+            <div>
+              <div class="section-kicker" data-reveal>Revision · The Field Kit</div>
+              <h2 class="section-title">
+                <span class="line"><span class="line-inner">The Field</span></span>
+                <span class="line"><span class="line-inner grad">Kit</span></span>
+              </h2>
+              <p class="section-ar" lang="ar" dir="rtl" data-reveal>ورقة الإنقاذ — كل ما تحتاجه ليلة الاختبار</p>
+            </div>
+            <div class="section-meta" data-reveal>
+              <span class="chip"><i></i>revision</span>
+              <span class="chip chip--violet"><i></i>rescue sheet</span>
+              <span class="chip chip--pink"><i></i>20 MCQs</span>
+              <span class="chip chip--amber"><i></i>10 essays</span>
+            </div>
+          </div>
+          <div class="section-rule"></div>
+        </header>
+
+        <div class="cards">
+          <article class="card card--wide card--cyan" data-tilt data-reveal>
+            <div class="card__head">
+              <span class="card__icon" aria-hidden="true">◈</span>
+              <div>
+                <div class="card__title">The rescue sheet<small>the minimum you must be able to say</small></div>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr><th>Concept</th><th>The minimum required</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td><strong>Mobile computing</strong></td><td>Interacting with a computer through a mobile device to access networks and services anytime/anywhere while moving. Process view: work moves from a fixed to a dynamic position.</td></tr>
+                  <tr><td><strong>3 components</strong></td><td>Mobile hardware + mobile software + mobile communication.</td></tr>
+                  <tr><td><strong>7 waves</strong></td><td>Portability → Miniaturization → Connectivity → Convergence → Divergence → Applications → Digital ecosystems.</td></tr>
+                  <tr><td><strong>4 constraints</strong></td><td>Resource poor · less secure/reliable · intermittent connectivity · energy constrained.</td></tr>
+                  <tr><td><strong>4 market factors</strong></td><td>Enhanced UX · improved technology (CPUs, batteries, sensors) · new form factors · increased connectivity.</td></tr>
+                  <tr><td><strong>7 design steps</strong></td><td>PDS → external search → internal search → evaluation &amp; selection → detail design → prototyping → documentation.</td></tr>
+                  <tr><td><strong>Specifications</strong></td><td>State requirements the product must meet — <em>not</em> how to build it. Customer needs are subjective words; engineering specs are verifiable numbers.</td></tr>
+                  <tr><td><strong>Wireframe</strong></td><td>Low-fi skeletal blueprint: main content + structure/layout + basic UI.</td></tr>
+                  <tr><td><strong>Mockup</strong></td><td>Static design with visual details (colors, fonts, actual buttons) for stakeholder feedback.</td></tr>
+                  <tr><td><strong>Prototype</strong></td><td>Interactive representation for user feedback, testing ideas and choosing alternatives.</td></tr>
+                  <tr><td><strong>Lo-Fi vs Hi-Fi</strong></td><td>Lo-Fi: fast/cheap, big picture, no aesthetics. Hi-Fi: realistic/aesthetic, takes time, distracts with details.</td></tr>
+                  <tr><td><strong>Horizontal vs vertical</strong></td><td>Horizontal (broad): many functions, little detail. Vertical (deep): few functions, a lot of detail.</td></tr>
+                  <tr><td><strong>Wizard of Oz</strong></td><td>A hidden human simulates a system that does not exist yet; good for complex vertical functionality and futuristic ideas.</td></tr>
+                  <tr><td><strong>Location types</strong></td><td>Global = GPS lat/lon; relative = node-to-node distances; symbolic = place name.</td></tr>
+                  <tr><td><strong>Accuracy vs precision</strong></td><td>Accuracy = closeness to ground truth; precision = consistency of repeated readings.</td></tr>
+                  <tr><td><strong>ToA</strong></td><td>Distance = propagation time × velocity. One-way needs clock sync; two-way uses round-trip time.</td></tr>
+                  <tr><td><strong>TDoA</strong></td><td>Time difference, typically RF + ultrasound; no clock sync in that arrangement; needs calibration and specialized hardware. 2 receivers = 1 hyperbola; need 3 in 2-D.</td></tr>
+                  <tr><td><strong>Triangulation vs trilateration</strong></td><td>Angles (2 anchors in 2-D) vs distances (3 non-collinear in 2-D, 4 non-coplanar in 3-D).</td></tr>
+                  <tr><td><strong>GPS</strong></td><td>≥24 satellites in 6 orbits + monitor stations + MCS; SPS civilian, PPS military; 4th satellite corrects clock error (1 ms ≈ 300 km).</td></tr>
+                  <tr><td><strong>DGPS / WAAS / A-GPS</strong></td><td>DGPS stationary reference → 10 cm; WAAS 25 ground stations + 2 GEO → ~3 m, North America; A-GPS uses mobile network to cut time-to-first-fix to seconds.</td></tr>
+                  <tr><td><strong>Dead reckoning</strong></td><td>Advance previous position using speed/course; accelerometer, gyroscope, pressure sensor; limitation: cumulative error.</td></tr>
+                  <tr><td><strong>Cellular positioning</strong></td><td>Driven by E-911; Cell ID, TOA/TDOA/AOA, RSSI, RTT/TA, E-OTD; time-based needs 3 base stations, angle-based needs 2.</td></tr>
+                  <tr><td><strong>Wi-Fi scanning</strong></td><td>Active = sends requests (fast, high power); passive = listens for beacons (slow, saves battery).</td></tr>
+                  <tr><td><strong>Wi-Fi methods</strong></td><td>RSSI, TDOA, AoA, fingerprinting (radio-map comparison, 2–3 m, 10+ hours/building); Skyhook XPS hybrid; Ekahau commercial.</td></tr>
+                  <tr><td><strong>iBeacon</strong></td><td>Apple BLE indoor transmitter. Advantages: accuracy, privacy, integration, affordability, usability.</td></tr>
+                  <tr><td><strong>Magnetic positioning</strong></td><td>Magnetometer + building’s magnetic distortion; steps: floor plans → mapping → apps.</td></tr>
+                  <tr><td><strong>LBS</strong></td><td>IT services filtered by current location; considers location + interests + wallet.</td></tr>
+                  <tr><td><strong>Tracking vs aware</strong></td><td>Tracking = other parties track you; aware = the device knows its own position.</td></tr>
+                  <tr><td><strong>5 entities</strong></td><td>Mobile devices + OS software + network/positioning infrastructure + service providers + app developers.</td></tr>
+                  <tr><td><strong>E911 (1996)</strong></td><td>Phase 1 = phone number + cell tower within 6 min; Phase 2 = lat/lon within 300 m within 6 min.</td></tr>
+                  <tr><td><strong>Context</strong></td><td>Identity/preferences + location + time + orientation + navigation history + purpose + social situation + physical surroundings + system properties.</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="arabic" lang="ar" dir="rtl">
+              <strong>ورقة الإنقاذ السريع:</strong><br>
+              الحد الأدنى المطلوب لكل مفهوم: تعريف الحوسبة المتنقلة ومكوناتها الثلاثة، والأمواج السبعة بالترتيب، والقيود الأربعة، وعوامل السوق، وخطوات التصميم السبع، وأن المواصفات تقول “ماذا” لا “كيف”، والفرق بين Wireframe وMockup وPrototype، ومزايا وعيوب Lo-Fi وHi-Fi، والأفقي والعمودي، وساحر أوز. ثم أنواع الموقع، والدقة مقابل الضبط، وToA وTDoA وTriangulation وTrilateration، وبنية GPS ولماذا 4 أقمار، وDGPS وWAAS وA-GPS، وحساب الموضع الاستنتاجي. ثم التموضع الخلوي ومعاملاته وأبراجه، والمسح النشط والسلبي، وطرق الواي فاي، وiBeacon والتموضع المغناطيسي. وأخيراً تعريف LBS والتتبع مقابل الوعي، والكيانات الخمسة، وتاريخ E911 ومراحله، وعناصر السياق ومستويات التكيف والخصوصية.
+            </div>
+          </article>
+
+          <article class="card card--violet" data-tilt data-reveal>
+            <div class="card__head">
+              <span class="card__icon" aria-hidden="true">⌁</span>
+              <div>
+                <div class="card__title">The one-page cheat sheet<small>numbers and names that decide marks</small></div>
+              </div>
+            </div>
+            <div class="mini-grid">
+              <div class="mini-fact"><b>7 waves</b>Portability · Miniaturization · Connectivity · Convergence · Divergence · Apps · Ecosystems.</div>
+              <div class="mini-fact"><b>4 constraints</b>Resource poor · less secure · intermittent · energy limited.</div>
+              <div class="mini-fact"><b>7 steps</b>PDS → external → internal → evaluate → detail → prototype → document.</div>
+              <div class="mini-fact"><b>Fidelity</b>Sketch (explore) · wireframe (structure) · mockup (visual) · prototype (interaction).</div>
+              <div class="mini-fact"><b>Lo-Fi vs Hi-Fi</b>Fast/cheap/big picture vs realistic/slow/distracting.</div>
+              <div class="mini-fact"><b>Horizontal vs vertical</b>Many functions/shallow vs few functions/deep.</div>
+              <div class="mini-fact"><b>Position types</b>Global (lat/lon) · relative (node distances) · symbolic (place name).</div>
+              <div class="mini-fact"><b>Accuracy vs precision</b>Close to truth vs consistent readings.</div>
+              <div class="mini-fact"><b>ToA</b>Distance = time × velocity. One-way needs sync; two-way round trip.</div>
+              <div class="mini-fact"><b>TDoA</b>RF + ultrasound; no clock sync; 2 receivers = 1 hyperbola; need 3 in 2-D.</div>
+              <div class="mini-fact"><b>Angles vs distances</b>Triangulation: 2 anchors in 2-D. Trilateration: 3 non-collinear in 2-D.</div>
+              <div class="mini-fact"><b>GPS</b>≥24 sats · 6 orbits · MCS · SPS/PPS · 4th sat fixes clock (1 ms ≈ 300 km).</div>
+              <div class="mini-fact"><b>Corrections</b>DGPS 10 cm · WAAS ~3 m (25 stations + 2 GEO) · A-GPS cuts TTFF to seconds.</div>
+              <div class="mini-fact"><b>NMEA</b>ASCII output; $GPGGA = UTC, lat/lon, fix quality, satellites, altitude.</div>
+              <div class="mini-fact"><b>Dead reckoning</b>Accelerometer + gyroscope + pressure; cumulative error.</div>
+              <div class="mini-fact"><b>Cellular</b>E-911 origin · Cell ID · TOA/TDOA/AOA · RSSI · RTT/TA · E-OTD.</div>
+              <div class="mini-fact"><b>Cellular minimums</b>Time-based: 3 base stations. Angle-based: 2 base stations.</div>
+              <div class="mini-fact"><b>Wi-Fi scanning</b>Active: requests, fast, high power. Passive: beacons, slow, saves battery.</div>
+              <div class="mini-fact"><b>Wi-Fi methods</b>RSSI · TDOA · AoA · fingerprinting (2–3 m, 10+ h/building).</div>
+              <div class="mini-fact"><b>Indoor systems</b>iBeacon BLE · magnetic fingerprint · UWB industrial · RFID/IR line-of-sight.</div>
+              <div class="mini-fact"><b>LBS</b>Location + interests + wallet. Tracking vs aware.</div>
+              <div class="mini-fact"><b>5 entities</b>Devices · OS · network/positioning · service providers · app developers.</div>
+              <div class="mini-fact"><b>E911</b>1996 · Phase 1 phone + tower/6 min · Phase 2 lat/lon/300 m/6 min.</div>
+              <div class="mini-fact"><b>Context</b>Identity · location · time · orientation · history · purpose · social · surroundings · system.</div>
+            </div>
+            <div class="arabic" lang="ar" dir="rtl">
+              <strong>ورقة المراجعة النهائية:</strong><br>
+              احفظ الأرقام والأسماء: سبعة أمواج، أربعة قيود، سبع خطوات، أربعة مستويات دقة، 24 قمراً و6 مدارات، 1 مللي ثانية ≈ 300 كم، DGPS 10 سم، WAAS 3 أمتار و25 محطة وقمران، TDoA 3 مستقبلات في 2D، التثليث الزاوي نقطتان والمسافي 3 نقاط، التموضع الخلوي الزمني 3 أبراج والزاوي برجان، البصمة الراديوية 2–3 م و10+ ساعات، E911 عام 1996 والمرحلتان، والكيانات الخمسة وعناصر السياق التسعة.
+            </div>
+          </article>
+
+          <article class="card card--pink" data-tilt data-reveal>
+            <div class="card__head">
+              <span class="card__icon" aria-hidden="true">◐</span>
+              <div>
+                <div class="card__title">Answer templates<small>five shapes for any question</small></div>
+              </div>
+            </div>
+            <ul>
+              <li><strong>Define</strong> — “What is X?” → one-sentence definition + one example. <span class="mono">X is a … , e.g. …</span></li>
+              <li><strong>Compare</strong> — “X vs Y?” → X … while Y … + the deciding difference. <span class="mono">active: fast/high power · passive: slow/low power</span></li>
+              <li><strong>Apply</strong> — “Give an example” → pick a concrete environment (mall, campus, highway) and name the technology. <span class="mono">indoor → Wi-Fi fingerprinting or iBeacon</span></li>
+              <li><strong>Explain mechanism</strong> — “How does X work?” → numbered steps. <span class="mono">satellites → ranges → intersect → correct clock</span></li>
+              <li><strong>Enumerate</strong> — “Name N …” → N bullets, each with a qualifier. <span class="mono">PDS → external → internal → evaluate …</span></li>
+            </ul>
+            <p>The guide grades <strong>keywords</strong> — write them verbatim (<span class="mono">propagation time, clock sync, non-collinear, hyperbola, cumulative error, proactive, privacy</span>) and underline them in your answer.</p>
+            <div class="arabic" lang="ar" dir="rtl">
+              <strong>قوالب الإجابة الخمسة:</strong><br>
+              التعريف: جملة واحدة + مثال. المقارنة: “X يفعل كذا بينما Y يفعل كذا” مع الفارق الحاسم. التطبيق: اختر بيئة ملموسة (مول، حرم جامعي، طريق سريع) وسمِّ التقنية. تفسير الآلية: خطوات مرقمة (أقمار ← مدى ← تقاطع ← تصحيح الساعة). التعداد: نقاط بعدد مطلوب مع وصف قصير لكل نقطة.<br>
+              الدليل يعطي الدرجات على الكلمات المفتاحية — اكتبها كما هي (زمن الانتشار، مزامنة الساعة، غير مستقيمة، منحنى زائدي، خطأ تراكمي، استباقي، خصوصية...) وضّح تحتها.
+            </div>
+          </article>
+
+          <article class="card card--amber" data-tilt data-reveal>
+            <div class="card__head">
+              <span class="card__icon" aria-hidden="true">✳</span>
+              <div>
+                <div class="card__title">Exam tactics<small>run the positioning cycle on the question itself</small></div>
+              </div>
+            </div>
+            <ul>
+              <li><strong>Match</strong> — read the question and catch the keyword: ranging? GPS? cellular? LBS? context?</li>
+              <li><strong>Resolve</strong> — pick the rescue-sheet line that answers it.</li>
+              <li><strong>Fire</strong> — write definition → parts/difference → example. In that order.</li>
+              <li><strong>Repeat</strong> — for essay questions, one paragraph per concept; never blend two concepts into one paragraph.</li>
+            </ul>
+            <p>When a question says “compare”, use a two-column table in your answer. When it says “why four satellites”, lead with the clock error. When it says “list”, write the exact count and stop.</p>
+            <div class="rick-quote">
+              <span class="rick-quote__portal" aria-hidden="true"></span>
+              <div>
+                <blockquote>“<em>Nobody exists on purpose. Nobody belongs anywhere. Everybody’s gonna die. Come study.</em>”</blockquote>
+                <p class="rick-quote__note">at least leave the hall knowing the difference between triangulation and trilateration.</p>
+                <cite>— MORTY SMITH · ADAPTED</cite>
+              </div>
+            </div>
+            <div class="arabic" lang="ar" dir="rtl">
+              <strong>تكتيك الاختبار:</strong><br>
+              شغّل دورة التموضع على السؤال نفسه: المطابقة (اقرأ والتقط الكلمة المفتاحية: مدى؟ GPS؟ خلوي؟ LBS؟ سياق؟)، حل الاختيار (اختر سطر ورقة الإنقاذ المناسب)، الإطلاق (اكتب: تعريف ← أجزاء/فرق ← مثال — بهذا الترتيب)، والتكرار (فقرة لكل مفهوم في الأسئلة المقالية، ولا تخلط مفهومين في فقرة واحدة).<br>
+              عندما يقول السؤال “قارن” استخدم جدولاً بعمودين، وعندما يقول “لماذا أربعة أقمار” ابدأ بخطأ الساعة، وعندما يقول “اذكر” اكتب العدد المطلوب بالضبط وتوقف.
+            </div>
+          </article>
+        </div>
+        <div class="cards" style="margin-top:18px">
+          <article class="card card--wide card--cyan" data-reveal>
+            <div class="card__head">
+              <span class="card__icon" aria-hidden="true">◈</span>
+              <div>
+                <div class="card__title">The essay bank<small>س01 – س10 · click a question to unfold the model answer + keywords + the Arabic note</small></div>
+              </div>
+            </div>
+            <p style="font-size:.88rem;color:var(--dim)">Ten short-essay questions from the revision document, numbered as given. The formula for every answer: <span class="mono">definition + parts/difference + example</span> — and the keywords are graded verbatim.</p>
+
+            <div class="qa-group">Lecture 1 · Mobile Computing — س01 to س02</div>
+            <div class="qa" data-qa>
+              <button class="qa__q" type="button" aria-expanded="false">
+                <span class="qa__num">س01</span>
+                <span>Define mobile computing and list its three main components.</span>
+                <span class="qa__chev" aria-hidden="true">+</span>
+              </button>
+              <div class="qa__a" hidden>
+                <p class="qa__model">Mobile computing is interacting with a computer through a mobile device, while users can access services as they move. Its three main components are mobile hardware, mobile software, and mobile communication.</p>
+                <p class="qa__keys">keywords · mobile device · access services while moving · hardware · software · communication</p>
+                <div class="arabic" lang="ar" dir="rtl">الحوسبة المتنقلة هي التفاعل مع الحاسوب عبر جهاز محمول للوصول إلى الخدمات أثناء الحركة، وتتكون من العتاد المتنقل والبرمجيات المتنقلة والاتصالات المتنقلة.</div>
+              </div>
+            </div>
+            <div class="qa" data-qa>
+              <button class="qa__q" type="button" aria-expanded="false">
+                <span class="qa__num">س02</span>
+                <span>State the four major constraints of mobile computing and give one suitable response to any two.</span>
+                <span class="qa__chev" aria-hidden="true">+</span>
+              </button>
+              <div class="qa__a" hidden>
+                <p class="qa__model">The four constraints are resource-poor devices, reduced security/reliability, intermittent connectivity, and limited energy. Resource limits can be addressed using cloud storage/processing or speech input. Security can be improved through authentication, encryption, VPN, or HTTPS.</p>
+                <p class="qa__keys">keywords · resource poor · security/reliability · intermittent connectivity · energy · cloud · authentication · encryption · VPN/HTTPS</p>
+                <div class="arabic" lang="ar" dir="rtl">القيود الأربعة: موارد ضعيفة، وأمن/موثوقية أقل، واتصال متقطع، وطاقة محدودة. ويعالج ضعف الموارد بالسحابة أو الإدخال الصوتي، والأمن بالمصادقة والتشفير وVPN/HTTPS.</div>
+              </div>
+            </div>
+
+            <div class="qa-group">Lecture 2 · Prototyping — س03 to س04</div>
+            <div class="qa" data-qa>
+              <button class="qa__q" type="button" aria-expanded="false">
+                <span class="qa__num">س03</span>
+                <span>List the seven steps of the design process.</span>
+                <span class="qa__chev" aria-hidden="true">+</span>
+              </button>
+              <div class="qa__a" hidden>
+                <p class="qa__model">1. Problem definition (PDS). 2. External search (research). 3. Internal search (brainstorming). 4. Evaluation and selection. 5. Detail design (engineering). 6. Prototyping. 7. Documentation.</p>
+                <p class="qa__keys">keywords · PDS · external search · internal search · evaluation/selection · detail design · prototyping · documentation</p>
+                <div class="arabic" lang="ar" dir="rtl">الترتيب: تعريف المشكلة (PDS)، البحث الخارجي، البحث الداخلي (العصف الذهني)، التقييم والاختيار، التصميم التفصيلي، النموذج الأولي، التوثيق.</div>
+              </div>
+            </div>
+            <div class="qa" data-qa>
+              <button class="qa__q" type="button" aria-expanded="false">
+                <span class="qa__num">س04</span>
+                <span>Compare low-fidelity and high-fidelity prototypes.</span>
+                <span class="qa__chev" aria-hidden="true">+</span>
+              </button>
+              <div class="qa__a" hidden>
+                <p class="qa__model">Low-fidelity prototypes are quick, cheap, and easy to create, and are useful for evaluating the big picture. Their response may be slow and they provide little feedback about aesthetics. High-fidelity prototypes resemble the final system and provide a more realistic experience and aesthetic feedback, but take more time and may distract users with unnecessary details.</p>
+                <p class="qa__keys">keywords · low-fi: fast/cheap/big picture/no aesthetics · high-fi: realistic/aesthetic/time-consuming/distracting details</p>
+                <div class="arabic" lang="ar" dir="rtl">المنخفض سريع ورخيص وممتاز للصورة الكبيرة لكنه بطيء الاستجابة ولا يعطي تغذية جمالية. العالي يشبه المنتج النهائي ويعطي تجربة واقعية لكنه يستهلك وقتاً وقد يشتت بالتفاصيل.</div>
+              </div>
+            </div>
+
+            <div class="qa-group">Lecture 3 · Localization — س05 to س06</div>
+            <div class="qa" data-qa>
+              <button class="qa__q" type="button" aria-expanded="false">
+                <span class="qa__num">س05</span>
+                <span>Differentiate between ToA and TDoA.</span>
+                <span class="qa__chev" aria-hidden="true">+</span>
+              </button>
+              <div class="qa__a" hidden>
+                <p class="qa__model">Time of Arrival (ToA) uses the signal’s propagation time and known velocity to estimate distance; one-way ToA requires accurate synchronization of sender and receiver clocks. Time Difference of Arrival (TDoA) uses the difference between arrival times, often from signals with different propagation speeds such as RF and ultrasound; the lecture notes that this approach does not require clock synchronization in that arrangement, but may need calibration and specialized hardware.</p>
+                <p class="qa__keys">keywords · ToA: propagation time × velocity · one-way clock sync · TDoA: arrival-time difference · RF + ultrasound · calibration · hardware</p>
+                <div class="arabic" lang="ar" dir="rtl">ToA يحسب المسافة من زمن الانتشار والسرعة، وأحادي الاتجاه يحتاج مزامنة ساعات. TDoA يستخدم فرق زمن وصول إشارتين (راديو وصوت) فلا يحتاج مزامنة في هذا الترتيب، لكنه يحتاج معايرة وأجهزة مكلفة.</div>
+              </div>
+            </div>
+            <div class="qa" data-qa>
+              <button class="qa__q" type="button" aria-expanded="false">
+                <span class="qa__num">س06</span>
+                <span>Differentiate between triangulation and trilateration.</span>
+                <span class="qa__chev" aria-hidden="true">+</span>
+              </button>
+              <div class="qa__a" hidden>
+                <p class="qa__model">Triangulation estimates a position using angle or bearing measurements from known anchor points. Trilateration estimates a position using measured distances to anchors. In 2-D, trilateration requires at least three non-collinear anchors; in 3-D, at least four non-coplanar anchors are needed.</p>
+                <p class="qa__keys">keywords · triangulation = angles/bearings · 2 anchors in 2-D · trilateration = distances · 3 non-collinear anchors · 4 non-coplanar in 3-D</p>
+                <div class="arabic" lang="ar" dir="rtl">التثليث الزاوي يستخدم الزوايا ويحتاج نقطتي ارتكاز في 2D. التثليث المسافي يستخدم المسافات ويحتاج 3 نقاط غير مستقيمة في 2D و4 نقاط غير مستوية في 3D.</div>
+              </div>
+            </div>
+
+            <div class="qa-group">Lecture 4 · Positioning — س07 to س08</div>
+            <div class="qa" data-qa>
+              <button class="qa__q" type="button" aria-expanded="false">
+                <span class="qa__num">س07</span>
+                <span>Explain Cell ID, RSSI, and AOA as cellular positioning parameters.</span>
+                <span class="qa__chev" aria-hidden="true">+</span>
+              </button>
+              <div class="qa__a" hidden>
+                <p class="qa__model">Cell ID estimates a rough location from the identity of the serving cell tower. RSSI measures received radio-signal power; distance may be estimated from signal strength, but interference reduces accuracy. AOA measures the angle at which a signal arrives at a base station and helps determine direction, often for triangulation.</p>
+                <p class="qa__keys">keywords · Cell ID = serving tower identity · RSSI = signal power/strength · AOA = arrival angle · base station · triangulation</p>
+                <div class="arabic" lang="ar" dir="rtl">Cell ID يعطي موقعاً تقريبياً من هوية البرج الخادم. RSSI يقيس قوة الإشارة وقد يُستدل بها على المسافة لكن التداخل يقلل الدقة. AOA يقيس زاوية وصول الإشارة إلى البرج ويساعد في تحديد الاتجاه والتثليث.</div>
+              </div>
+            </div>
+            <div class="qa" data-qa>
+              <button class="qa__q" type="button" aria-expanded="false">
+                <span class="qa__num">س08</span>
+                <span>Compare active and passive Wi-Fi scanning.</span>
+                <span class="qa__chev" aria-hidden="true">+</span>
+              </button>
+              <div class="qa__a" hidden>
+                <p class="qa__model">In active scanning, the client sends discovery requests and nearby access points respond, allowing faster network discovery. In passive scanning, the client listens for periodically broadcast beacon frames; it is generally less energy-intensive but may be slower because it depends on beacon timing.</p>
+                <p class="qa__keys">keywords · active = requests/replies · faster · more energy · passive = beacon frames · slower · less energy</p>
+                <div class="arabic" lang="ar" dir="rtl">المسح النشط يرسل طلبات وترد نقاط الوصول، فهو أسرع وأكثر استهلاكاً للطاقة. والسلبي يستمع لإطارات Beacon الدورية، فهو أبطأ لكنه يوفر البطارية.</div>
+              </div>
+            </div>
+
+            <div class="qa-group">Lecture 5 · Location-Based Services — س09 to س10</div>
+            <div class="qa" data-qa>
+              <button class="qa__q" type="button" aria-expanded="false">
+                <span class="qa__num">س09</span>
+                <span>Define LBS and distinguish location-tracking services from location-aware services.</span>
+                <span class="qa__chev" aria-hidden="true">+</span>
+              </button>
+              <div class="qa__a" hidden>
+                <p class="qa__model">LBS are IT services that provide information or functionality by considering the current location of users or mobile objects. Location-tracking services rely on other parties tracking a person’s location. Location-aware services use the device’s own knowledge of its position to answer questions such as “Where am I?”, “What is nearby?” and “How can I get there?”</p>
+                <p class="qa__keys">keywords · IT services · current location · tracking = other parties · aware = device’s own knowledge · where am I / nearby / how to get there</p>
+                <div class="arabic" lang="ar" dir="rtl">خدمات الموقع تقدم معلومات بناءً على الموقع الحالي. خدمات التتبع يعرف فيها طرف آخر موقعك، والخدمات الواعية يعرف فيها جهازك موقعه ليجيب: أين أنا؟ ماذا بالقرب مني؟ كيف أصل؟</div>
+              </div>
+            </div>
+            <div class="qa" data-qa>
+              <button class="qa__q" type="button" aria-expanded="false">
+                <span class="qa__num">س10</span>
+                <span>List four examples of LBS applications and explain two context elements used by LBS.</span>
+                <span class="qa__chev" aria-hidden="true">+</span>
+              </button>
+              <div class="qa__a" hidden>
+                <p class="qa__model">Examples include social-network check-ins/tagging, context advertising, push and pull services such as ride-hailing, navigation, nearby-business discovery, child tracking, and emergency assistance. Context elements include location (to localize information), time (to determine whether an event or venue is active), orientation (the direction the user is facing or moving), personal preferences, navigation history, physical surroundings, and device/system properties.</p>
+                <p class="qa__keys">keywords · check-in/tagging · context advertising · ride-hailing · navigation · location · time · orientation · preferences · history · surroundings · system properties</p>
+                <div class="arabic" lang="ar" dir="rtl">أمثلة: تسجيل الوصول والوسم، الإعلانات السياقية، خدمات الطلب مثل Uber، الملاحة، اكتشاف الأعمال القريبة، تتبع الأطفال، والمساعدة الطارئة. وعناصر السياق: الموقع لتوطين المعلومة، والوقت لمعرفة نشاط المكان، والاتجاه، والتفضيلات، وسجل التنقل، والمحيط المادي، وخصائص الجهاز.</div>
+              </div>
+            </div>
+
+            <div class="arabic" lang="ar" dir="rtl">
+              <strong>عشرة أسئلة مقالية بإجاباتها النموذجية:</strong><br>
+              كل سؤال يفتح على الإجابة النموذجية والكلمات المفتاحية وشرح عربي قصير — مرتبة كما في دليل المراجعة: س01–س02 الحوسبة المتنقلة، س03–س04 النماذج الأولية، س05–س06 التحديد المكاني، س07–س08 التموضع، س09–س10 خدمات الموقع. الصيغة العامة: تعريف بسيط + الأجزاء/الفرق + مثال.
+            </div>
+          </article>
+
+          <article class="card card--wide card--violet" data-reveal>
+            <div class="card__head">
+              <span class="card__icon" aria-hidden="true">⌁</span>
+              <div>
+                <div class="card__title">The MCQ bank<small>20 on record · click to reveal the checked answer</small></div>
+              </div>
+            </div>
+            <p style="font-size:.88rem;color:var(--dim)">The revision document’s bank is numbered by lecture, four questions each. Tip: many wrong options are absurdly off-topic or swap a term (for example, calling passive scanning “faster”) — eliminate those first.</p>
+
+            <div class="qa-group">Lecture 1 · Mobile Computing — Q01 to Q04</div>
+            <div class="qa qa--mcq" data-qa>
+              <button class="qa__q" type="button" aria-expanded="false"><span class="qa__num">Q01</span><span>Which statement best describes mobile computing?</span><span class="qa__chev" aria-hidden="true">+</span></button>
+              <div class="qa__a" hidden><p class="qa__model">✔ B) Using a computer while on the move, with access to services and networks</p><div class="arabic" lang="ar" dir="rtl">التفاعل مع الحاسوب أثناء الحركة مع الوصول إلى الخدمات والشبكات.</div></div>
+            </div>
+            <div class="qa qa--mcq" data-qa>
+              <button class="qa__q" type="button" aria-expanded="false"><span class="qa__num">Q02</span><span>Which three components form the main components of mobile computing?</span><span class="qa__chev" aria-hidden="true">+</span></button>
+              <div class="qa__a" hidden><p class="qa__model">✔ A) Hardware, software, and mobile communication</p><div class="arabic" lang="ar" dir="rtl">العتاد والبرمجيات والاتصالات المتنقلة هي المكونات الثلاثة.</div></div>
+            </div>
+            <div class="qa qa--mcq" data-qa>
+              <button class="qa__q" type="button" aria-expanded="false"><span class="qa__num">Q03</span><span>Which of the following is a characteristic commonly associated with mobile networks compared with wired networks?</span><span class="qa__chev" aria-hidden="true">+</span></button>
+              <div class="qa__a" hidden><p class="qa__model">✔ C) Higher bandwidth variability</p><div class="arabic" lang="ar" dir="rtl">الشبكات المتنقلة أعلى تبايناً في النطاق الترددي من السلكية.</div></div>
+            </div>
+            <div class="qa qa--mcq" data-qa>
+              <button class="qa__q" type="button" aria-expanded="false"><span class="qa__num">Q04</span><span>Which wave of mobile computing integrates devices such as phones, cameras, music players, and games into hybrid devices?</span><span class="qa__chev" aria-hidden="true">+</span></button>
+              <div class="qa__a" hidden><p class="qa__model">✔ C) Convergence</p><div class="arabic" lang="ar" dir="rtl">التقارب (Convergence) يدمج عدة أجهزة في جهاز هجين واحد.</div></div>
+            </div>
+
+            <div class="qa-group">Lecture 2 · Prototyping — Q05 to Q08</div>
+            <div class="qa qa--mcq" data-qa>
+              <button class="qa__q" type="button" aria-expanded="false"><span class="qa__num">Q05</span><span>What is the correct sequence in the seven-step design process after problem definition?</span><span class="qa__chev" aria-hidden="true">+</span></button>
+              <div class="qa__a" hidden><p class="qa__model">✔ B) External search, internal search, evaluation and selection, detail design, prototyping, documentation</p><div class="arabic" lang="ar" dir="rtl">بعد تعريف المشكلة: بحث خارجي، بحث داخلي، تقييم واختيار، تصميم تفصيلي، نموذج أولي، توثيق.</div></div>
+            </div>
+            <div class="qa qa--mcq" data-qa>
+              <button class="qa__q" type="button" aria-expanded="false"><span class="qa__num">Q06</span><span>Which statement about product specifications is correct?</span><span class="qa__chev" aria-hidden="true">+</span></button>
+              <div class="qa__a" hidden><p class="qa__model">✔ C) They state requirements the product must meet, not how to build it</p><div class="arabic" lang="ar" dir="rtl">المواصفات تحدد المتطلبات والغرض لا طريقة البناء أو المكونات.</div></div>
+            </div>
+            <div class="qa qa--mcq" data-qa>
+              <button class="qa__q" type="button" aria-expanded="false"><span class="qa__num">Q07</span><span>Which representation is a skeletal, low-fidelity framework showing page content, structure, and layout?</span><span class="qa__chev" aria-hidden="true">+</span></button>
+              <div class="qa__a" hidden><p class="qa__model">✔ A) Wireframe</p><div class="arabic" lang="ar" dir="rtl">الـ Wireframe هيكل منخفض الدقة يوضح المحتوى والبنية والتخطيط.</div></div>
+            </div>
+            <div class="qa qa--mcq" data-qa>
+              <button class="qa__q" type="button" aria-expanded="false"><span class="qa__num">Q08</span><span>What is a key characteristic of a vertical prototype?</span><span class="qa__chev" aria-hidden="true">+</span></button>
+              <div class="qa__a" hidden><p class="qa__model">✔ B) A lot of detail for only a few functions</p><div class="arabic" lang="ar" dir="rtl">العمودي (Deep) يعطي تفاصيل كثيرة لوظائف قليلة.</div></div>
+            </div>
+
+            <div class="qa-group">Lecture 3 · Localization — Q09 to Q12</div>
+            <div class="qa qa--mcq" data-qa>
+              <button class="qa__q" type="button" aria-expanded="false"><span class="qa__num">Q09</span><span>What does localization mean in mobile and wireless systems?</span><span class="qa__chev" aria-hidden="true">+</span></button>
+              <div class="qa__a" hidden><p class="qa__model">✔ B) Determining the position of a device or spatial relationships among objects</p><div class="arabic" lang="ar" dir="rtl">تحديد إحداثيات جهاز أو العلاقات المكانية بين الأشياء.</div></div>
+            </div>
+            <div class="qa qa--mcq" data-qa>
+              <button class="qa__q" type="button" aria-expanded="false"><span class="qa__num">Q10</span><span>Which ranging technique estimates distance using signal propagation time and known signal velocity?</span><span class="qa__chev" aria-hidden="true">+</span></button>
+              <div class="qa__a" hidden><p class="qa__model">✔ C) Time of Arrival</p><div class="arabic" lang="ar" dir="rtl">ToA يحسب المسافة من زمن الانتشار مضروباً في السرعة.</div></div>
+            </div>
+            <div class="qa qa--mcq" data-qa>
+              <button class="qa__q" type="button" aria-expanded="false"><span class="qa__num">Q11</span><span>Why can two receivers alone not uniquely determine an emitter’s 2-D position using TDoA?</span><span class="qa__chev" aria-hidden="true">+</span></button>
+              <div class="qa__a" hidden><p class="qa__model">✔ B) They define one hyperbolic curve, leaving multiple possible positions</p><div class="arabic" lang="ar" dir="rtl">مستقبلان يعطيان منحنى زائدياً واحداً، فتبقى عدة مواقع محتملة.</div></div>
+            </div>
+            <div class="qa qa--mcq" data-qa>
+              <button class="qa__q" type="button" aria-expanded="false"><span class="qa__num">Q12</span><span>In 2-D trilateration, what is the minimum number of non-collinear anchors required?</span><span class="qa__chev" aria-hidden="true">+</span></button>
+              <div class="qa__a" hidden><p class="qa__model">✔ C) Three</p><div class="arabic" lang="ar" dir="rtl">ثلاث نقاط غير مستقيمة على الأقل في البعد الثنائي.</div></div>
+            </div>
+
+            <div class="qa-group">Lecture 4 · Positioning — Q13 to Q16</div>
+            <div class="qa qa--mcq" data-qa>
+              <button class="qa__q" type="button" aria-expanded="false"><span class="qa__num">Q13</span><span>Cell ID positioning estimates a mobile device’s location mainly from:</span><span class="qa__chev" aria-hidden="true">+</span></button>
+              <div class="qa__a" hidden><p class="qa__model">✔ A) The identity of the cell tower serving the device</p><div class="arabic" lang="ar" dir="rtl">يعتمد على هوية البرج الخادم للجهاز.</div></div>
+            </div>
+            <div class="qa qa--mcq" data-qa>
+              <button class="qa__q" type="button" aria-expanded="false"><span class="qa__num">Q14</span><span>Which Wi-Fi scanning method listens for beacon frames broadcast periodically by access points?</span><span class="qa__chev" aria-hidden="true">+</span></button>
+              <div class="qa__a" hidden><p class="qa__model">✔ B) Passive scanning</p><div class="arabic" lang="ar" dir="rtl">المسح السلبي يستمع لإطارات Beacon الدورية.</div></div>
+            </div>
+            <div class="qa qa--mcq" data-qa>
+              <button class="qa__q" type="button" aria-expanded="false"><span class="qa__num">Q15</span><span>What is Wi-Fi fingerprinting based on?</span><span class="qa__chev" aria-hidden="true">+</span></button>
+              <div class="qa__a" hidden><p class="qa__model">✔ A) Comparing a current signal profile with a previously created radio map</p><div class="arabic" lang="ar" dir="rtl">مقارنة بصمة الإشارة الحالية بخريطة راديوية مسجلة مسبقاً.</div></div>
+            </div>
+            <div class="qa qa--mcq" data-qa>
+              <button class="qa__q" type="button" aria-expanded="false"><span class="qa__num">Q16</span><span>Which indoor positioning technology is identified in the lecture as Apple’s BLE-based system?</span><span class="qa__chev" aria-hidden="true">+</span></button>
+              <div class="qa__a" hidden><p class="qa__model">✔ B) iBeacon</p><div class="arabic" lang="ar" dir="rtl">iBeacon نظام آبل للتموضع الداخلي القائم على البلوتوث منخفض الطاقة.</div></div>
+            </div>
+
+            <div class="qa-group">Lecture 5 · Location-Based Services — Q17 to Q20</div>
+            <div class="qa qa--mcq" data-qa>
+              <button class="qa__q" type="button" aria-expanded="false"><span class="qa__num">Q17</span><span>What is the central idea of a Location-Based Service (LBS)?</span><span class="qa__chev" aria-hidden="true">+</span></button>
+              <div class="qa__a" hidden><p class="qa__model">✔ A) A service offered based on the user’s location</p><div class="arabic" lang="ar" dir="rtl">خدمة تُقدَّم بناءً على موقع المستخدم الحالي.</div></div>
+            </div>
+            <div class="qa qa--mcq" data-qa>
+              <button class="qa__q" type="button" aria-expanded="false"><span class="qa__num">Q18</span><span>Which type of LBS relies on tracking a person’s location by other parties?</span><span class="qa__chev" aria-hidden="true">+</span></button>
+              <div class="qa__a" hidden><p class="qa__model">✔ B) Location-tracking services</p><div class="arabic" lang="ar" dir="rtl">خدمات التتبع يعتمد فيها طرف آخر على تتبع موقع الشخص.</div></div>
+            </div>
+            <div class="qa qa--mcq" data-qa>
+              <button class="qa__q" type="button" aria-expanded="false"><span class="qa__num">Q19</span><span>What was the main origin of LBS described in the lecture?</span><span class="qa__chev" aria-hidden="true">+</span></button>
+              <div class="qa__a" hidden><p class="qa__model">✔ B) The U.S. E911 mandate in 1996</p><div class="arabic" lang="ar" dir="rtl">تفويض الطوارئ الأمريكي E911 عام 1996.</div></div>
+            </div>
+            <div class="qa qa--mcq" data-qa>
+              <button class="qa__q" type="button" aria-expanded="false"><span class="qa__num">Q20</span><span>Which of the following is listed as an element of LBS context?</span><span class="qa__chev" aria-hidden="true">+</span></button>
+              <div class="qa__a" hidden><p class="qa__model">✔ A) User orientation</p><div class="arabic" lang="ar" dir="rtl">اتجاه المستخدم (Orientation) أحد عناصر السياق.</div></div>
+            </div>
+
+            <div class="arabic" lang="ar" dir="rtl">
+              <strong>بنك الاختيارات من متعدد:</strong><br>
+              عشرون سؤالاً محفوظة من بنك المراجعة (أربعة لكل محاضرة). كل سؤال يفتح على الإجابة الصحيحة المعلمة ✔ وشرح عربي قصير. ونصيحة المراجعة: كثير من البدائل الخاطئة بعيدة عن الموضوع أو تبدّل مصطلحاً — مثل القول إن المسح السلبي “أسرع” — فاستبعدها أولاً.
+            </div>
+          </article>
+        </div>
+
+        <div class="stats" data-reveal>
+          <div class="stat"><b data-count="20">20</b><span>MCQs on record</span></div>
+          <div class="stat"><b data-count="10">10</b><span>Essay Q&amp;A</span></div>
+          <div class="stat"><b data-count="31">31</b><span>Rescue lines</span></div>
+          <div class="stat"><b data-count="19">19</b><span>Figures</span></div>
+          <div class="stat"><b data-count="5">5</b><span>Lectures</span></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="made-by">
+        <div class="made-by__badge">✳</div>
+        <div>
+          <div class="made-by__title">Made by a student, for students.</div>
+          <p>No social link, no influencer funnel, no “subscribe to my course”. <b>(be cool, this isn’t made to gain credits)</b> It is a study guide: read it, break it, explain it back, pass the exam.</p>
+        </div>
+      </div>
+      <div class="footer__meta">
+        <span>Built with anime.js v4 · offline-friendly · no analytics</span>
+        <span>EN + AR · 05 lectures · 19 figures</span>
+        <button class="to-top" id="toTop" type="button">↑ Top</button>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="js/vendor/anime.iife.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/core.js"></script>
+</body>
+</html>

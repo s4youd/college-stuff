@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Mobile computing logo">
+  <defs>
+    <linearGradient id="mobGrad" x1="18" y1="14" x2="104" y2="108" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#5eead4"/>
+      <stop offset=".52" stop-color="#22d3ee"/>
+      <stop offset="1" stop-color="#a78bfa"/>
+    </linearGradient>
+    <filter id="mobGlow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="4" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <circle cx="60" cy="60" r="53" fill="none" stroke="url(#mobGrad)" stroke-width="1.4" opacity=".28"/>
+  <circle cx="60" cy="60" r="45" fill="none" stroke="url(#mobGrad)" stroke-width="1" stroke-dasharray="2 7" opacity=".5"/>
+  <rect x="40" y="27" width="40" height="66" rx="9" fill="none" stroke="url(#mobGrad)" stroke-width="6" filter="url(#mobGlow)"/>
+  <path d="M50 37h20M54 84h12" fill="none" stroke="url(#mobGrad)" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="92" cy="34" r="5" fill="#5eead4"/>
+  <circle cx="27" cy="50" r="3" fill="#a78bfa"/>
+  <circle cx="96" cy="78" r="2.2" fill="#f0abfc" opacity=".85"/>
+</svg>

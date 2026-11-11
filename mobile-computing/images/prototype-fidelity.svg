@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 380" role="img" aria-labelledby="title desc">
+  <title id="title">From sketch to prototype</title>
+  <desc id="desc">Four design representations with increasing fidelity: sketch, wireframe, mockup, and prototype. Cost and detail generally rise from left to right.</desc>
+  <style>
+    .bg{fill:#fbf8f1}.card{fill:#fff;stroke:#d8d0c2;stroke-width:1.5}
+    .h{font:700 23px system-ui,Segoe UI,Arial,sans-serif;fill:#1d2a2e}
+    .t{font:700 15px system-ui,Segoe UI,Arial,sans-serif;fill:#1d2a2e}
+    .s{font:400 12px system-ui,Segoe UI,Arial,sans-serif;fill:#5f6b6f}
+    .ink{stroke:#33464c;stroke-width:2;fill:none}
+    .gray{fill:#e9e5dc;stroke:#a9a297;stroke-width:1.5}
+    .color{fill:#d7e7ec;stroke:#5a8e96;stroke-width:1.5}
+    .accent{fill:#b26a00}.accent2{fill:#0d6b73}.accent3{fill:#a33b3b}
+    .arrow{stroke:#b26a00;stroke-width:3;fill:none;marker-end:url(#a)}
+  </style>
+  <defs><marker id="a" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#b26a00"/></marker></defs>
+  <rect class="bg" width="1040" height="380" rx="18"/>
+  <text class="h" x="40" y="45">From sketch to prototype: fidelity is a dial, not a religion</text>
+  <text class="s" x="40" y="70">Move right only when the question demands it. A beautiful prototype that answers the wrong question is just expensive theater.</text>
+
+  <g transform="translate(40 100)">
+    <rect class="card" width="220" height="210" rx="14"/>
+    <text class="t" x="16" y="30">Sketch</text>
+    <path class="ink" d="M30 60 L105 52 L120 120 L45 130 Z M40 78 L110 70 M42 98 L112 90 M60 120 L80 116"/>
+    <path class="ink" d="M130 70 C 160 62, 180 80, 172 102 S 142 120, 130 100"/>
+    <text class="s" x="16" y="166">Fast, cheap, ambiguous.</text>
+    <text class="s" x="16" y="186">Purpose: explore and provoke.</text>
+  </g>
+
+  <g transform="translate(280 100)">
+    <rect class="card" width="220" height="210" rx="14"/>
+    <text class="t" x="16" y="30">Wireframe</text>
+    <rect class="gray" x="26" y="56" width="168" height="26" rx="3"/>
+    <rect class="gray" x="26" y="92" width="76" height="70" rx="3"/>
+    <rect class="gray" x="112" y="92" width="82" height="18" rx="3"/>
+    <rect class="gray" x="112" y="120" width="82" height="18" rx="3"/>
+    <rect class="gray" x="112" y="148" width="82" height="14" rx="3"/>
+    <text class="s" x="16" y="184">Structure, hierarchy, flow.</text>
+    <text class="s" x="16" y="202">Purpose: refine the skeleton.</text>
+  </g>
+
+  <g transform="translate(520 100)">
+    <rect class="card" width="220" height="210" rx="14"/>
+    <text class="t" x="16" y="30">Mockup</text>
+    <rect class="color" x="26" y="56" width="168" height="26" rx="3"/>
+    <rect class="color" x="26" y="92" width="76" height="70" rx="3"/>
+    <rect class="accent" x="112" y="92" width="82" height="18" rx="3"/>
+    <rect class="color" x="112" y="120" width="82" height="18" rx="3"/>
+    <rect class="accent2" x="112" y="148" width="82" height="14" rx="3"/>
+    <circle class="accent3" cx="42" cy="108" r="8"/>
+    <text class="s" x="16" y="184">Colour, type, content, polish.</text>
+    <text class="s" x="16" y="202">Purpose: communicate and sell.</text>
+  </g>
+
+  <g transform="translate(760 100)">
+    <rect class="card" width="240" height="210" rx="14"/>
+    <text class="t" x="16" y="30">Prototype</text>
+    <rect class="color" x="26" y="56" width="188" height="110" rx="6"/>
+    <rect class="accent2" x="40" y="72" width="70" height="12" rx="3"/>
+    <rect class="gray" x="40" y="94" width="160" height="10" rx="3"/>
+    <rect class="gray" x="40" y="112" width="130" height="10" rx="3"/>
+    <rect class="accent" x="40" y="136" width="64" height="16" rx="8"/>
+    <circle class="accent3" cx="166" cy="144" r="10"/>
+    <text class="s" x="16" y="184">Behaviour, interaction, feedback.</text>
+    <text class="s" x="16" y="202">Purpose: test and decide.</text>
+  </g>
+
+  <path class="arrow" d="M70 340 L960 340"/>
+  <text class="s" x="70" y="366">fidelity, cost, and “finished-product feel” generally increase →</text>
+  <text class="s" x="700" y="366">but the question should decide the fidelity.</text>
+</svg>

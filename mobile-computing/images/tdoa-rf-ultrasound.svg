@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 490" role="img" aria-labelledby="title desc">
+  <title id="title">TDoA with radio and ultrasound</title>
+  <desc id="desc">Radio arrives first and starts the timer; ultrasound arrives later. The time difference multiplied by the speed of sound estimates distance.</desc>
+  <style>
+    .bg{fill:#fbf8f1}.card{fill:#fff;stroke:#d8d0c2;stroke-width:1.5}
+    .h{font:700 23px system-ui,Segoe UI,Arial,sans-serif;fill:#1d2a2e}
+    .t{font:600 14px system-ui,Segoe UI,Arial,sans-serif;fill:#1d2a2e}
+    .s{font:400 13px system-ui,Segoe UI,Arial,sans-serif;fill:#5f6b6f}
+    .rf{stroke:#a33b3b;stroke-width:4;fill:none;stroke-dasharray:9 7}
+    .us{stroke:#0d6b73;stroke-width:4;fill:none}
+    .axis{stroke:#8b9994;stroke-width:1.5}
+    .tick{stroke:#8b9994;stroke-width:1.5}
+    .badge{fill:#0d6b73}.badge2{fill:#a33b3b}
+    .mono{font:600 15px Consolas,monospace;fill:#1d2a2e}
+  </style>
+  <rect class="bg" width="960" height="490" rx="18"/>
+  <text class="h" x="42" y="48">TDoA: radio starts the clock, sound finishes the distance</text>
+  <text class="s" x="42" y="74">The receiver does not need a synchronized clock with the sender in this scheme. It only needs to hear both signals.</text>
+
+  <g transform="translate(42 112)">
+    <rect class="card" width="876" height="170" rx="14"/>
+    <rect x="38" y="48" width="112" height="74" rx="10" fill="#e7f1f2" stroke="#0d6b73" stroke-width="2"/>
+    <text class="t" x="94" y="78" text-anchor="middle">Emitter</text>
+    <text class="s" x="94" y="99" text-anchor="middle">RF + ultrasound</text>
+
+    <path class="rf" d="M150 72 C 260 18, 360 126, 470 72 S 680 18, 788 72"/>
+    <path class="us" d="M150 112 C 260 150, 380 74, 490 112 S 690 150, 788 112"/>
+    <rect x="788" y="48" width="60" height="74" rx="10" fill="#f6eee3" stroke="#b26a00" stroke-width="2"/>
+    <text class="t" x="818" y="80" text-anchor="middle">Rx</text>
+    <text class="s" x="818" y="101" text-anchor="middle">listener</text>
+
+    <text class="t" x="300" y="38" fill="#a33b3b">RF arrives first</text>
+    <text class="t" x="560" y="150" fill="#0d6b73">ultrasound arrives later</text>
+    <circle cx="788" cy="72" r="7" fill="#a33b3b"/>
+    <circle cx="788" cy="112" r="7" fill="#0d6b73"/>
+  </g>
+
+  <g transform="translate(42 310)">
+    <rect class="card" width="876" height="104" rx="14"/>
+    <line class="axis" x1="38" y1="45" x2="838" y2="45"/>
+    <line class="tick" x1="120" y1="34" x2="120" y2="56"/><text class="s" x="120" y="76" text-anchor="middle">t₀ send</text>
+    <line class="tick" x1="390" y1="34" x2="390" y2="56"/><text class="s" x="390" y="76" text-anchor="middle">t_RF</text>
+    <line class="tick" x1="700" y1="34" x2="700" y2="56"/><text class="s" x="700" y="76" text-anchor="middle">t_US</text>
+    <path d="M390 24 L700 24" stroke="#b26a00" stroke-width="3" marker-end="url(#a)"/>
+    <defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#b26a00"/></marker></defs>
+    <text class="t" x="545" y="18" text-anchor="middle" fill="#b26a00">Δt</text>
+    <text class="mono" x="42" y="94">d ≈ v_sound × (t_US − t_RF)</text>
+  </g>
+
+  <text class="s" x="42" y="434">Radio travels at about 300,000 km/s, so its travel time is negligible here.</text>
+  <text class="s" x="42" y="458">Sound crawls at about 343 m/s, so it carries the measurable delay.</text>
+</svg>

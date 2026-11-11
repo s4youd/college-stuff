@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 620" role="img" aria-labelledby="title desc">
+  <title id="title">Cellular positioning parameters</title>
+  <desc id="desc">A mobile station inside a cellular grid is located using measurements from three base stations: timing gives distance, angle gives bearing, and cell identity gives a rough area.</desc>
+  <style>
+    .bg{fill:#fbf8f1}
+    .card{fill:#ffffff;stroke:#d8d0c2;stroke-width:1.5}
+    .h{font:700 23px system-ui,Segoe UI,Arial,sans-serif;fill:#1d2a2e}
+    .s{font:400 12.5px system-ui,Segoe UI,Arial,sans-serif;fill:#5f6b6f}
+    .t{font:700 13px system-ui,Segoe UI,Arial,sans-serif;fill:#1d2a2e}
+    .legend{font:700 11.5px system-ui,Segoe UI,Arial,sans-serif;fill:#1d2a2e}
+    .tower{stroke:#0d6b73;stroke-width:2.6;fill:none;stroke-linecap:round}
+    .towerdot{fill:#0d6b73}
+    .hex{fill:#e7f1f2;stroke:#9fc4c8;stroke-width:1.2}
+    .line{stroke:#b26a00;stroke-width:2;stroke-dasharray:7 5;fill:none}
+    .line2{stroke:#7a5aa6;stroke-width:2.4;fill:none}
+    .ms{fill:#a33b3b;stroke:#fff;stroke-width:2}
+    .label{font:700 11.5px system-ui,Segoe UI,Arial,sans-serif;fill:#1d2a2e}
+    .tiny{font:400 11.5px system-ui,Segoe UI,Arial,sans-serif;fill:#5f6b6f}
+  </style>
+  <rect class="bg" width="960" height="620" rx="18"/>
+  <text class="h" x="40" y="46">Cellular positioning: the network already knows things</text>
+  <text class="s" x="40" y="72">Cell ID gives a rough area. Timing and angles sharpen it — at a cost.</text>
+
+  <g transform="translate(40 100)">
+    <rect class="card" width="560" height="440" rx="14"/>
+
+    <!-- cell A -->
+    <polygon class="hex" points="90,75 150,40 210,75 210,145 150,180 90,145"/>
+    <!-- cell B -->
+    <polygon class="hex" points="340,75 400,40 460,75 460,145 400,180 340,145"/>
+    <!-- cell C -->
+    <polygon class="hex" points="215,265 275,230 335,265 335,335 275,370 215,335"/>
+
+    <text class="tiny" x="150" y="30" text-anchor="middle">cell A</text>
+    <text class="tiny" x="400" y="30" text-anchor="middle">cell B</text>
+    <text class="tiny" x="275" y="220" text-anchor="middle">cell C</text>
+
+    <!-- BS1 -->
+    <g transform="translate(150 110)">
+      <path class="tower" d="M0 22 L0 -16 M-13 22 L0 -16 L13 22 M-8 4 L8 4 M-4 -6 L4 -6"/>
+      <circle class="towerdot" cx="0" cy="-22" r="3.5"/>
+      <text class="label" x="0" y="40" text-anchor="middle">BS1</text>
+    </g>
+    <!-- BS2 -->
+    <g transform="translate(400 110)">
+      <path class="tower" d="M0 22 L0 -16 M-13 22 L0 -16 L13 22 M-8 4 L8 4 M-4 -6 L4 -6"/>
+      <circle class="towerdot" cx="0" cy="-22" r="3.5"/>
+      <text class="label" x="0" y="40" text-anchor="middle">BS2</text>
+    </g>
+    <!-- BS3 -->
+    <g transform="translate(275 300)">
+      <path class="tower" d="M0 22 L0 -16 M-13 22 L0 -16 L13 22 M-8 4 L8 4 M-4 -6 L4 -6"/>
+      <circle class="towerdot" cx="0" cy="-22" r="3.5"/>
+      <text class="label" x="-20" y="40" text-anchor="middle">BS3</text>
+    </g>
+
+    <line class="line" x1="150" y1="110" x2="360" y2="335"/>
+    <line class="line" x1="400" y1="110" x2="360" y2="335"/>
+    <line class="line2" x1="275" y1="300" x2="360" y2="335"/>
+
+    <circle class="ms" cx="360" cy="335" r="7"/>
+    <text class="label" x="360" y="318" text-anchor="middle">MS</text>
+
+    <!-- legend -->
+    <text class="legend" x="24" y="396" fill="#b26a00">TOA / TDOA / RTT</text>
+    <text class="tiny" x="24" y="414">timing gives distance</text>
+    <text class="legend" x="215" y="396" fill="#7a5aa6">AOA</text>
+    <text class="tiny" x="215" y="414">angle gives bearing</text>
+    <text class="legend" x="360" y="396" fill="#0d6b73">RSSI / Cell ID</text>
+    <text class="tiny" x="360" y="414">power gives a rough area</text>
+  </g>
+
+  <g transform="translate(620 100)">
+    <rect class="card" width="300" height="440" rx="14"/>
+    <text class="t" x="18" y="32">What each parameter gives you</text>
+    <text class="s" x="18" y="58">Cell ID — coarse serving-cell area.</text>
+    <text class="s" x="18" y="78">TOA — travel time; clocks must agree.</text>
+    <text class="s" x="18" y="98">TDOA — arrival difference; robust.</text>
+    <text class="s" x="18" y="118">RTT — round trip; processing delay hurts.</text>
+    <text class="s" x="18" y="138">AOA — direction from a base station.</text>
+    <text class="s" x="18" y="158">RSSI — power; cheap but noisy.</text>
+    <text class="s" x="18" y="178">E-OTD — enhanced observed time.</text>
+    <text class="s" x="18" y="198">Hybrid — cellular + Wi-Fi + GPS.</text>
+
+    <line x1="18" y1="222" x2="282" y2="222" stroke="#d8d0c2"/>
+
+    <text class="legend" x="18" y="248" fill="#b26a00">TIME-BASED</text>
+    <text class="tiny" x="18" y="266">distance from 3+ base stations</text>
+    <text class="legend" x="18" y="292" fill="#7a5aa6">ANGLE-BASED</text>
+    <text class="tiny" x="18" y="310">bearing from 2+ base stations</text>
+
+    <line x1="18" y1="334" x2="282" y2="334" stroke="#d8d0c2"/>
+
+    <text class="s" x="18" y="358" fill="#a33b3b">No parameter is magic.</text>
+    <text class="s" x="18" y="378" fill="#a33b3b">Fusion is damage control.</text>
+    <text class="tiny" x="18" y="406">Accuracy follows cell size: dense cells</text>
+    <text class="tiny" x="18" y="422">help, rural 30 km cells do not.</text>
+  </g>
+
+  <text class="s" x="40" y="580">Same three base stations, three different questions: “how long?”, “how far apart?” and “from where?”</text>
+</svg>

@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 620" role="img" aria-labelledby="title desc">
+  <title id="title">Accuracy versus precision</title>
+  <desc id="desc">Four target diagrams comparing accurate and precise measurements. Accuracy is closeness to the true value; precision is repeatability.</desc>
+  <style>
+    .bg{fill:#fbf8f1}.panel{fill:#ffffff;stroke:#d8d0c2;stroke-width:1.5}
+    .title{font:700 19px system-ui,Segoe UI,Arial,sans-serif;fill:#1d2a2e}
+    .sub{font:400 13px system-ui,Segoe UI,Arial,sans-serif;fill:#5f6b6f}
+    .ring{fill:none;stroke:#b9c4c1;stroke-width:1.4}
+    .cross{stroke:#93a29d;stroke-width:1.2}
+    .dot{fill:#0d6b73;opacity:.82}
+    .dot2{fill:#b26a00;opacity:.82}
+    .dot3{fill:#a33b3b;opacity:.82}
+    .dot4{fill:#6b5b95;opacity:.82}
+    .tag{font:700 12px system-ui,Segoe UI,Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase}
+  </style>
+  <rect class="bg" width="900" height="620" rx="18"/>
+  <text class="title" x="45" y="48">Accuracy vs. precision</text>
+  <text class="sub" x="45" y="72">Accuracy asks “how close to the truth?” Precision asks “how close to each other?”</text>
+
+  <g transform="translate(45 100)">
+    <rect class="panel" width="390" height="220" rx="14"/>
+    <text class="title" x="18" y="30">Accurate + precise</text>
+    <circle class="ring" cx="195" cy="120" r="72"/><circle class="ring" cx="195" cy="120" r="44"/><circle class="ring" cx="195" cy="120" r="16"/>
+    <line class="cross" x1="195" y1="35" x2="195" y2="205"/><line class="cross" x1="110" y1="120" x2="280" y2="120"/>
+    <circle class="dot" cx="191" cy="117" r="4.5"/><circle class="dot" cx="198" cy="121" r="4.5"/><circle class="dot" cx="194" cy="124" r="4.5"/><circle class="dot" cx="200" cy="116" r="4.5"/><circle class="dot" cx="196" cy="119" r="4.5"/>
+    <text class="sub" x="18" y="200">Tight group, centred on truth.</text>
+  </g>
+
+  <g transform="translate(465 100)">
+    <rect class="panel" width="390" height="220" rx="14"/>
+    <text class="title" x="18" y="30">Accurate, not precise</text>
+    <circle class="ring" cx="195" cy="120" r="72"/><circle class="ring" cx="195" cy="120" r="44"/><circle class="ring" cx="195" cy="120" r="16"/>
+    <line class="cross" x1="195" y1="35" x2="195" y2="205"/><line class="cross" x1="110" y1="120" x2="280" y2="120"/>
+    <circle class="dot2" cx="170" cy="102" r="4.5"/><circle class="dot2" cx="212" cy="88" r="4.5"/><circle class="dot2" cx="224" cy="132" r="4.5"/><circle class="dot2" cx="180" cy="150" r="4.5"/><circle class="dot2" cx="206" cy="118" r="4.5"/>
+    <text class="sub" x="18" y="200">Scattered, but the centre is right.</text>
+  </g>
+
+  <g transform="translate(45 340)">
+    <rect class="panel" width="390" height="220" rx="14"/>
+    <text class="title" x="18" y="30">Precise, not accurate</text>
+    <circle class="ring" cx="195" cy="120" r="72"/><circle class="ring" cx="195" cy="120" r="44"/><circle class="ring" cx="195" cy="120" r="16"/>
+    <line class="cross" x1="195" y1="35" x2="195" y2="205"/><line class="cross" x1="110" y1="120" x2="280" y2="120"/>
+    <circle class="dot3" cx="249" cy="80" r="4.5"/><circle class="dot3" cx="255" cy="86" r="4.5"/><circle class="dot3" cx="246" cy="88" r="4.5"/><circle class="dot3" cx="252" cy="76" r="4.5"/><circle class="dot3" cx="250" cy="83" r="4.5"/>
+    <text class="sub" x="18" y="200">Consistent, but consistently wrong.</text>
+  </g>
+
+  <g transform="translate(465 340)">
+    <rect class="panel" width="390" height="220" rx="14"/>
+    <text class="title" x="18" y="30">Neither</text>
+    <circle class="ring" cx="195" cy="120" r="72"/><circle class="ring" cx="195" cy="120" r="44"/><circle class="ring" cx="195" cy="120" r="16"/>
+    <line class="cross" x1="195" y1="35" x2="195" y2="205"/><line class="cross" x1="110" y1="120" x2="280" y2="120"/>
+    <circle class="dot4" cx="128" cy="74" r="4.5"/><circle class="dot4" cx="260" cy="98" r="4.5"/><circle class="dot4" cx="150" cy="172" r="4.5"/><circle class="dot4" cx="276" cy="164" r="4.5"/><circle class="dot4" cx="118" cy="132" r="4.5"/>
+    <text class="sub" x="18" y="200">Wrong and unpredictable. Great for horror films.</text>
+  </g>
+
+  <text class="tag" x="45" y="602" fill="#0d6b73">ACCURACY</text>
+  <text class="sub" x="137" y="602">= distance from truth</text>
+  <text class="tag" x="465" y="602" fill="#b26a00">PRECISION</text>
+  <text class="sub" x="558" y="602">= spread of repeated readings</text>
+</svg>

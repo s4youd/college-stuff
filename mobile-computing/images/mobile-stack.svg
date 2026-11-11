@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 470" role="img" aria-labelledby="title desc">
+  <title id="title">The mobile computing stack</title>
+  <desc id="desc">Mobile computing is a system of hardware, software, and communication, surrounded by concerns such as location, security, energy, and resource management.</desc>
+  <style>
+    .bg{fill:#fbf8f1}.card{fill:#fff;stroke:#d8d0c2;stroke-width:1.5}
+    .h{font:700 23px system-ui,Segoe UI,Arial,sans-serif;fill:#1d2a2e}
+    .t{font:700 16px system-ui,Segoe UI,Arial,sans-serif;fill:#1d2a2e}
+    .s{font:400 13px system-ui,Segoe UI,Arial,sans-serif;fill:#5f6b6f}
+    .layer{stroke-width:2}
+    .l1{fill:#d7e7ec;stroke:#5a8e96}.l2{fill:#f6eee3;stroke:#c49a63}.l3{fill:#e7f0e8;stroke:#7aa88a}
+    .badge{fill:#fff;stroke:#b9c4c1;stroke-width:1.2}
+  </style>
+  <rect class="bg" width="900" height="470" rx="18"/>
+  <text class="h" x="40" y="45">Mobile computing is a stack, not a phone</text>
+  <text class="s" x="40" y="70">Remove one layer and the “mobile” part collapses into either a paperweight or a radio.</text>
+
+  <g transform="translate(40 98)">
+    <rect class="layer l1" x="0" y="0" width="520" height="80" rx="12"/>
+    <text class="t" x="22" y="32">Applications &amp; user experience</text>
+    <text class="s" x="22" y="56">What the human sees, taps, trusts, and abandons.</text>
+
+    <rect class="layer l2" x="0" y="96" width="520" height="80" rx="12"/>
+    <text class="t" x="22" y="128">Mobile software &amp; operating system</text>
+    <text class="s" x="22" y="152">Scheduling, permissions, power management, APIs.</text>
+
+    <rect class="layer l3" x="0" y="192" width="520" height="80" rx="12"/>
+    <text class="t" x="22" y="224">Hardware &amp; communication</text>
+    <text class="s" x="22" y="248">CPU, memory, sensors, battery, radio, antennas.</text>
+
+    <g transform="translate(556 6)">
+      <text class="t" x="0" y="18">Always in the room</text>
+      <g transform="translate(0 34)">
+        <rect class="badge" width="118" height="34" rx="17"/><text class="s" x="59" y="22" text-anchor="middle">location</text>
+        <rect class="badge" x="128" y="0" width="118" height="34" rx="17"/><text class="s" x="187" y="22" text-anchor="middle">security</text>
+        <rect class="badge" x="0" y="44" width="118" height="34" rx="17"/><text class="s" x="59" y="66" text-anchor="middle">energy</text>
+        <rect class="badge" x="128" y="44" width="118" height="34" rx="17"/><text class="s" x="187" y="66" text-anchor="middle">resources</text>
+        <rect class="badge" x="0" y="88" width="118" height="34" rx="17"/><text class="s" x="59" y="110" text-anchor="middle">mobility</text>
+        <rect class="badge" x="128" y="88" width="118" height="34" rx="17"/><text class="s" x="187" y="110" text-anchor="middle">connectivity</text>
+      </g>
+    </g>
+  </g>
+
+  <text class="s" x="40" y="414">Exam framing: hardware + software + communication are the three components.</text>
+  <text class="s" x="40" y="438">The constraints are not extra — they shape every design decision.</text>
+</svg>

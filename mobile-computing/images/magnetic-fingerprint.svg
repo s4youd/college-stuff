@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 500" role="img" aria-labelledby="title desc">
+  <title id="title">Magnetic fingerprinting</title>
+  <desc id="desc">A smartphone magnetometer measures distortions in Earth's magnetic field caused by steel and building structure. The pattern is matched to a previously surveyed magnetic map.</desc>
+  <style>
+    .bg{fill:#fbf8f1}.card{fill:#fff;stroke:#d8d0c2;stroke-width:1.5}
+    .h{font:700 23px system-ui,Segoe UI,Arial,sans-serif;fill:#1d2a2e}
+    .t{font:700 13px system-ui,Segoe UI,Arial,sans-serif;fill:#1d2a2e}
+    .s{font:400 12.5px system-ui,Segoe UI,Arial,sans-serif;fill:#5f6b6f}
+    .wall{fill:#f3efe6;stroke:#8b9994;stroke-width:2}
+    .path{fill:none;stroke:#b26a00;stroke-width:3;stroke-dasharray:8 6}
+    .dot{fill:#b26a00}
+    .wave{fill:none;stroke:#0d6b73;stroke-width:3}
+    .grid{stroke:#e2dccf;stroke-width:1}
+    .label{font:600 12px system-ui,Segoe UI,Arial,sans-serif;fill:#1d2a2e}
+  </style>
+  <rect class="bg" width="960" height="500" rx="18"/>
+  <text class="h" x="40" y="45">Magnetic positioning: the building bends the invisible</text>
+  <text class="s" x="40" y="70">Steel, rebar, pipes, and machinery distort Earth’s magnetic field.</text>
+  <text class="s" x="40" y="88">The distortion is stable enough to act as a fingerprint.</text>
+
+  <g transform="translate(40 106)">
+    <rect class="card" width="520" height="330" rx="14"/>
+    <text class="t" x="18" y="28">1 · Walk a surveyed path</text>
+    <rect class="wall" x="30" y="60" width="460" height="220" rx="6"/>
+    <line x1="180" y1="60" x2="180" y2="220" stroke="#8b9994" stroke-width="2"/>
+    <line x1="330" y1="220" x2="330" y2="280" stroke="#8b9994" stroke-width="2"/>
+    <path class="path" d="M70 110 C 120 70, 210 130, 270 100 S 390 80, 450 130 S 400 235, 300 245 S 120 230, 80 200"/>
+    <circle class="dot" cx="70" cy="110" r="5"/><circle class="dot" cx="270" cy="100" r="5"/><circle class="dot" cx="450" cy="130" r="5"/><circle class="dot" cx="300" cy="245" r="5"/><circle class="dot" cx="80" cy="200" r="5"/>
+    <text class="s" x="30" y="304">Reference points are collected with a magnetometer.</text>
+  </g>
+
+  <g transform="translate(584 106)">
+    <rect class="card" width="336" height="330" rx="14"/>
+    <text class="t" x="18" y="28">2 · Match the pattern</text>
+    <text class="s" x="18" y="50">Field strength along the path</text>
+    <rect x="18" y="66" width="300" height="112" rx="8" fill="#f7f4ee" stroke="#e2dccf"/>
+    <g class="grid"><line x1="30" y1="86" x2="306" y2="86"/><line x1="30" y1="112" x2="306" y2="112"/><line x1="30" y1="138" x2="306" y2="138"/><line x1="30" y1="164" x2="306" y2="164"/><line x1="70" y1="76" x2="70" y2="168"/><line x1="120" y1="76" x2="120" y2="168"/><line x1="170" y1="76" x2="170" y2="168"/><line x1="220" y1="76" x2="220" y2="168"/><line x1="270" y1="76" x2="270" y2="168"/></g>
+    <path class="wave" d="M30 150 C 55 150, 65 110, 90 112 S 120 160, 145 155 S 175 90, 205 96 S 245 145, 270 130 S 292 100, 306 108"/>
+    <text class="s" x="18" y="200">Live vector → nearest fingerprint.</text>
+    <line x1="18" y1="218" x2="318" y2="218" stroke="#d8d0c2"/>
+    <text class="s" x="18" y="244">Pros: no infrastructure; works indoors.</text>
+    <text class="s" x="18" y="266">Cons: calibration and moving metal.</text>
+    <text class="s" x="18" y="288" fill="#a33b3b">Accuracy: metres, not centimetres.</text>
+    <text class="s" x="18" y="310">Fusion with Wi-Fi or IMU is smarter.</text>
+  </g>
+
+  <text class="s" x="40" y="462">Mental model: the building has a magnetic accent. The phone listens for it, then checks the accent against the map.</text>
+</svg>

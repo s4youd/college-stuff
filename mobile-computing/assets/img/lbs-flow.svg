@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560" role="img" aria-labelledby="title desc">
+  <title id="title">Location-based service ecosystem</title>
+  <desc id="desc">A mobile device, operating system, positioning infrastructure, service provider and application developer combine location, context and user intent into a location-based service.</desc>
+  <defs>
+    <linearGradient id="g" x1="120" y1="80" x2="820" y2="480" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#5eead4"/><stop offset=".5" stop-color="#22d3ee"/><stop offset="1" stop-color="#a78bfa"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#22d3ee" stop-opacity=".22"/><stop offset="1" stop-color="#22d3ee" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="10"/></filter>
+  </defs>
+  <rect width="960" height="560" rx="20" fill="#070a12"/>
+  <ellipse cx="480" cy="280" rx="300" ry="210" fill="url(#glow)"/>
+  <g opacity=".45" stroke="#334155" fill="none" stroke-width="1">
+    <circle cx="480" cy="280" r="214" stroke-dasharray="3 9"/>
+    <circle cx="480" cy="280" r="154" stroke-dasharray="2 8"/>
+  </g>
+  <g font-family="Inter,Segoe UI,system-ui,sans-serif">
+    <text x="44" y="52" font-size="23" font-weight="700" fill="#eef4ff">The LBS ecosystem</text>
+    <text x="44" y="78" font-size="13.5" fill="#93a1b8">Five entities turn a coordinate into something useful — and profitable.</text>
+
+    <g>
+      <rect x="360" y="206" width="240" height="148" rx="18" fill="#0b1220" stroke="url(#g)" stroke-width="1.6"/>
+      <rect x="430" y="230" width="100" height="72" rx="12" fill="none" stroke="#5eead4" stroke-width="3"/>
+      <line x1="456" y1="244" x2="504" y2="244" stroke="#5eead4" stroke-width="2.4" stroke-linecap="round"/>
+      <circle cx="480" cy="278" r="11" fill="#22d3ee" opacity=".35"/>
+      <circle cx="480" cy="278" r="4.5" fill="#5eead4"/>
+      <text x="480" y="326" font-size="14" font-weight="700" fill="#eef4ff" text-anchor="middle">Mobile device</text>
+      <text x="480" y="344" font-size="11.5" fill="#93a1b8" text-anchor="middle">GPS · Wi-Fi · sensors · identity</text>
+    </g>
+
+    <g font-size="12.5" fill="#c9d6ea">
+      <rect x="62" y="132" width="212" height="88" rx="12" fill="#0b1220" stroke="#1e3a4a"/>
+      <text x="80" y="160" font-weight="700" fill="#5eead4">OS software</text>
+      <text x="80" y="180" fill="#93a1b8">Location services, permissions,</text>
+      <text x="80" y="197" fill="#93a1b8">Core Location / LocationManager</text>
+
+      <rect x="686" y="132" width="212" height="88" rx="12" fill="#0b1220" stroke="#2a2450"/>
+      <text x="704" y="160" font-weight="700" fill="#a78bfa">Network + positioning</text>
+      <text x="704" y="180" fill="#93a1b8">Cell towers, GPS, Wi-Fi APs,</text>
+      <text x="704" y="197" fill="#93a1b8">beacons, GIS, carriers</text>
+
+      <rect x="62" y="340" width="212" height="88" rx="12" fill="#0b1220" stroke="#3a2442"/>
+      <text x="80" y="368" font-weight="700" fill="#f472b6">Service providers</text>
+      <text x="80" y="388" fill="#93a1b8">Maps, weather, ads, ride-hailing,</text>
+      <text x="80" y="405" fill="#93a1b8">social networks, emergency services</text>
+
+      <rect x="686" y="340" width="212" height="88" rx="12" fill="#0b1220" stroke="#4a3a1c"/>
+      <text x="704" y="368" font-weight="700" fill="#fbbf24">App developers</text>
+      <text x="704" y="388" fill="#93a1b8">Build the product, combine context,</text>
+      <text x="704" y="405" fill="#93a1b8">respect privacy and battery budget</text>
+    </g>
+
+    <g stroke="url(#g)" stroke-width="1.4" fill="none" opacity=".8">
+      <path d="M274 190 C 330 202, 352 230, 378 246" marker-end="url(#arrow)"/>
+      <path d="M686 190 C 630 202, 608 230, 582 246"/>
+      <path d="M274 380 C 330 366, 352 340, 378 324"/>
+      <path d="M686 380 C 630 366, 608 340, 582 324"/>
+    </g>
+
+    <g>
+      <rect x="306" y="440" width="348" height="62" rx="12" fill="#08131a" stroke="#173a42"/>
+      <text x="480" y="464" font-size="11" letter-spacing="2.2" fill="#5eead4" text-anchor="middle">CONTEXT LAYER</text>
+      <text x="480" y="484" font-size="12" fill="#a9bcc4" text-anchor="middle">who · where · when · heading · history · intent · surroundings · device</text>
+    </g>
+    <g stroke="#5eead4" stroke-width="1.2" opacity=".55">
+      <path d="M480 354 L480 440"/>
+      <circle cx="480" cy="398" r="4" fill="#5eead4" stroke="none"/>
+    </g>
+  </g>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10z" fill="#5eead4"/>
+    </marker>
+  </defs>
+</svg>
