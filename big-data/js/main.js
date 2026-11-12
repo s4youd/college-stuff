@@ -420,6 +420,12 @@
         }
         var p = (vh / 2 - (rect.top + rect.height / 2)) / (vh + rect.height);
         p = Math.max(-0.62, Math.min(0.62, p));
+        // Tall sections rotate around their centre far enough to push the
+        // heading over the previous section. Keep them to a small slide.
+        if (rect.height > vh * 1.4) {
+          inner.style.transform = 'translate3d(0,' + (p * -22).toFixed(2) + 'px,0)';
+          return;
+        }
         inner.style.transform = 'perspective(1500px) translate3d(0,' + (p * -30).toFixed(2) + 'px,0) rotateX(' + (p * 2.4).toFixed(3) + 'deg) scale(' + (1 - Math.abs(p) * 0.012).toFixed(4) + ')';
       });
     } else {
