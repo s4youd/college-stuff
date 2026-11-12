@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 470" fill="none">
+  <defs>
+    <pattern id="g" width="34" height="34" patternUnits="userSpaceOnUse">
+      <path d="M34 0H0V34" stroke="#5eead4" stroke-opacity=".05"/>
+    </pattern>
+    <radialGradient id="h" cx=".5" cy=".5" r=".5">
+      <stop stop-color="#22d3ee" stop-opacity=".18"/><stop offset="1" stop-color="#05080f" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="900" height="470" rx="18" fill="#05080f"/>
+  <rect width="900" height="470" rx="18" fill="url(#g)"/>
+  <ellipse cx="450" cy="245" rx="250" ry="180" fill="url(#h)"/>
+  <text x="46" y="46" fill="#5c6b84" font-family="monospace" font-size="10" letter-spacing="3">THE HADOOP ECOSYSTEM · STORAGE, RESOURCES, PROCESSING</text>
+
+  <!-- core -->
+  <g>
+    <rect x="330" y="160" width="240" height="170" rx="16" fill="#071019" stroke="#5eead4" stroke-opacity=".55"/>
+    <text x="450" y="192" text-anchor="middle" fill="#5eead4" font-family="monospace" font-size="11" letter-spacing="2">HADOOP CORE</text>
+    <rect x="352" y="212" width="196" height="34" rx="7" fill="#05080f" stroke="#22d3ee" stroke-opacity=".5"/>
+    <text x="450" y="234" text-anchor="middle" fill="#e7ecf5" font-family="monospace" font-size="10">HDFS · distributed storage</text>
+    <rect x="352" y="254" width="196" height="34" rx="7" fill="#05080f" stroke="#a78bfa" stroke-opacity=".5"/>
+    <text x="450" y="276" text-anchor="middle" fill="#e7ecf5" font-family="monospace" font-size="10">YARN · resource manager</text>
+    <rect x="352" y="296" width="196" height="24" rx="7" fill="#05080f" stroke="#f472b6" stroke-opacity=".5"/>
+    <text x="450" y="313" text-anchor="middle" fill="#e7ecf5" font-family="monospace" font-size="9">MapReduce · batch engine</text>
+  </g>
+
+  <!-- left column -->
+  <g font-family="monospace">
+    <rect x="54" y="92" width="190" height="52" rx="9" fill="#071019" stroke="#5eead4" stroke-opacity=".35"/>
+    <text x="70" y="114" fill="#5eead4" font-size="10" letter-spacing="1">HIVE</text>
+    <text x="70" y="132" fill="#93a1b8" font-size="8">SQL-like warehouse</text>
+
+    <rect x="54" y="158" width="190" height="52" rx="9" fill="#071019" stroke="#5eead4" stroke-opacity=".35"/>
+    <text x="70" y="180" fill="#5eead4" font-size="10" letter-spacing="1">PIG</text>
+    <text x="70" y="198" fill="#93a1b8" font-size="8">MapReduce abstraction</text>
+
+    <rect x="54" y="224" width="190" height="52" rx="9" fill="#071019" stroke="#5eead4" stroke-opacity=".35"/>
+    <text x="70" y="246" fill="#5eead4" font-size="10" letter-spacing="1">HBASE</text>
+    <text x="70" y="264" fill="#93a1b8" font-size="8">NoSQL column-family</text>
+
+    <rect x="54" y="290" width="190" height="52" rx="9" fill="#071019" stroke="#5eead4" stroke-opacity=".35"/>
+    <text x="70" y="312" fill="#5eead4" font-size="10" letter-spacing="1">MAHOUT</text>
+    <text x="70" y="330" fill="#93a1b8" font-size="8">machine learning</text>
+
+    <rect x="54" y="356" width="190" height="52" rx="9" fill="#071019" stroke="#5eead4" stroke-opacity=".35"/>
+    <text x="70" y="378" fill="#5eead4" font-size="10" letter-spacing="1">GIRAPH</text>
+    <text x="70" y="396" fill="#93a1b8" font-size="8">graph processing</text>
+  </g>
+
+  <!-- right column -->
+  <g font-family="monospace">
+    <rect x="656" y="92" width="190" height="52" rx="9" fill="#071019" stroke="#a78bfa" stroke-opacity=".4"/>
+    <text x="672" y="114" fill="#a78bfa" font-size="10" letter-spacing="1">SPARK</text>
+    <text x="672" y="132" fill="#93a1b8" font-size="8">in-memory · batch + stream</text>
+
+    <rect x="656" y="158" width="190" height="52" rx="9" fill="#071019" stroke="#a78bfa" stroke-opacity=".4"/>
+    <text x="672" y="180" fill="#a78bfa" font-size="10" letter-spacing="1">KAFKA</text>
+    <text x="672" y="198" fill="#93a1b8" font-size="8">real-time event stream</text>
+
+    <rect x="656" y="224" width="190" height="52" rx="9" fill="#071019" stroke="#a78bfa" stroke-opacity=".4"/>
+    <text x="672" y="246" fill="#a78bfa" font-size="10" letter-spacing="1">FLUME</text>
+    <text x="672" y="264" fill="#93a1b8" font-size="8">log ingestion → Hadoop</text>
+
+    <rect x="656" y="290" width="190" height="52" rx="9" fill="#071019" stroke="#a78bfa" stroke-opacity=".4"/>
+    <text x="672" y="312" fill="#a78bfa" font-size="10" letter-spacing="1">STORM</text>
+    <text x="672" y="330" fill="#93a1b8" font-size="8">real-time stream processing</text>
+
+    <rect x="656" y="356" width="190" height="52" rx="9" fill="#071019" stroke="#a78bfa" stroke-opacity=".4"/>
+    <text x="672" y="378" fill="#a78bfa" font-size="10" letter-spacing="1">ZOO KEEPER</text>
+    <text x="672" y="396" fill="#93a1b8" font-size="8">coordination service</text>
+  </g>
+
+  <!-- connectors -->
+  <g stroke="#5eead4" stroke-opacity=".18">
+    <path d="M244 118h86M244 184h86M244 250h86M244 316h86M244 382h86"/>
+    <path d="M570 118h86M570 184h86M570 250h86M570 316h86M570 382h86"/>
+  </g>
+  <text x="450" y="452" text-anchor="middle" fill="#5c6b84" font-family="monospace" font-size="9" letter-spacing="2">HDFS STORES · YARN SCHEDULES · MAPREDUCE PROCESSES · THE REST IS AROUND THEM.</text>
+</svg>

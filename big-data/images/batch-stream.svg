@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 470" fill="none">
+  <defs>
+    <pattern id="g" width="34" height="34" patternUnits="userSpaceOnUse">
+      <path d="M34 0H0V34" stroke="#5eead4" stroke-opacity=".05"/>
+    </pattern>
+    <radialGradient id="b" cx=".5" cy=".5" r=".5">
+      <stop stop-color="#22d3ee" stop-opacity=".14"/><stop offset="1" stop-color="#05080f" stop-opacity="0"/>
+    </radialGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0l10 5-10 5z" fill="#5eead4" fill-opacity=".65"/>
+    </marker>
+  </defs>
+  <rect width="900" height="470" rx="18" fill="#05080f"/>
+  <rect width="900" height="470" rx="18" fill="url(#g)"/>
+  <ellipse cx="450" cy="235" rx="320" ry="190" fill="url(#b)"/>
+  <text x="46" y="46" fill="#5c6b84" font-family="monospace" font-size="10" letter-spacing="3">BATCH VS STREAM · AND THE LAMBDA ARCHITECTURE THAT MARRIES THEM</text>
+
+  <!-- batch lane -->
+  <g font-family="monospace">
+    <text x="46" y="88" fill="#22d3ee" font-size="10" letter-spacing="2">BATCH · HIGH THROUGHPUT, HIGH LATENCY</text>
+    <rect x="46" y="104" width="118" height="54" rx="8" fill="#071019" stroke="#22d3ee" stroke-opacity=".45"/>
+    <text x="105" y="126" text-anchor="middle" fill="#e7ecf5" font-size="9">collect logs</text>
+    <text x="105" y="143" text-anchor="middle" fill="#5c6b84" font-size="7">hours of data</text>
+
+    <rect x="204" y="104" width="118" height="54" rx="8" fill="#071019" stroke="#22d3ee" stroke-opacity=".45"/>
+    <text x="263" y="126" text-anchor="middle" fill="#e7ecf5" font-size="9">store in HDFS</text>
+    <text x="263" y="143" text-anchor="middle" fill="#5c6b84" font-size="7">immutable blocks</text>
+
+    <rect x="362" y="104" width="132" height="54" rx="8" fill="#071019" stroke="#22d3ee" stroke-opacity=".45"/>
+    <text x="428" y="126" text-anchor="middle" fill="#e7ecf5" font-size="9">scheduled job</text>
+    <text x="428" y="143" text-anchor="middle" fill="#5c6b84" font-size="7">MapReduce / Spark</text>
+
+    <rect x="534" y="104" width="118" height="54" rx="8" fill="#071019" stroke="#22d3ee" stroke-opacity=".45"/>
+    <text x="593" y="126" text-anchor="middle" fill="#e7ecf5" font-size="9">batch view</text>
+    <text x="593" y="143" text-anchor="middle" fill="#5c6b84" font-size="7">report / model</text>
+
+    <path d="M164 131h40M322 131h40M494 131h40" stroke="#22d3ee" stroke-opacity=".45" marker-end="url(#arrow)"/>
+  </g>
+
+  <!-- stream lane -->
+  <g font-family="monospace">
+    <text x="46" y="212" fill="#f472b6" font-size="10" letter-spacing="2">STREAM · LOW LATENCY, CONTINUOUS</text>
+    <rect x="46" y="228" width="118" height="54" rx="8" fill="#071019" stroke="#f472b6" stroke-opacity=".45"/>
+    <text x="105" y="250" text-anchor="middle" fill="#e7ecf5" font-size="9">events</text>
+    <text x="105" y="267" text-anchor="middle" fill="#5c6b84" font-size="7">clicks · sensors</text>
+
+    <rect x="204" y="228" width="118" height="54" rx="8" fill="#071019" stroke="#f472b6" stroke-opacity=".45"/>
+    <text x="263" y="250" text-anchor="middle" fill="#e7ecf5" font-size="9">Kafka broker</text>
+    <text x="263" y="267" text-anchor="middle" fill="#5c6b84" font-size="7">durable log</text>
+
+    <rect x="362" y="228" width="132" height="54" rx="8" fill="#071019" stroke="#f472b6" stroke-opacity=".45"/>
+    <text x="428" y="250" text-anchor="middle" fill="#e7ecf5" font-size="9">stream processor</text>
+    <text x="428" y="267" text-anchor="middle" fill="#5c6b84" font-size="7">Storm / Spark Streaming</text>
+
+    <rect x="534" y="228" width="118" height="54" rx="8" fill="#071019" stroke="#f472b6" stroke-opacity=".45"/>
+    <text x="593" y="250" text-anchor="middle" fill="#e7ecf5" font-size="9">live action</text>
+    <text x="593" y="267" text-anchor="middle" fill="#5c6b84" font-size="7">alert · fraud block</text>
+
+    <path d="M164 255h40M322 255h40M494 255h40" stroke="#f472b6" stroke-opacity=".45" marker-end="url(#arrow)"/>
+  </g>
+
+  <!-- lambda -->
+  <g font-family="monospace">
+    <rect x="46" y="324" width="808" height="92" rx="12" fill="#071019" stroke="#a78bfa" stroke-opacity=".4"/>
+    <text x="64" y="348" fill="#a78bfa" font-size="10" letter-spacing="2">LAMBDA ARCHITECTURE</text>
+    <rect x="64" y="362" width="220" height="38" rx="7" fill="#05080f" stroke="#22d3ee" stroke-opacity=".35"/>
+    <text x="174" y="385" text-anchor="middle" fill="#93a1b8" font-size="8">batch layer · accurate, historical</text>
+    <rect x="304" y="362" width="220" height="38" rx="7" fill="#05080f" stroke="#f472b6" stroke-opacity=".35"/>
+    <text x="414" y="385" text-anchor="middle" fill="#93a1b8" font-size="8">speed layer · approximate, live</text>
+    <rect x="544" y="362" width="292" height="38" rx="7" fill="#05080f" stroke="#5eead4" stroke-opacity=".4"/>
+    <text x="690" y="385" text-anchor="middle" fill="#93a1b8" font-size="8">serving layer · query both, merge results</text>
+    <path d="M284 381h20M524 381h20" stroke="#a78bfa" stroke-opacity=".5" marker-end="url(#arrow)"/>
+  </g>
+
+  <text x="450" y="448" text-anchor="middle" fill="#5c6b84" font-family="monospace" font-size="8" letter-spacing="1">BATCH ANSWERS “WHAT HAPPENED?” · STREAM ANSWERS “WHAT IS HAPPENING NOW?” · LAMBDA ANSWERS BOTH.</text>
+</svg>

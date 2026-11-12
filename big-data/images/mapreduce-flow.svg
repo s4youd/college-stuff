@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 470" fill="none">
+  <defs>
+    <pattern id="g" width="34" height="34" patternUnits="userSpaceOnUse">
+      <path d="M34 0H0V34" stroke="#5eead4" stroke-opacity=".05"/>
+    </pattern>
+    <radialGradient id="m" cx=".5" cy=".5" r=".5">
+      <stop stop-color="#a78bfa" stop-opacity=".16"/><stop offset="1" stop-color="#05080f" stop-opacity="0"/>
+    </radialGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0l10 5-10 5z" fill="#5eead4" fill-opacity=".7"/>
+    </marker>
+  </defs>
+  <rect width="900" height="470" rx="18" fill="#05080f"/>
+  <rect width="900" height="470" rx="18" fill="url(#g)"/>
+  <ellipse cx="450" cy="240" rx="300" ry="190" fill="url(#m)"/>
+  <text x="46" y="46" fill="#5c6b84" font-family="monospace" font-size="10" letter-spacing="3">MAPREDUCE · SPLIT → MAP → SHUFFLE / SORT → REDUCE → OUTPUT</text>
+
+  <!-- input -->
+  <g font-family="monospace">
+    <rect x="42" y="150" width="118" height="150" rx="10" fill="#071019" stroke="#22d3ee" stroke-opacity=".45"/>
+    <text x="101" y="176" text-anchor="middle" fill="#22d3ee" font-size="10" letter-spacing="2">INPUT</text>
+    <rect x="58" y="192" width="86" height="20" rx="4" fill="#05080f" stroke="#22d3ee" stroke-opacity=".28"/>
+    <text x="101" y="206" text-anchor="middle" fill="#93a1b8" font-size="8">split 01</text>
+    <rect x="58" y="218" width="86" height="20" rx="4" fill="#05080f" stroke="#22d3ee" stroke-opacity=".28"/>
+    <text x="101" y="232" text-anchor="middle" fill="#93a1b8" font-size="8">split 02</text>
+    <rect x="58" y="244" width="86" height="20" rx="4" fill="#05080f" stroke="#22d3ee" stroke-opacity=".28"/>
+    <text x="101" y="258" text-anchor="middle" fill="#93a1b8" font-size="8">split 03</text>
+    <text x="101" y="286" text-anchor="middle" fill="#5c6b84" font-size="7">HDFS blocks</text>
+  </g>
+
+  <!-- map boxes -->
+  <g font-family="monospace">
+    <rect x="214" y="104" width="132" height="70" rx="9" fill="#071019" stroke="#5eead4" stroke-opacity=".5"/>
+    <text x="280" y="128" text-anchor="middle" fill="#5eead4" font-size="10" letter-spacing="2">MAP 01</text>
+    <text x="280" y="148" text-anchor="middle" fill="#93a1b8" font-size="8">filter · parse · emit</text>
+    <text x="280" y="162" text-anchor="middle" fill="#5c6b84" font-size="7">(key, value)</text>
+
+    <rect x="214" y="196" width="132" height="70" rx="9" fill="#071019" stroke="#5eead4" stroke-opacity=".5"/>
+    <text x="280" y="220" text-anchor="middle" fill="#5eead4" font-size="10" letter-spacing="2">MAP 02</text>
+    <text x="280" y="240" text-anchor="middle" fill="#93a1b8" font-size="8">filter · parse · emit</text>
+    <text x="280" y="254" text-anchor="middle" fill="#5c6b84" font-size="7">(key, value)</text>
+
+    <rect x="214" y="288" width="132" height="70" rx="9" fill="#071019" stroke="#5eead4" stroke-opacity=".5"/>
+    <text x="280" y="312" text-anchor="middle" fill="#5eead4" font-size="10" letter-spacing="2">MAP 03</text>
+    <text x="280" y="332" text-anchor="middle" fill="#93a1b8" font-size="8">filter · parse · emit</text>
+    <text x="280" y="346" text-anchor="middle" fill="#5c6b84" font-size="7">(key, value)</text>
+  </g>
+
+  <!-- shuffle -->
+  <g font-family="monospace">
+    <rect x="404" y="168" width="126" height="126" rx="12" fill="#071019" stroke="#a78bfa" stroke-opacity=".55"/>
+    <text x="467" y="196" text-anchor="middle" fill="#a78bfa" font-size="10" letter-spacing="1">SHUFFLE</text>
+    <text x="467" y="214" text-anchor="middle" fill="#a78bfa" font-size="10" letter-spacing="1">&amp; SORT</text>
+    <text x="467" y="240" text-anchor="middle" fill="#93a1b8" font-size="8">group by key</text>
+    <text x="467" y="256" text-anchor="middle" fill="#93a1b8" font-size="8">move same keys</text>
+    <text x="467" y="272" text-anchor="middle" fill="#93a1b8" font-size="8">to same reducer</text>
+  </g>
+
+  <!-- reduce -->
+  <g font-family="monospace">
+    <rect x="586" y="126" width="132" height="82" rx="9" fill="#071019" stroke="#f472b6" stroke-opacity=".5"/>
+    <text x="652" y="152" text-anchor="middle" fill="#f472b6" font-size="10" letter-spacing="2">REDUCE 01</text>
+    <text x="652" y="172" text-anchor="middle" fill="#93a1b8" font-size="8">aggregate values</text>
+    <text x="652" y="188" text-anchor="middle" fill="#93a1b8" font-size="8">sum · count · max</text>
+
+    <rect x="586" y="230" width="132" height="82" rx="9" fill="#071019" stroke="#f472b6" stroke-opacity=".5"/>
+    <text x="652" y="256" text-anchor="middle" fill="#f472b6" font-size="10" letter-spacing="2">REDUCE 02</text>
+    <text x="652" y="276" text-anchor="middle" fill="#93a1b8" font-size="8">aggregate values</text>
+    <text x="652" y="292" text-anchor="middle" fill="#93a1b8" font-size="8">sum · count · max</text>
+  </g>
+
+  <!-- output -->
+  <g font-family="monospace">
+    <rect x="766" y="176" width="94" height="110" rx="10" fill="#071019" stroke="#fbbf24" stroke-opacity=".5"/>
+    <text x="813" y="202" text-anchor="middle" fill="#fbbf24" font-size="10" letter-spacing="2">OUTPUT</text>
+    <rect x="778" y="216" width="70" height="18" rx="4" fill="#05080f" stroke="#fbbf24" stroke-opacity=".25"/>
+    <text x="813" y="229" text-anchor="middle" fill="#93a1b8" font-size="7">part-00000</text>
+    <rect x="778" y="240" width="70" height="18" rx="4" fill="#05080f" stroke="#fbbf24" stroke-opacity=".25"/>
+    <text x="813" y="253" text-anchor="middle" fill="#93a1b8" font-size="7">part-00001</text>
+    <text x="813" y="274" text-anchor="middle" fill="#5c6b84" font-size="7">HDFS</text>
+  </g>
+
+  <!-- arrows -->
+  <g stroke="#5eead4" stroke-opacity=".45" marker-end="url(#arrow)">
+    <path d="M160 225h48"/>
+    <path d="M346 139h52"/>
+    <path d="M346 231h52"/>
+    <path d="M346 323h52"/>
+    <path d="M530 231h50"/>
+    <path d="M530 231c24 0 24-64 50-64"/>
+    <path d="M718 167h42"/>
+    <path d="M718 271h42"/>
+  </g>
+
+  <text x="450" y="418" text-anchor="middle" fill="#5c6b84" font-family="monospace" font-size="9" letter-spacing="1">MAP = FILTER / TRANSFORM · SHUFFLE = MOVE SAME KEYS TOGETHER · REDUCE = AGGREGATE</text>
+  <text x="450" y="440" text-anchor="middle" fill="#5c6b84" font-family="monospace" font-size="8" letter-spacing="1">THE MAP PHASE DOES NOT AGGREGATE. THE REDUCE PHASE DOES NOT DISTRIBUTE SPLITS.</text>
+</svg>

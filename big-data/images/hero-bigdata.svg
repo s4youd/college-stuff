@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="900" y2="1200" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#071019"/>
+      <stop offset=".45" stop-color="#05080f"/>
+      <stop offset="1" stop-color="#0b0718"/>
+    </linearGradient>
+    <linearGradient id="cube" x1="250" y1="390" x2="670" y2="820" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5eead4"/>
+      <stop offset=".45" stop-color="#22d3ee"/>
+      <stop offset="1" stop-color="#a78bfa"/>
+    </linearGradient>
+    <linearGradient id="pink" x1="300" y1="250" x2="640" y2="700" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#f472b6"/>
+      <stop offset="1" stop-color="#a78bfa"/>
+    </linearGradient>
+    <radialGradient id="glow" cx=".5" cy=".5" r=".5">
+      <stop stop-color="#22d3ee" stop-opacity=".35"/>
+      <stop offset=".55" stop-color="#a78bfa" stop-opacity=".12"/>
+      <stop offset="1" stop-color="#05080f" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="52" height="52" patternUnits="userSpaceOnUse">
+      <path d="M52 0H0V52" stroke="#5eead4" stroke-opacity=".06"/>
+    </pattern>
+    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="14"/>
+    </filter>
+  </defs>
+  <rect width="900" height="1200" fill="url(#bg)"/>
+  <rect width="900" height="1200" fill="url(#grid)"/>
+  <ellipse cx="450" cy="620" rx="390" ry="390" fill="url(#glow)"/>
+  <circle cx="450" cy="620" r="310" stroke="#5eead4" stroke-opacity=".12"/>
+  <circle cx="450" cy="620" r="235" stroke="#a78bfa" stroke-opacity=".16" stroke-dasharray="3 9"/>
+  <circle cx="450" cy="620" r="365" stroke="#f472b6" stroke-opacity=".08"/>
+
+  <!-- orbit nodes -->
+  <g stroke="#5eead4" stroke-opacity=".22">
+    <path d="M450 255v95M450 890v55M185 620h100M615 620h100M263 433l72 72M565 735l72 72M637 433l-72 72M335 735l-72 72"/>
+  </g>
+  <g>
+    <circle cx="450" cy="250" r="9" fill="#5eead4"/><circle cx="450" cy="250" r="18" stroke="#5eead4" stroke-opacity=".3"/>
+    <circle cx="450" cy="950" r="7" fill="#a78bfa"/><circle cx="450" cy="950" r="15" stroke="#a78bfa" stroke-opacity=".3"/>
+    <circle cx="180" cy="620" r="8" fill="#22d3ee"/><circle cx="180" cy="620" r="16" stroke="#22d3ee" stroke-opacity=".3"/>
+    <circle cx="720" cy="620" r="8" fill="#f472b6"/><circle cx="720" cy="620" r="16" stroke="#f472b6" stroke-opacity=".3"/>
+    <circle cx="258" cy="428" r="6" fill="#5eead4"/><circle cx="642" cy="428" r="6" fill="#f472b6"/>
+    <circle cx="258" cy="812" r="6" fill="#a78bfa"/><circle cx="642" cy="812" r="6" fill="#22d3ee"/>
+  </g>
+
+  <!-- isometric data cube -->
+  <g opacity=".96">
+    <ellipse cx="450" cy="820" rx="190" ry="40" fill="#05080f" opacity=".7"/>
+    <path d="M450 400l210 120-210 120-210-120z" fill="#0b1220" stroke="url(#cube)" stroke-width="2"/>
+    <path d="M240 520v180l210 120V640z" fill="#071019" stroke="url(#cube)" stroke-width="1.6"/>
+    <path d="M660 520v180L450 820V640z" fill="#0a0d1c" stroke="url(#cube)" stroke-width="1.6"/>
+    <path d="M450 640v180M240 520l210 120 210-120" stroke="url(#cube)" stroke-width="1.2" stroke-opacity=".8"/>
+    <path d="M330 490l120 68 120-68M330 560l120 68 120-68M330 630l120 68 120-68" stroke="#5eead4" stroke-opacity=".18"/>
+    <g fill="#5eead4">
+      <circle cx="450" cy="400" r="5"/><circle cx="660" cy="520" r="5"/><circle cx="450" cy="640" r="5"/>
+      <circle cx="240" cy="520" r="5"/><circle cx="450" cy="820" r="5"/>
+    </g>
+    <g fill="#a78bfa" opacity=".9">
+      <circle cx="345" cy="455" r="3.5"/><circle cx="555" cy="455" r="3.5"/>
+      <circle cx="345" cy="525" r="3.5"/><circle cx="555" cy="525" r="3.5"/>
+      <circle cx="345" cy="595" r="3.5"/><circle cx="555" cy="595" r="3.5"/>
+    </g>
+  </g>
+
+  <!-- floating data cards -->
+  <g font-family="monospace">
+    <g transform="translate(92 250) rotate(-8)">
+      <rect width="180" height="70" rx="10" fill="#071019" stroke="#5eead4" stroke-opacity=".5"/>
+      <rect x="12" y="14" width="38" height="3" rx="1.5" fill="#5eead4"/>
+      <text x="12" y="38" fill="#e7ecf5" font-size="13" letter-spacing="2">VOLUME</text>
+      <text x="12" y="56" fill="#5c6b84" font-size="9">petabytes / day</text>
+    </g>
+    <g transform="translate(628 292) rotate(7)">
+      <rect width="180" height="70" rx="10" fill="#071019" stroke="#a78bfa" stroke-opacity=".5"/>
+      <rect x="12" y="14" width="38" height="3" rx="1.5" fill="#a78bfa"/>
+      <text x="12" y="38" fill="#e7ecf5" font-size="13" letter-spacing="2">VELOCITY</text>
+      <text x="12" y="56" fill="#5c6b84" font-size="9">real-time stream</text>
+    </g>
+    <g transform="translate(80 858) rotate(6)">
+      <rect width="190" height="70" rx="10" fill="#071019" stroke="#22d3ee" stroke-opacity=".5"/>
+      <rect x="12" y="14" width="38" height="3" rx="1.5" fill="#22d3ee"/>
+      <text x="12" y="38" fill="#e7ecf5" font-size="13" letter-spacing="2">VARIETY</text>
+      <text x="12" y="56" fill="#5c6b84" font-size="9">structured · raw</text>
+    </g>
+    <g transform="translate(632 866) rotate(-7)">
+      <rect width="190" height="70" rx="10" fill="#071019" stroke="#f472b6" stroke-opacity=".5"/>
+      <rect x="12" y="14" width="38" height="3" rx="1.5" fill="#f472b6"/>
+      <text x="12" y="38" fill="#e7ecf5" font-size="13" letter-spacing="2">VERACITY</text>
+      <text x="12" y="56" fill="#5c6b84" font-size="9">trust the signal</text>
+    </g>
+  </g>
+
+  <!-- bottom label -->
+  <g font-family="monospace">
+    <text x="450" y="1064" text-anchor="middle" fill="#5c6b84" font-size="11" letter-spacing="6">INGEST · STORE · PROCESS · PREDICT</text>
+    <text x="450" y="1104" text-anchor="middle" fill="#e7ecf5" font-size="26" letter-spacing="10">BIG DATA</text>
+    <text x="450" y="1134" text-anchor="middle" fill="#5eead4" font-size="11" letter-spacing="5">VALUE IS THE FIFTH V</text>
+  </g>
+  <g stroke="#5eead4" stroke-opacity=".2">
+    <path d="M300 1118h-90M690 1118h-90"/>
+  </g>
+</svg>

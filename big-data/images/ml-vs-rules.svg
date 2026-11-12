@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 470" fill="none">
+  <defs>
+    <pattern id="g" width="34" height="34" patternUnits="userSpaceOnUse">
+      <path d="M34 0H0V34" stroke="#5eead4" stroke-opacity=".05"/>
+    </pattern>
+    <marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0 0l6 3-6 3z" fill="#93a1b8"/>
+    </marker>
+  </defs>
+  <rect width="900" height="470" rx="18" fill="#05080f"/>
+  <rect width="900" height="470" rx="18" fill="url(#g)"/>
+  <text x="46" y="46" fill="#5c6b84" font-family="monospace" font-size="10" letter-spacing="3">TRADITIONAL PROGRAMMING vs MACHINE LEARNING</text>
+
+  <!-- traditional -->
+  <g>
+    <text x="70" y="88" fill="#5eead4" font-family="monospace" font-size="11" letter-spacing="2">TRADITIONAL</text>
+    <rect x="60" y="108" width="120" height="56" rx="10" fill="#071019" stroke="#5eead4" stroke-opacity=".4"/>
+    <text x="120" y="132" text-anchor="middle" fill="#e7ecf5" font-family="monospace" font-size="11">INPUTS</text>
+    <text x="120" y="150" text-anchor="middle" fill="#5c6b84" font-family="monospace" font-size="8">data</text>
+    <rect x="230" y="108" width="120" height="56" rx="10" fill="#071019" stroke="#fbbf24" stroke-opacity=".4"/>
+    <text x="290" y="132" text-anchor="middle" fill="#e7ecf5" font-family="monospace" font-size="11">RULES</text>
+    <text x="290" y="150" text-anchor="middle" fill="#5c6b84" font-family="monospace" font-size="8">written by you</text>
+    <rect x="400" y="108" width="120" height="56" rx="10" fill="#071019" stroke="#a78bfa" stroke-opacity=".4"/>
+    <text x="460" y="132" text-anchor="middle" fill="#e7ecf5" font-family="monospace" font-size="11">OUTPUTS</text>
+    <text x="460" y="150" text-anchor="middle" fill="#5c6b84" font-family="monospace" font-size="8">answers</text>
+    <path d="M180 136h46M350 136h46" stroke="#93a1b8" stroke-opacity=".5" marker-end="url(#ar)"/>
+    <text x="290" y="200" text-anchor="middle" fill="#93a1b8" font-family="monospace" font-size="9">you know the rule → you code the rule</text>
+  </g>
+
+  <path d="M60 236h780" stroke="#5eead4" stroke-opacity=".12" stroke-dasharray="4 8"/>
+
+  <!-- ML -->
+  <g>
+    <text x="70" y="276" fill="#f472b6" font-family="monospace" font-size="11" letter-spacing="2">MACHINE LEARNING</text>
+    <rect x="60" y="296" width="120" height="56" rx="10" fill="#071019" stroke="#5eead4" stroke-opacity=".4"/>
+    <text x="120" y="320" text-anchor="middle" fill="#e7ecf5" font-family="monospace" font-size="11">INPUTS</text>
+    <text x="120" y="338" text-anchor="middle" fill="#5c6b84" font-family="monospace" font-size="8">data</text>
+    <rect x="230" y="296" width="120" height="56" rx="10" fill="#071019" stroke="#a78bfa" stroke-opacity=".4"/>
+    <text x="290" y="320" text-anchor="middle" fill="#e7ecf5" font-family="monospace" font-size="11">OUTPUTS</text>
+    <text x="290" y="338" text-anchor="middle" fill="#5c6b84" font-family="monospace" font-size="8">desired answers</text>
+    <rect x="400" y="296" width="120" height="56" rx="10" fill="#071019" stroke="#f472b6" stroke-opacity=".4"/>
+    <text x="460" y="320" text-anchor="middle" fill="#e7ecf5" font-family="monospace" font-size="11">RULES</text>
+    <text x="460" y="338" text-anchor="middle" fill="#5c6b84" font-family="monospace" font-size="8">discovered patterns</text>
+    <path d="M180 324h46M350 324h46" stroke="#93a1b8" stroke-opacity=".5" marker-end="url(#ar)"/>
+    <text x="290" y="388" text-anchor="middle" fill="#93a1b8" font-family="monospace" font-size="9">you have examples → the algorithm finds the rule</text>
+  </g>
+
+  <g font-family="monospace">
+    <rect x="588" y="108" width="250" height="248" rx="12" fill="#071019" stroke="#f472b6" stroke-opacity=".28"/>
+    <text x="608" y="136" fill="#f472b6" font-size="10" letter-spacing="2">WHEN TO USE WHAT</text>
+    <text x="608" y="168" fill="#5eead4" font-size="9">simple, reliable rule</text>
+    <text x="608" y="184" fill="#93a1b8" font-size="9">→ rule-based system</text>
+    <text x="608" y="212" fill="#5eead4" font-size="9">complex patterns, lots of data</text>
+    <text x="608" y="228" fill="#93a1b8" font-size="9">→ machine learning</text>
+    <text x="608" y="256" fill="#5eead4" font-size="9">images, speech, text at scale</text>
+    <text x="608" y="272" fill="#93a1b8" font-size="9">→ deep learning</text>
+    <text x="608" y="300" fill="#f472b6" font-size="9">trap: deep learning is not</text>
+    <text x="608" y="316" fill="#93a1b8" font-size="9">automatically better or safer</text>
+    <text x="608" y="336" fill="#5c6b84" font-size="8">it needs data, compute, evaluation</text>
+  </g>
+  <text x="46" y="444" fill="#5c6b84" font-family="monospace" font-size="9" letter-spacing="2">ML TURNS DATA INTO NUMBERS AND FINDS THE PATTERN YOU COULD NOT WRITE BY HAND.</text>
+</svg>

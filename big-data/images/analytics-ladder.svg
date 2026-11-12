@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 470" fill="none">
+  <defs>
+    <pattern id="g" width="34" height="34" patternUnits="userSpaceOnUse">
+      <path d="M34 0H0V34" stroke="#5eead4" stroke-opacity=".05"/>
+    </pattern>
+    <linearGradient id="a" x1="80" y1="400" x2="820" y2="100" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5eead4"/><stop offset=".4" stop-color="#22d3ee"/><stop offset=".7" stop-color="#a78bfa"/><stop offset="1" stop-color="#f472b6"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="470" rx="18" fill="#05080f"/>
+  <rect width="900" height="470" rx="18" fill="url(#g)"/>
+  <text x="46" y="46" fill="#5c6b84" font-family="monospace" font-size="10" letter-spacing="3">THE ANALYTICS LADDER · FROM HINDSIGHT TO ACTION</text>
+
+  <!-- steps -->
+  <g>
+    <rect x="52" y="304" width="190" height="110" rx="12" fill="#071019" stroke="#5eead4" stroke-opacity=".5"/>
+    <text x="70" y="332" fill="#5eead4" font-family="monospace" font-size="10" letter-spacing="2">01 · DESCRIPTIVE</text>
+    <text x="70" y="358" fill="#e7ecf5" font-family="monospace" font-size="14">What happened?</text>
+    <text x="70" y="382" fill="#93a1b8" font-family="monospace" font-size="9">dashboards · KPIs · reports</text>
+    <text x="70" y="400" fill="#5c6b84" font-family="monospace" font-size="9">hindsight</text>
+  </g>
+  <g>
+    <rect x="260" y="232" width="190" height="110" rx="12" fill="#071019" stroke="#22d3ee" stroke-opacity=".5"/>
+    <text x="278" y="260" fill="#22d3ee" font-family="monospace" font-size="10" letter-spacing="2">02 · DIAGNOSTIC</text>
+    <text x="278" y="286" fill="#e7ecf5" font-family="monospace" font-size="14">Why did it happen?</text>
+    <text x="278" y="310" fill="#93a1b8" font-family="monospace" font-size="9">drill-down · root cause</text>
+    <text x="278" y="328" fill="#5c6b84" font-family="monospace" font-size="9">insight</text>
+  </g>
+  <g>
+    <rect x="468" y="160" width="190" height="110" rx="12" fill="#071019" stroke="#a78bfa" stroke-opacity=".5"/>
+    <text x="486" y="188" fill="#a78bfa" font-family="monospace" font-size="10" letter-spacing="2">03 · PREDICTIVE</text>
+    <text x="486" y="214" fill="#e7ecf5" font-family="monospace" font-size="14">What will happen?</text>
+    <text x="486" y="238" fill="#93a1b8" font-family="monospace" font-size="9">models · forecasts · scores</text>
+    <text x="486" y="256" fill="#5c6b84" font-family="monospace" font-size="9">foresight</text>
+  </g>
+  <g>
+    <rect x="676" y="88" width="176" height="110" rx="12" fill="#071019" stroke="#f472b6" stroke-opacity=".5"/>
+    <text x="694" y="116" fill="#f472b6" font-family="monospace" font-size="10" letter-spacing="2">04 · PRESCRIPTIVE</text>
+    <text x="694" y="142" fill="#e7ecf5" font-family="monospace" font-size="14">What should we do?</text>
+    <text x="694" y="166" fill="#93a1b8" font-family="monospace" font-size="9">optimisation · actions</text>
+    <text x="694" y="184" fill="#5c6b84" font-family="monospace" font-size="9">decision</text>
+  </g>
+
+  <!-- staircase line -->
+  <path d="M147 304V282h190v-72h190v-72h190v-50" stroke="url(#a)" stroke-width="2" stroke-opacity=".55"/>
+  <g fill="#5eead4">
+    <circle cx="147" cy="304" r="4"/><circle cx="337" cy="282" r="4"/><circle cx="527" cy="210" r="4"/><circle cx="717" cy="138" r="4"/>
+  </g>
+  <text x="52" y="442" fill="#5c6b84" font-family="monospace" font-size="9" letter-spacing="2">EACH STEP IS HARDER AND MORE VALUABLE THAN THE ONE BELOW IT.</text>
+</svg>

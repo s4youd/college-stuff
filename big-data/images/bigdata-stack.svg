@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 470" fill="none">
+  <defs>
+    <linearGradient id="s1" x1="80" y1="60" x2="820" y2="410" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5eead4"/><stop offset=".5" stop-color="#22d3ee"/><stop offset="1" stop-color="#a78bfa"/>
+    </linearGradient>
+    <pattern id="g" width="34" height="34" patternUnits="userSpaceOnUse">
+      <path d="M34 0H0V34" stroke="#5eead4" stroke-opacity=".055"/>
+    </pattern>
+  </defs>
+  <rect width="900" height="470" rx="18" fill="#05080f"/>
+  <rect width="900" height="470" rx="18" fill="url(#g)"/>
+  <text x="46" y="48" fill="#5c6b84" font-family="monospace" font-size="10" letter-spacing="3">THE BIG DATA STACK · ONE PIPELINE</text>
+
+  <!-- governance side rail -->
+  <rect x="690" y="78" width="160" height="340" rx="12" fill="#0b1220" stroke="#f472b6" stroke-opacity=".32"/>
+  <text x="770" y="110" text-anchor="middle" fill="#f472b6" font-family="monospace" font-size="10" letter-spacing="2">GOVERNANCE</text>
+  <g fill="#93a1b8" font-family="monospace" font-size="10">
+    <text x="770" y="146" text-anchor="middle">quality</text>
+    <text x="770" y="176" text-anchor="middle">privacy</text>
+    <text x="770" y="206" text-anchor="middle">security</text>
+    <text x="770" y="236" text-anchor="middle">lineage</text>
+    <text x="770" y="266" text-anchor="middle">compliance</text>
+    <text x="770" y="296" text-anchor="middle">access control</text>
+    <text x="770" y="326" text-anchor="middle">backups</text>
+    <text x="770" y="356" text-anchor="middle">replication</text>
+    <text x="770" y="386" text-anchor="middle">monitoring</text>
+  </g>
+  <path d="M676 248h-22" stroke="#f472b6" stroke-opacity=".4" stroke-dasharray="3 4"/>
+
+  <!-- layers -->
+  <g font-family="monospace">
+    <!-- sources -->
+    <rect x="44" y="78" width="610" height="52" rx="10" fill="#071019" stroke="#5eead4" stroke-opacity=".32"/>
+    <text x="62" y="100" fill="#5eead4" font-size="9" letter-spacing="2">01 · SOURCES</text>
+    <text x="62" y="119" fill="#b7c3d6" font-size="12">apps · logs · sensors · social · databases · files · APIs</text>
+    <path d="M349 130v20" stroke="url(#s1)" stroke-width="1.4"/>
+
+    <!-- ingestion -->
+    <rect x="44" y="150" width="610" height="52" rx="10" fill="#071019" stroke="#22d3ee" stroke-opacity=".32"/>
+    <text x="62" y="172" fill="#22d3ee" font-size="9" letter-spacing="2">02 · INGESTION</text>
+    <text x="62" y="191" fill="#b7c3d6" font-size="12">Kafka · Flume · NiFi · Sqoop · ETL pipelines</text>
+    <path d="M349 202v20" stroke="url(#s1)" stroke-width="1.4"/>
+
+    <!-- storage -->
+    <rect x="44" y="222" width="610" height="52" rx="10" fill="#071019" stroke="#a78bfa" stroke-opacity=".38"/>
+    <text x="62" y="244" fill="#a78bfa" font-size="9" letter-spacing="2">03 · STORAGE</text>
+    <text x="62" y="263" fill="#b7c3d6" font-size="12">HDFS · HBase · Cassandra · MongoDB · data lake / warehouse</text>
+    <path d="M349 274v20" stroke="url(#s1)" stroke-width="1.4"/>
+
+    <!-- processing -->
+    <rect x="44" y="294" width="610" height="52" rx="10" fill="#071019" stroke="#f472b6" stroke-opacity=".34"/>
+    <text x="62" y="316" fill="#f472b6" font-size="9" letter-spacing="2">04 · PROCESSING</text>
+    <text x="62" y="335" fill="#b7c3d6" font-size="12">MapReduce · Spark · Hive · Pig · Storm · YARN scheduler</text>
+    <path d="M349 346v20" stroke="url(#s1)" stroke-width="1.4"/>
+
+    <!-- analytics -->
+    <rect x="44" y="366" width="610" height="52" rx="10" fill="#071019" stroke="#fbbf24" stroke-opacity=".34"/>
+    <text x="62" y="388" fill="#fbbf24" font-size="9" letter-spacing="2">05 · ANALYTICS &amp; OUTPUT</text>
+    <text x="62" y="407" fill="#b7c3d6" font-size="12">Spark MLlib · Mahout · TensorFlow · Tableau · dashboards</text>
+  </g>
+  <g stroke="#5eead4" stroke-opacity=".28">
+    <path d="M60 430h-8v-8M638 430h8v-8"/>
+  </g>
+  <text x="46" y="450" fill="#5c6b84" font-family="monospace" font-size="9" letter-spacing="2">REMOVE A LAYER AND THE PIPELINE STOPS BEING A PIPELINE.</text>
+</svg>

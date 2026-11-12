@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 470" fill="none">
+  <defs>
+    <pattern id="g" width="34" height="34" patternUnits="userSpaceOnUse">
+      <path d="M34 0H0V34" stroke="#5eead4" stroke-opacity=".05"/>
+    </pattern>
+    <radialGradient id="n" cx=".5" cy=".5" r=".5">
+      <stop stop-color="#a78bfa" stop-opacity=".14"/><stop offset="1" stop-color="#05080f" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="900" height="470" rx="18" fill="#05080f"/>
+  <rect width="900" height="470" rx="18" fill="url(#g)"/>
+  <ellipse cx="450" cy="245" rx="330" ry="190" fill="url(#n)"/>
+  <text x="46" y="46" fill="#5c6b84" font-family="monospace" font-size="10" letter-spacing="3">NOSQL · FOUR FAMILIES, ONE IDEA: GIVE UP THE RIGID TABLE, KEEP THE SCALE</text>
+
+  <!-- center -->
+  <circle cx="450" cy="245" r="58" fill="#071019" stroke="#5eead4" stroke-opacity=".5"/>
+  <text x="450" y="239" text-anchor="middle" fill="#e7ecf5" font-family="monospace" font-size="13" letter-spacing="2">NoSQL</text>
+  <text x="450" y="258" text-anchor="middle" fill="#5c6b84" font-family="monospace" font-size="7" letter-spacing="1">NOT ONLY SQL</text>
+
+  <!-- key-value -->
+  <g font-family="monospace">
+    <rect x="56" y="84" width="262" height="118" rx="12" fill="#071019" stroke="#22d3ee" stroke-opacity=".45"/>
+    <text x="76" y="110" fill="#22d3ee" font-size="10" letter-spacing="2">KEY-VALUE</text>
+    <text x="76" y="132" fill="#93a1b8" font-size="8">a key → an opaque value</text>
+    <text x="76" y="150" fill="#93a1b8" font-size="8">fast lookups · cache · sessions</text>
+    <text x="76" y="174" fill="#5c6b84" font-size="8">Redis · DynamoDB</text>
+  </g>
+
+  <!-- document -->
+  <g font-family="monospace">
+    <rect x="582" y="84" width="262" height="118" rx="12" fill="#071019" stroke="#a78bfa" stroke-opacity=".45"/>
+    <text x="602" y="110" fill="#a78bfa" font-size="10" letter-spacing="2">DOCUMENT</text>
+    <text x="602" y="132" fill="#93a1b8" font-size="8">JSON-like documents</text>
+    <text x="602" y="150" fill="#93a1b8" font-size="8">flexible schema · nested data</text>
+    <text x="602" y="174" fill="#5c6b84" font-size="8">MongoDB · CouchDB</text>
+  </g>
+
+  <!-- column family -->
+  <g font-family="monospace">
+    <rect x="56" y="290" width="262" height="118" rx="12" fill="#071019" stroke="#f472b6" stroke-opacity=".45"/>
+    <text x="76" y="316" fill="#f472b6" font-size="10" letter-spacing="2">COLUMN-FAMILY</text>
+    <text x="76" y="338" fill="#93a1b8" font-size="8">rows with grouped columns</text>
+    <text x="76" y="356" fill="#93a1b8" font-size="8">huge write volume · time-series</text>
+    <text x="76" y="380" fill="#5c6b84" font-size="8">Cassandra · HBase</text>
+  </g>
+
+  <!-- graph -->
+  <g font-family="monospace">
+    <rect x="582" y="290" width="262" height="118" rx="12" fill="#071019" stroke="#fbbf24" stroke-opacity=".45"/>
+    <text x="602" y="316" fill="#fbbf24" font-size="10" letter-spacing="2">GRAPH</text>
+    <text x="602" y="338" fill="#93a1b8" font-size="8">nodes + edges + properties</text>
+    <text x="602" y="356" fill="#93a1b8" font-size="8">relationships · social networks</text>
+    <text x="602" y="380" fill="#5c6b84" font-size="8">Neo4j · Apache Giraph</text>
+  </g>
+
+  <!-- connectors -->
+  <g stroke="#5eead4" stroke-opacity=".18">
+    <path d="M318 143l74 54M582 143l-74 54M318 347l74-54M582 347l-74-54"/>
+  </g>
+
+  <text x="450" y="444" text-anchor="middle" fill="#5c6b84" font-family="monospace" font-size="8" letter-spacing="1">NOSQL IS A FAMILY, NOT A PRODUCT. THE EXAM WANTS THE TYPE + THE TRADE-OFF, NOT A BRAND NAME.</text>
+</svg>

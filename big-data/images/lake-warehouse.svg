@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 470" fill="none">
+  <defs>
+    <pattern id="g" width="34" height="34" patternUnits="userSpaceOnUse">
+      <path d="M34 0H0V34" stroke="#5eead4" stroke-opacity=".05"/>
+    </pattern>
+    <radialGradient id="l" cx=".5" cy=".5" r=".5">
+      <stop stop-color="#5eead4" stop-opacity=".12"/><stop offset="1" stop-color="#05080f" stop-opacity="0"/>
+    </radialGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0l10 5-10 5z" fill="#5eead4" fill-opacity=".65"/>
+    </marker>
+  </defs>
+  <rect width="900" height="470" rx="18" fill="#05080f"/>
+  <rect width="900" height="470" rx="18" fill="url(#g)"/>
+  <ellipse cx="450" cy="235" rx="330" ry="180" fill="url(#l)"/>
+  <text x="46" y="46" fill="#5c6b84" font-family="monospace" font-size="10" letter-spacing="3">DATA LAKE → WAREHOUSE → DATA MART · RAW FIRST, STRUCTURE LATER</text>
+
+  <!-- lake -->
+  <g font-family="monospace">
+    <rect x="46" y="96" width="236" height="252" rx="14" fill="#071019" stroke="#22d3ee" stroke-opacity=".45"/>
+    <text x="164" y="124" text-anchor="middle" fill="#22d3ee" font-size="11" letter-spacing="2">DATA LAKE</text>
+    <text x="164" y="142" text-anchor="middle" fill="#5c6b84" font-size="8">raw · schema-on-read</text>
+    <rect x="66" y="160" width="196" height="34" rx="6" fill="#05080f" stroke="#22d3ee" stroke-opacity=".28"/>
+    <text x="164" y="181" text-anchor="middle" fill="#93a1b8" font-size="8">logs · clicks · sensors</text>
+    <rect x="66" y="204" width="196" height="34" rx="6" fill="#05080f" stroke="#22d3ee" stroke-opacity=".28"/>
+    <text x="164" y="225" text-anchor="middle" fill="#93a1b8" font-size="8">images · video · text</text>
+    <rect x="66" y="248" width="196" height="34" rx="6" fill="#05080f" stroke="#22d3ee" stroke-opacity=".28"/>
+    <text x="164" y="269" text-anchor="middle" fill="#93a1b8" font-size="8">JSON · CSV · Parquet</text>
+    <text x="164" y="310" text-anchor="middle" fill="#5c6b84" font-size="8">store everything, decide later</text>
+    <text x="164" y="328" text-anchor="middle" fill="#5c6b84" font-size="8">cheap · flexible · can become a swamp</text>
+  </g>
+
+  <!-- etl -->
+  <g font-family="monospace">
+    <rect x="326" y="166" width="118" height="112" rx="10" fill="#071019" stroke="#a78bfa" stroke-opacity=".5"/>
+    <text x="385" y="192" text-anchor="middle" fill="#a78bfa" font-size="10" letter-spacing="2">ETL</text>
+    <text x="385" y="214" text-anchor="middle" fill="#93a1b8" font-size="8">extract</text>
+    <text x="385" y="232" text-anchor="middle" fill="#93a1b8" font-size="8">transform</text>
+    <text x="385" y="250" text-anchor="middle" fill="#93a1b8" font-size="8">load</text>
+    <text x="385" y="270" text-anchor="middle" fill="#5c6b84" font-size="7">clean · join · conform</text>
+  </g>
+
+  <!-- warehouse -->
+  <g font-family="monospace">
+    <rect x="488" y="96" width="188" height="252" rx="14" fill="#071019" stroke="#5eead4" stroke-opacity=".45"/>
+    <text x="582" y="124" text-anchor="middle" fill="#5eead4" font-size="11" letter-spacing="2">WAREHOUSE</text>
+    <text x="582" y="142" text-anchor="middle" fill="#5c6b84" font-size="8">structured · schema-on-write</text>
+    <rect x="508" y="160" width="148" height="34" rx="6" fill="#05080f" stroke="#5eead4" stroke-opacity=".28"/>
+    <text x="582" y="181" text-anchor="middle" fill="#93a1b8" font-size="8">cleaned facts</text>
+    <rect x="508" y="204" width="148" height="34" rx="6" fill="#05080f" stroke="#5eead4" stroke-opacity=".28"/>
+    <text x="582" y="225" text-anchor="middle" fill="#93a1b8" font-size="8">dimensions</text>
+    <rect x="508" y="248" width="148" height="34" rx="6" fill="#05080f" stroke="#5eead4" stroke-opacity=".28"/>
+    <text x="582" y="269" text-anchor="middle" fill="#93a1b8" font-size="8">SQL · BI · reporting</text>
+    <text x="582" y="310" text-anchor="middle" fill="#5c6b84" font-size="8">trusted, governed, query-ready</text>
+    <text x="582" y="328" text-anchor="middle" fill="#5c6b84" font-size="8">expensive · rigid · slower to change</text>
+  </g>
+
+  <!-- marts -->
+  <g font-family="monospace">
+    <text x="716" y="120" fill="#fbbf24" font-size="10" letter-spacing="2">DATA MARTS</text>
+    <rect x="716" y="136" width="140" height="52" rx="8" fill="#071019" stroke="#fbbf24" stroke-opacity=".45"/>
+    <text x="786" y="158" text-anchor="middle" fill="#e7ecf5" font-size="9">finance</text>
+    <text x="786" y="174" text-anchor="middle" fill="#5c6b84" font-size="7">one business area</text>
+    <rect x="716" y="200" width="140" height="52" rx="8" fill="#071019" stroke="#fbbf24" stroke-opacity=".45"/>
+    <text x="786" y="222" text-anchor="middle" fill="#e7ecf5" font-size="9">marketing</text>
+    <text x="786" y="238" text-anchor="middle" fill="#5c6b84" font-size="7">one business area</text>
+    <rect x="716" y="264" width="140" height="52" rx="8" fill="#071019" stroke="#fbbf24" stroke-opacity=".45"/>
+    <text x="786" y="286" text-anchor="middle" fill="#e7ecf5" font-size="9">operations</text>
+    <text x="786" y="302" text-anchor="middle" fill="#5c6b84" font-size="7">one business area</text>
+  </g>
+
+  <!-- arrows -->
+  <g stroke="#5eead4" stroke-opacity=".4" marker-end="url(#arrow)">
+    <path d="M282 222h38"/>
+    <path d="M444 222h38"/>
+    <path d="M676 178h34"/>
+    <path d="M676 222h34"/>
+    <path d="M676 266h34"/>
+  </g>
+
+  <text x="450" y="404" text-anchor="middle" fill="#5c6b84" font-family="monospace" font-size="9" letter-spacing="1">LAKE = RAW AND FLEXIBLE · WAREHOUSE = CLEAN AND STRUCTURED · MART = A SLICE FOR ONE TEAM</text>
+  <text x="450" y="428" text-anchor="middle" fill="#5c6b84" font-family="monospace" font-size="8" letter-spacing="1">A LAKE WITHOUT GOVERNANCE BECOMES A DATA SWAMP. A WAREHOUSE WITHOUT A LAKE BECOMES A BOTTLENECK.</text>
+</svg>
